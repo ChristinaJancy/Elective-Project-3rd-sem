@@ -3,6 +3,7 @@
     <v-navigation-drawer
       v-model="drawer"
       app
+      dark
       clipped
     >
       <v-list dense>
@@ -27,7 +28,7 @@
     <v-app-bar
       app
       clipped-left
-      dark
+      light
     >
 
 
@@ -58,8 +59,5 @@
     data: () => ({
       drawer: null,
     }),
-    created () {
-      this.$vuetify.theme.dark = true
-    },
   }
 </script>

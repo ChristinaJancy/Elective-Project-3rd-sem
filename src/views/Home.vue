@@ -1,31 +1,64 @@
 <template>
-  <v-container>
-    <v-row class="text-center">
+  <section class="ma-0 pa-0">
+    <v-row no-gutters class="ma-0 pa-0">
+      <v-img
+        :min-height="'calc(100vh - ' + $vuetify.application.top + 'px)'"
+        src="../assets/home/home.jpg"
+      >
+        <v-theme-provider dark>
+          <v-container fill-height>
+            <v-row align="center" class="white--text mx-auto" justify="center">
+              <v-col class="white--text text-center" cols="12" tag="h1">
+                   <v-img :src="require('../assets/fox/fox-leaf.png')" class="my-3 fox" contain height="auto" max-height="200" />
+               <transition name="fade" mode="out-in" appear>
+                <p v-if="!show">hello</p>
+               </transition>
+
+           
+
+              
+                                <span
+                  :class="[$vuetify.breakpoint.smAndDown ? 'display-1' : 'display-2']"
+                  class="font-weight-light black--text"
+                >Welcome to</span>
+                <br />
+                <span
+                  :class="[$vuetify.breakpoint.smAndDown ? 'display-2': 'display-3']"
+                  class="font-weight-black white--text"
+                >PWA Mandatory project</span>
+   
+                <br />
+                <br />
+                <v-btn color="white" @click="$vuetify.goTo('.pizza')" icon x-large>
+                  <!--
+                    <span
+                      :class="[$vuetify.breakpoint.smAndDown ? 'title' : 'headline']"
+                      class="font-weight icons--text black--text"
+                  ></span>-->
+                  <v-icon color="black">mdi-chevron-double-down</v-icon>
+                </v-btn>
+              </v-col>
+            </v-row>
+          </v-container>
+        </v-theme-provider>
+      </v-img>
+    </v-row>
+    <v-row class="text-center ma-0 pa-0">
       <v-col cols="12">
         <v-img
-          :src="require('../assets/jancy.png')"
-          class="my-3"
+          :src="require('../assets/pizza.png')"
+          class="my-3 pizza"
           contain
-          height="200"
+          height="500"
         />
       </v-col>
 
       <v-col class="mb-4">
-        <h1 class="display-2 font-weight-bold mb-3">
-          Welcome to Web app
-        </h1>
+        <h1 class="display-2 font-weight-bold mb-3">Welcome to PWA elective project</h1>
 
-        <p class="subheading font-weight-regular">
-         Buy stuff thank you
-         <!--
-          <br>please join our online
-          <a
-            href="https://community.vuetifyjs.com"
-            target="_blank"
-          >Discord Community</a> -->
-        </p>
+        <p class="subheading font-weight-regular">Buy stuff thank you or not that's fine</p>
       </v-col>
-<!--
+      <!--
       <v-col
         class="mb-5"
         cols="12"
@@ -87,66 +120,86 @@
             {{ eco.text }}
           </a>
         </v-row>
-      </v-col> -->
+      </v-col>-->
     </v-row>
-  </v-container>
+    <v-parallax :height="$vuetify.breakpoint.smAndDown ? 300 : 300" src="../assets/home/home.jpg"></v-parallax>
+  </section>
 </template>
 
 <script>
-  export default {
-    name: 'Home',
+export default {
+  name: "Home",
+  show: true,
+  
 
-    data: () => ({
+  data() {
+    
+    return {
       ecosystem: [
         {
-          text: 'vuetify-loader',
-          href: 'https://github.com/vuetifyjs/vuetify-loader',
+          text: "vuetify-loader",
+          href: "https://github.com/vuetifyjs/vuetify-loader",
         },
         {
-          text: 'github',
-          href: 'https://github.com/vuetifyjs/vuetify',
+          text: "github",
+          href: "https://github.com/vuetifyjs/vuetify",
         },
         {
-          text: 'awesome-vuetify',
-          href: 'https://github.com/vuetifyjs/awesome-vuetify',
+          text: "awesome-vuetify",
+          href: "https://github.com/vuetifyjs/awesome-vuetify",
         },
       ],
       importantLinks: [
         {
-          text: 'Documentation',
-          href: 'https://vuetifyjs.com',
+          text: "Documentation",
+          href: "https://vuetifyjs.com",
         },
         {
-          text: 'Chat',
-          href: 'https://community.vuetifyjs.com',
+          text: "Chat",
+          href: "https://community.vuetifyjs.com",
         },
         {
-          text: 'Made with Vuetify',
-          href: 'https://madewithvuejs.com/vuetify',
+          text: "Made with Vuetify",
+          href: "https://madewithvuejs.com/vuetify",
         },
         {
-          text: 'Twitter',
-          href: 'https://twitter.com/vuetifyjs',
+          text: "Twitter",
+          href: "https://twitter.com/vuetifyjs",
         },
         {
-          text: 'Articles',
-          href: 'https://medium.com/vuetify',
+          text: "Articles",
+          href: "https://medium.com/vuetify",
         },
       ],
       whatsNext: [
         {
-          text: 'Explore components',
-          href: 'https://vuetifyjs.com/components/api-explorer',
+          text: "Explore components",
+          href: "https://vuetifyjs.com/components/api-explorer",
         },
         {
-          text: 'Select a layout',
-          href: 'https://vuetifyjs.com/getting-started/pre-made-layouts',
+          text: "Select a layout",
+          href: "https://vuetifyjs.com/getting-started/pre-made-layouts",
         },
         {
-          text: 'Frequently Asked Questions',
-          href: 'https://vuetifyjs.com/getting-started/frequently-asked-questions',
+          text: "Frequently Asked Questions",
+          href:
+            "https://vuetifyjs.com/getting-started/frequently-asked-questions",
         },
       ],
-    }),
+    };
+  },
+    mounted() {
+    this.show = true; // might need this.$nextTick
   }
+
+};
 </script>
+
+<style lang="scss" scoped>
+.fade-enter-active, .fade-leave-active {
+  transition: opacity .5s;
+}
+.fade-enter, .fade-leave-to /* .fade-leave-active below version 2.1.8 */ {
+  opacity: 0;
+}
+</style>

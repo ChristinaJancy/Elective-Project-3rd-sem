@@ -5,7 +5,7 @@
     <v-main>
       <router-view />
     </v-main>
-    
+
   </v-app>
 </template>
 
@@ -22,5 +22,16 @@ export default {
   data: () => ({
     //
   }),
+    created () {
+      this.$vuetify.theme.light = true
+    },
 };
 </script>
+
+
+<style lang="scss">
+main{
+  background-image: url("")
+}
+</style>
+

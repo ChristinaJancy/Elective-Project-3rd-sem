@@ -30,8 +30,6 @@ export default {
 
 
 <style lang="scss">
-main{
-  background-image: url("")
-}
+
 </style>
 

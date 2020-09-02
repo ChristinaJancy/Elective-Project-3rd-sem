@@ -9,24 +9,24 @@
           <v-container fill-height>
             <v-row align="center" class="white--text mx-auto" justify="center">
               <v-col class="white--text text-center" cols="12" tag="h1">
-                   <v-img :src="require('../assets/fox/fox-leaf.png')" class="my-3 fox" contain height="auto" max-height="200" />
-               <transition name="fade" mode="out-in" appear>
-                <p v-if="!show">hello</p>
-               </transition>
+                <v-img
+                  :src="require('../assets/fox/fox-leaf.png')"
+                  class="my-3 fox"
+                  contain
+                  height="auto"
+                  max-height="200"
+                />
 
-           
-
-              
-                                <span
+                <span
                   :class="[$vuetify.breakpoint.smAndDown ? 'display-1' : 'display-2']"
                   class="font-weight-light black--text"
                 >Welcome to</span>
                 <br />
                 <span
                   :class="[$vuetify.breakpoint.smAndDown ? 'display-2': 'display-3']"
-                  class="font-weight-black white--text"
+                  class="font-weight-black black--text"
                 >PWA Mandatory project</span>
-   
+
                 <br />
                 <br />
                 <v-btn color="white" @click="$vuetify.goTo('.pizza')" icon x-large>
@@ -45,12 +45,7 @@
     </v-row>
     <v-row class="text-center ma-0 pa-0">
       <v-col cols="12">
-        <v-img
-          :src="require('../assets/pizza.png')"
-          class="my-3 pizza"
-          contain
-          height="500"
-        />
+        <v-img :src="require('../assets/fox/fox-fullback.png')" class="my-3 pizza" contain height="500" />
       </v-col>
 
       <v-col class="mb-4">
@@ -130,10 +125,8 @@
 export default {
   name: "Home",
   show: true,
-  
 
   data() {
-    
     return {
       ecosystem: [
         {
@@ -188,16 +181,16 @@ export default {
       ],
     };
   },
-    mounted() {
+  mounted() {
     this.show = true; // might need this.$nextTick
-  }
-
+  },
 };
 </script>
 
 <style lang="scss" scoped>
-.fade-enter-active, .fade-leave-active {
-  transition: opacity .5s;
+.fade-enter-active,
+.fade-leave-active {
+  transition: opacity 0.5s;
 }
 .fade-enter, .fade-leave-to /* .fade-leave-active below version 2.1.8 */ {
   opacity: 0;

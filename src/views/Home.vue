@@ -59,27 +59,6 @@
         cols="12"
       >
         <h2 class="headline font-weight-bold mb-3">
-          What's next?
-        </h2>
-
-        <v-row justify="center">
-          <a
-            v-for="(next, i) in whatsNext"
-            :key="i"
-            :href="next.href"
-            class="subheading mx-3"
-            target="_blank"
-          >
-            {{ next.text }}
-          </a>
-        </v-row>
-      </v-col>
-
-      <v-col
-        class="mb-5"
-        cols="12"
-      >
-        <h2 class="headline font-weight-bold mb-3">
           Important Links
         </h2>
 
@@ -94,27 +73,6 @@
             {{ link.text }}
           </a>
         </v-row>
-      </v-col>
-
-      <v-col
-        class="mb-5"
-        cols="12"
-      >
-        <h2 class="headline font-weight-bold mb-3">
-          Ecosystem
-        </h2>
-
-        <v-row justify="center">
-          <a
-            v-for="(eco, i) in ecosystem"
-            :key="i"
-            :href="eco.href"
-            class="subheading mx-3"
-            target="_blank"
-          >
-            {{ eco.text }}
-          </a>
-        </v-row>
       </v-col>-->
     </v-row>
     <v-parallax :height="$vuetify.breakpoint.smAndDown ? 300 : 300" src="../assets/home/home.jpg"></v-parallax>
@@ -122,26 +80,13 @@
 </template>
 
 <script>
+
 export default {
   name: "Home",
   show: true,
 
   data() {
     return {
-      ecosystem: [
-        {
-          text: "vuetify-loader",
-          href: "https://github.com/vuetifyjs/vuetify-loader",
-        },
-        {
-          text: "github",
-          href: "https://github.com/vuetifyjs/vuetify",
-        },
-        {
-          text: "awesome-vuetify",
-          href: "https://github.com/vuetifyjs/awesome-vuetify",
-        },
-      ],
       importantLinks: [
         {
           text: "Documentation",
@@ -162,21 +107,6 @@ export default {
         {
           text: "Articles",
           href: "https://medium.com/vuetify",
-        },
-      ],
-      whatsNext: [
-        {
-          text: "Explore components",
-          href: "https://vuetifyjs.com/components/api-explorer",
-        },
-        {
-          text: "Select a layout",
-          href: "https://vuetifyjs.com/getting-started/pre-made-layouts",
-        },
-        {
-          text: "Frequently Asked Questions",
-          href:
-            "https://vuetifyjs.com/getting-started/frequently-asked-questions",
         },
       ],
     };

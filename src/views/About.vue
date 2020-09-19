@@ -10,7 +10,7 @@
         </div>
       </div>
       <div class="header-box" align="center">
-        <h1 v-scrollanimation>NoLabels</h1>
+        <h1 v-scrollanimation>NoLabels (THIS LOOK OF THIS PAGE IS JUST FOR A SCROLLTRIGGER TEST)</h1>
       </div>
     </section>
     <section class="description">

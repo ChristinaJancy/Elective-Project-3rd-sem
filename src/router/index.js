@@ -5,9 +5,6 @@ import Admin from '../views/Admin.vue'
 import Products from '../views/Products.vue'
 import Basket from '../views/Basket.vue'
 
-// import 'firebase/firestore'
-// import firebase from 'firebase'
-
 Vue.use(VueRouter)
 
   const routes = [
@@ -28,9 +25,9 @@ Vue.use(VueRouter)
     path: '/admin',
     name: 'Admin',
     component: Admin,
-    // meta: {
-    //   requiresAuth: true
-    // }
+    meta: {
+      requiresAuth: true
+    }
   },
   {
     path: '/products',
@@ -44,19 +41,10 @@ Vue.use(VueRouter)
   },
 ]
 
-
 const router = new VueRouter({
   mode: 'history',
   base: process.env.BASE_URL,
   routes
 })
-
-// router.beforeEach((to, from, next) => {
-//   const currentUser = firebase.auth().currentUser;
-//   const requiresAuth = to.matched.some(record => record.meta.requiresAuth);
-
-//   if(requiresAuth && !currentUser) next('login');
-//   else next();
-// });
 
 export default router

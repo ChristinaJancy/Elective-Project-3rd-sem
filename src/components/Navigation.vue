@@ -6,32 +6,44 @@
       dark
       clipped
     >
-      <v-list dense>
-        <v-list-item link>
-          <v-list-item-action>
-            <v-icon>mdi-view-dashboard</v-icon>
-          </v-list-item-action>
-          <v-list-item-content>
-            <v-list-item-title>Dashboard</v-list-item-title>
-          </v-list-item-content>
-        </v-list-item>
-        <v-list-item link>
-          <v-list-item-action>
-            <v-icon>mdi-cog</v-icon>
-          </v-list-item-action>
-          <v-list-item-content>
-            <v-list-item-title>Settings</v-list-item-title>
-          </v-list-item-content>
-        </v-list-item>
-      </v-list>
+<router-link to="/">
+          <v-list-item link>
+            <v-list-item-action>
+              <v-icon class="iconcolor--text">mdi-home-outline</v-icon>
+            </v-list-item-action>
+            <v-list-item-content>
+              <v-list-item-title class="iconcolor--text">Home</v-list-item-title>
+            </v-list-item-content>
+          </v-list-item>
+        </router-link>
+
+        <router-link to="/about">
+          <v-list-item link>
+            <v-list-item-action>
+              <v-icon class="iconcolor--text">mdi-information-outline</v-icon>
+            </v-list-item-action>
+            <v-list-item-content>
+              <v-list-item-title class="iconcolor--text">About</v-list-item-title>
+            </v-list-item-content>
+          </v-list-item>
+        </router-link>
+
+        <router-link to="/admin">
+          <v-list-item link>
+            <v-list-item-action>
+              <v-icon class="iconcolor--text">mdi-lock</v-icon>
+            </v-list-item-action>
+            <v-list-item-content>
+              <v-list-item-title class="iconcolor--text">Admin</v-list-item-title>
+            </v-list-item-content>
+          </v-list-item>
+        </router-link>
     </v-navigation-drawer>
     <v-app-bar
       app
       clipped-left
       light
     >
-
-
          <v-app-bar-nav-icon @click.stop="drawer = !drawer"></v-app-bar-nav-icon>
  
 

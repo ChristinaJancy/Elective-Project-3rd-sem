@@ -14,3 +14,4 @@ var firebaseConfig = {
 
   export const fb = firebase.initializeApp(firebaseConfig);
   export const db = firebase.firestore()
+  export const dbProductAdd = db.collection('products')

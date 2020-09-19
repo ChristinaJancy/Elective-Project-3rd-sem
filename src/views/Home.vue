@@ -1,5 +1,5 @@
 <template>
-  <section class="ma-0 pa-0">
+  <section class="home ma-0 pa-0">
     <v-row no-gutters class="ma-0 pa-0">
       <v-img
         :min-height="'calc(100vh - ' + $vuetify.application.top + 'px)'"

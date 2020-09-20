@@ -3,14 +3,21 @@ import App from './App.vue'
 import router from './router'
 import store from './store'
 import vuetify from './plugins/vuetify';
+import { auth } from '../firebase'
 import ScrollAnimation from './directives/scrollanimation'
+import './assets/scss/app.scss'
 
 Vue.directive('scrollanimation', ScrollAnimation);
 Vue.config.productionTip = false
 
-    new Vue({
+let app
+auth.onAuthStateChanged(() => {
+  if (!app) {
+    app = new Vue({
       router,
-      store,
       vuetify,
+      store,
       render: h => h(App)
     }).$mount('#app')
+  }
+})

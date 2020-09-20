@@ -4,6 +4,12 @@ import Home from '../views/Home.vue'
 import Admin from '../views/Admin.vue'
 import Products from '../views/Products.vue'
 import Basket from '../views/Basket.vue'
+import AddNewItems from '../components/admin/AddNewItems.vue'
+import Login from '../components/admin/Login.vue'
+import { auth } from '../../firebase.js'
+
+import 'firebase/firestore'
+
 
 Vue.use(VueRouter)
 
@@ -30,6 +36,14 @@ Vue.use(VueRouter)
     }
   },
   {
+    path: '/addnew',
+    name: 'AddNew',
+    component: AddNewItems,
+    meta: {
+      requiresAuth: true
+    }
+  },
+  {
     path: '/products',
     name: 'Products',
     component: Products
@@ -39,12 +53,27 @@ Vue.use(VueRouter)
     name: 'Basket',
     component: Basket
   },
+  {
+    path: '/login',
+    name: 'Login',
+    component: Login
+  },  
 ]
 
 const router = new VueRouter({
   mode: 'history',
   base: process.env.BASE_URL,
   routes
+})
+
+router.beforeEach((to, from, next) => {
+  const requiresAuth = to.matched.some(x => x.meta.requiresAuth)
+
+  if (requiresAuth && !auth.currentUser) {
+    next('login')
+  } else {
+    next()
+  }
 })
 
 export default router

@@ -1,6 +1,6 @@
 <template>
   <div>
-    <section class="header">
+    <section class="about-header">
       <div align="center" class="header-title">
         <div v-scrollanimation>
           <span
@@ -96,7 +96,7 @@
  
 }
 
-.header {
+.about-header {
   position: relative;
   width: 100%;
   min-height: 100vh;

@@ -7,7 +7,7 @@
     >
         <v-container>
           <v-row>
-            <v-col offset-md="1" md="5">
+            <v-col offset-md="3" md="6">
               <h1>All Items</h1>
               <div class="pa-2" id="info">
                 <v-simple-table id="product-table" light>
@@ -57,11 +57,6 @@
                 </v-simple-table>
               </div>
             </v-col>
-
-            <v-col offset-md="1" md="4">
-              <h1>PREVIEW</h1>
-              <div class="pa-2" id="info">Right</div>
-            </v-col>
           </v-row>
           <v-row>
             <v-dialog v-model="dialog" max-width="400">
@@ -71,9 +66,9 @@
                     <h1 class="black--text" style="text-align:center;">Edit item</h1>
 
                     <div class="pa-2" id="info">
-                      <v-text-field label="Name" v-model="item.name"></v-text-field>
-                      <v-text-field label="Description" v-model="item.description"></v-text-field>
-                      <v-text-field label="price" v-model="item.price"></v-text-field>
+                      <v-text-field label="Name" v-model="item.name" style="width=70%;"></v-text-field>
+                      <v-text-field label="Description" v-model="item.description" style="width=100%;"></v-text-field>
+                      <v-text-field label="price" v-model="item.price" style="width=100%;"></v-text-field>
 
                       <v-row class="ma-0 pa-0">
                         <v-col cols="6" align="left">

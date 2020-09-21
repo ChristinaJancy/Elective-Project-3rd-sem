@@ -11,7 +11,7 @@ Vue.directive('scrollanimation', ScrollAnimation);
 Vue.config.productionTip = false
 
 let app
-auth.onAuthStateChanged(user => {
+auth.onAuthStateChanged((user) => {
   if (!app) {
     app = new Vue({
       router,

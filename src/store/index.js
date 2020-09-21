@@ -1,5 +1,6 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
+
 import 'firebase/firestore'
 import router from '../router/index'
 import { dbProductAdd } from '../firebase.js'
@@ -64,14 +65,12 @@ export default new Vuex.Store({
         console.log(products)
         state.products = products;
         products = []
-
       }
     )},
     setUserProfile(state, val) {
       state.userProfile = val
       
     }
-  
   },
 
   actions: {

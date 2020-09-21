@@ -6,7 +6,7 @@
         <h1>NoLabel</h1>
         <p>
           Welcome to the
-          <router-link to="/">NoLabels'</router-link>clothing shop with no labels.
+          <router-link to="/">NoLabels'</router-link> clothing shop with no labels.
         </p>
       </div>
       <div :class="{ 'signup-form': !showLoginForm }" class="col2">
@@ -84,7 +84,8 @@
 
 <script>
 import PasswordReset from './PasswordReset'
-import { auth } from "../../../firebase";
+import { auth } from "../../firebase";
+// import { auth } from "../../../firebase";
 
 export default {
       components: {

@@ -13,10 +13,8 @@ var firebaseConfig = {
     appId: "1:612313413641:web:7870198cb0df984b7620d8"
   };
 
-// Initialize Firebase
 const fb = firebase.initializeApp(firebaseConfig);
 
-//
 const db = firebase.firestore()
 const auth = firebase.auth()
 const dbProductAdd = db.collection('products');

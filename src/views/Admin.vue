@@ -107,7 +107,8 @@
 </template>
 
 <script scoped>
-import { dbProductAdd } from "../../firebase.js";
+import { dbProductAdd } from "../firebase.js";
+// import { dbProductAdd } from "../../firebase.js";
 
 export default {
   data() {

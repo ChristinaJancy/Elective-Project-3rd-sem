@@ -6,8 +6,8 @@ import Products from '../views/Products.vue'
 import Basket from '../views/Basket.vue'
 import AddNewItems from '../components/admin/AddNewItems.vue'
 import Login from '../components/admin/Login.vue'
-import { auth } from '../../firebase.js'
-
+import { auth } from '../firebase.js'
+// import { auth } from '../../firebase.js'
 import 'firebase/firestore'
 
 

@@ -1,6 +1,5 @@
 <template>
   <v-app>
-    
     <Navigation></Navigation>
 
     <v-main>
@@ -11,6 +10,7 @@
 </template>
 
 <script>
+import { mapState } from 'vuex'
 import Navigation from "@/components/Navigation";
 
 
@@ -22,11 +22,17 @@ export default {
   },
 
   data: () => ({
-    //
+
   }),
     created () {
       this.$vuetify.theme.light = true
     },
+     computed: {
+    ...mapState(['userProfile']),
+    showNav() {
+      return Object.keys(this.userProfile).length > 1
+    }
+  }
 };
 </script>
 

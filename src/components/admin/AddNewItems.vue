@@ -71,7 +71,8 @@
 </template>
 
 <script>
-import { dbProductAdd, fb } from "../../../firebase.js";
+import { dbProductAdd, fb } from "../../firebase.js";
+// import { dbProductAdd, fb } from "../../../firebase.js";
 /*eslint-disable*/
 
 export default {

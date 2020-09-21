@@ -1,12 +1,13 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
 import 'firebase/firestore'
-import { dbProductAdd } from '../../firebase.js'
 import router from '../router/index'
-/* eslint-disable */
-import * as fb from '../../firebase'
+import { dbProductAdd } from '../firebase.js'
+// import { dbProductAdd } from '../../firebase.js'
+// import * as fb from '../../firebase'
+import * as fb from '../firebase'
+/*eslint-disable*/ 
 import firebase from 'firebase'
-
 
 
 Vue.use(Vuex)
@@ -68,6 +69,7 @@ export default new Vuex.Store({
     )},
     setUserProfile(state, val) {
       state.userProfile = val
+      
     }
   
   },
@@ -89,12 +91,24 @@ export default new Vuex.Store({
     async fetchUserProfile({ commit }, user) {
       // fetch user profile
       const userProfile = await fb.usersCollection.doc(user.uid).get()
-  
+
       // set user profile in state
       commit('setUserProfile', userProfile.data())
-      
+
       // change route to dashboard
-      router.push('/')
+      if (router.currentRoute.path === '/login') {
+        router.push('/')
+      }
+    },
+    async logout({ commit }) {
+      // log user out
+      await fb.auth.signOut()
+
+      // clear user data from state
+      commit('setUserProfile', {})
+
+      // redirect to login view
+      router.push('/login')
     },
     async signup({ dispatch }, form) {
       // sign user up
@@ -108,7 +122,8 @@ export default new Vuex.Store({
     
       // fetch user profile and set in state
       dispatch('fetchUserProfile', user)
-    }
+    },
+
   },
 
   modules: {

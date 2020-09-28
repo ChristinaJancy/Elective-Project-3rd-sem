@@ -1,6 +1,7 @@
 <template>
   <div id="Navigation">
-    <v-navigation-drawer v-model="drawer" app dark clipped>
+    <v-navigation-drawer v-model="drawer" temporary app dark clipped>
+      
       <v-list dense>
         <v-list-item-subtitle class="pl-4" v-if="currentUser">Logged In</v-list-item-subtitle>
         <v-list-item v-if="currentUser">
@@ -46,11 +47,13 @@
       </v-list>
       
     </v-navigation-drawer>
+
     <v-app-bar app clipped-left light>
       <v-app-bar-nav-icon @click.stop="drawer = !drawer"></v-app-bar-nav-icon>
 
       <v-spacer></v-spacer>
-      <router-link to="/login" v-if="currentUser === null">
+
+      <router-link to="/login" v-if="!currentUser">
         <v-list-item link>
           <v-list-item-action class="mx-1">
             <v-icon class="iconcolor--text">mdi-account-circle-outline</v-icon>

@@ -2,7 +2,7 @@
   <section class="about">
     <v-img
       :min-height="'calc(100vh - ' + $vuetify.application.top + 'px)'"
-      src="../assets/home/home.jpg"
+      src="https://firebasestorage.googleapis.com/v0/b/endproject-pwa.appspot.com/o/assets%2Fyosemite1.jpg?alt=media&token=c055750c-044c-4842-8f48-0989b79958eb"
       cover
     >
         <v-container>
@@ -19,6 +19,7 @@
                     <tr>
                       <th></th>
                       <th class="text-left" style="width:70%;">Name</th>
+                      <th class="text-left" style="width:70%;">Size</th>
                       <th class="text-left" style="width=100px">Price</th>
                       <th class="text-left" style="width=100px">Edit</th>
                       <th class="text-left" style="width=100px">Remove</th>
@@ -34,6 +35,7 @@
                         <br />
                         <span id="product_description">{{item.description}}</span>
                       </td>
+                      <td> <span v-for="(size, index) in item.size" :key="index">{{ size + ', ' }}</span></td>
                       <td>{{ item.price }}</td>
 
                       <td>
@@ -159,6 +161,7 @@ export default {
       } else {
         this.basket.push({
           name: item.name,
+          size: item.size,
           price: item.price,
           quantity: 1,
         });

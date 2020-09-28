@@ -3,7 +3,7 @@
     <v-row no-gutters class="ma-0 pa-0">
       <v-img
         :min-height="'calc(100vh - ' + $vuetify.application.top + 'px)'"
-        src="../assets/home/home.jpg"
+        src="https://firebasestorage.googleapis.com/v0/b/endproject-pwa.appspot.com/o/assets%2Fyosemite1.jpg?alt=media&token=c055750c-044c-4842-8f48-0989b79958eb"
       >
         <v-theme-provider dark>
           <v-container fill-height>
@@ -75,7 +75,7 @@
         </v-row>
       </v-col>-->
     </v-row>
-    <v-parallax :height="$vuetify.breakpoint.smAndDown ? 300 : 300" src="../assets/home/home.jpg"></v-parallax>
+    <v-parallax :height="$vuetify.breakpoint.smAndDown ? 300 : 300" src="https://firebasestorage.googleapis.com/v0/b/endproject-pwa.appspot.com/o/assets%2Fyosemite1.jpg?alt=media&token=c055750c-044c-4842-8f48-0989b79958eb"></v-parallax>
   </section>
 </template>
 

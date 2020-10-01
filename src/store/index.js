@@ -33,7 +33,6 @@ export default new Vuex.Store({
           } else {
             state.basketItems.push({
               name: item.name,
-              size: item.size,
               price: item.price,
               quantity: 1,
             });

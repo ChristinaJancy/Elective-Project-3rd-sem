@@ -1,6 +1,6 @@
 <template>
-    <div>
-        <h1>All Products</h1>
+    <div id="AccountPage">
+        <h1>Account Page</h1>
     </div>
 </template>
 

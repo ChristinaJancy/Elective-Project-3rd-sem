@@ -1,6 +1,8 @@
 <template>
     <div>
-        <h1>All Products</h1>
+        <h1>
+            Favorites Page
+        </h1>
     </div>
 </template>
 

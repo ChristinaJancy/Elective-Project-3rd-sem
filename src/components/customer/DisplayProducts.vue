@@ -6,12 +6,20 @@
       </v-col>
     </v-row>
     <v-row class="pa-0 ma-0">
-      <v-col class="pa-0 ma-0" v-for="(product, i) in products" :key="i">
+      <v-col 
+        lg="3" 
+        sm="12"
+        class="pa-0 ma-0"
+        v-for="(product, i) in products"
+        :key="i"
+      >
         <div id="productDisplayBox">
-          <img :src="product.productImage" alt="" height="350px" />
-          <p>{{ product.productName }}</p>
-          <p>{{ product.productPrice }}</p>
-          <p>{{ product.productColor }}</p>
+          <img :src="product.productImage" alt="" height="200px" />
+          <div id="ImageContentBox">
+            <p>{{ product.productName }}</p>
+            <p>{{ product.productPrice }}</p>
+            <p>{{ product.productColor }}</p>
+          </div>
         </div>
       </v-col>
     </v-row>
@@ -35,7 +43,7 @@ export default {
           productName: "Baige Baggy Pants 001",
           productImage:
             "https://ae01.alicdn.com/kf/HTB1gw_zLXXXXXXSXFXXq6xXFXXXj/Fashion-Trousers-For-Women-Sashes-Plus-Size-Elegant-Women-s-Pants-Trousers-Mid-Wasit-Wide-Leg.jpg",
-             productPrice: "22,000",
+          productPrice: "22,000",
           productColor: "baige",
         },
         {
@@ -72,7 +80,8 @@ export default {
             "https://www.banana-moon-clothing.co.uk/images/h551-d08e0b7b4b98e795ba7a86a9ca823a8c.jpg?width=356&height=398",
           productPrice: "75,000",
           productColor: "white",
-        },{
+        },
+        {
           productName: "Long Sleeve Shirt 001",
           productImage:
             "https://cdn09.nnnow.com/web-images/medium/styles/N6I2NVHN9JT/1563454009563/1.jpg",
@@ -83,7 +92,7 @@ export default {
           productName: "Baige Baggy Pants 001",
           productImage:
             "https://ae01.alicdn.com/kf/HTB1gw_zLXXXXXXSXFXXq6xXFXXXj/Fashion-Trousers-For-Women-Sashes-Plus-Size-Elegant-Women-s-Pants-Trousers-Mid-Wasit-Wide-Leg.jpg",
-             productPrice: "22,000",
+          productPrice: "22,000",
           productColor: "baige",
         },
         {
@@ -121,7 +130,6 @@ export default {
           productPrice: "75,000",
           productColor: "white",
         },
-        
       ],
     };
   },
@@ -129,13 +137,16 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+#displayProducts {
+  margin-left: 10vh;
+}
 #productDisplayBox {
   border-radius: 25px;
   display: grid;
   justify-content: center;
   padding: 2vh;
   margin-bottom: 5vh;
-  width: 400px;
+  width: 250px;
   background: #182f31;
 }
 

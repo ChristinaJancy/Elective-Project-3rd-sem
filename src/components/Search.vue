@@ -1,13 +1,14 @@
 <template>
   <div class="Search_Bar">
     <v-row align="center" justify="start" class="pa-0 ma-0">
-      <v-col class="pa-0">
+      <v-col lg="" class="pa-0">
         <div id="MenuButton">
-          <v-btn color="light-grey" @click.stop="drawer = !drawer">
-            No Labels Menu
+          <v-btn small @click.stop="drawer = !drawer">
+            No Labels
           </v-btn>
         </div>
       </v-col>
+      <v-spacer></v-spacer>
       <v-col class="pa-0 ma-0">
         <v-text-field dark
           placeholder="Search No Labels"
@@ -15,7 +16,7 @@
         ></v-text-field>
       </v-col>
       <v-col class="pa-0 ma-0">
-        <v-icon class="iconcolor--text" light>mdi-magnify</v-icon>
+        <v-icon class="iconcolor--text">mdi-magnify</v-icon>
       </v-col>
     </v-row>
     <v-navigation-drawer v-model="drawer" temporary app clipped>
@@ -142,10 +143,9 @@ export default {
 
 <style lang="scss" scoped>
 .Search_Bar {
+  margin-left: 5vh;
+  color: white;
   background-color: #0a292c;
 }
 
-#MenuButton {
-  padding-left: 40px;
-}
 </style>

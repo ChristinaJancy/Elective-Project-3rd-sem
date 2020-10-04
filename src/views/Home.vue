@@ -1,5 +1,5 @@
 <template>
-  <section class="home ma-0 pa-0">
+  <!-- <section class="home ma-0 pa-0">
     <v-row no-gutters class="ma-0 pa-0">
       <v-img
         :min-height="'calc(100vh - ' + $vuetify.application.top + 'px)'"
@@ -30,11 +30,7 @@
                 <br />
                 <br />
                 <v-btn color="white" @click="$vuetify.goTo('.pizza')" icon x-large>
-                  <!--
-                    <span
-                      :class="[$vuetify.breakpoint.smAndDown ? 'title' : 'headline']"
-                      class="font-weight icons--text black--text"
-                  ></span>-->
+
                   <v-icon color="black">mdi-chevron-double-down</v-icon>
                 </v-btn>
               </v-col>
@@ -53,37 +49,38 @@
 
         <p class="subheading font-weight-regular">Buy stuff thank you or not that's fine</p>
       </v-col>
-      <!--
-      <v-col
-        class="mb-5"
-        cols="12"
-      >
-        <h2 class="headline font-weight-bold mb-3">
-          Important Links
-        </h2>
 
-        <v-row justify="center">
-          <a
-            v-for="(link, i) in importantLinks"
-            :key="i"
-            :href="link.href"
-            class="subheading mx-3"
-            target="_blank"
-          >
-            {{ link.text }}
-          </a>
-        </v-row>
-      </v-col>-->
+ 
     </v-row>
     <v-parallax :height="$vuetify.breakpoint.smAndDown ? 300 : 300" src="https://firebasestorage.googleapis.com/v0/b/endproject-pwa.appspot.com/o/assets%2Fyosemite1.jpg?alt=media&token=c055750c-044c-4842-8f48-0989b79958eb"></v-parallax>
-  </section>
+  </section> -->
+   <div id="homePage">
+    <v-row class="pa-0 ma-0 ">
+      <v-col class="pa-0 ma-0 d-none d-lg-block" cols="3">
+        <div class="optionsMenuBox">
+          <OptionsMenu></OptionsMenu>
+        </div>
+      </v-col>
+      <v-col class="pa-0 ma-0" cols="9">
+        <div class="displayProductsBox">
+          <DisplayProducts></DisplayProducts>
+        </div>
+      </v-col>
+    </v-row>
+  </div>
 </template>
 
 <script>
+import DisplayProducts from "../components/customer/DisplayProducts.vue";
+import OptionsMenu from "../components/customer/OptionsMenu.vue";
 
 export default {
   name: "Home",
   show: true,
+    components: {
+    DisplayProducts,
+    OptionsMenu,
+  },
 
   data() {
     return {

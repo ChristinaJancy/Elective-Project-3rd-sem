@@ -40,7 +40,7 @@
                          <br>
                       <b>Sizes:</b> <span v-for="(size, index) in item.size" :key="index"> {{ size + ', ' }}</span>
                         <br>
-                      <b>Colors:</b> <span v-for="(color, index) in item.color" :key="index"> {{ color }}</span>
+                      <b>Colors:</b> <span v-for="(color, index) in item.color" :key="index"> {{ color + ', '}}</span>
                         <br>
                       <b>Types:</b> <span v-for="(type, index) in item.type" :key="index">{{ type + ', '}}</span>
                         <br>
@@ -249,7 +249,7 @@ export default {
           size: item.size,
           color: item.color,
           price: item.price,
-         image: this.image,
+          image: item.image,
           quantity: 1,
         });
         this.$store.commit('addBasketItems', this.basketDump);

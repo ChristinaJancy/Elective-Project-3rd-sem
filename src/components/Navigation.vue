@@ -34,6 +34,27 @@
           </v-list-item>
         </router-link>
 
+        <router-link to="/products">
+          <v-list-item link>
+            <v-list-item-action>
+              <v-icon class="iconcolor--text">mdi-briefcase-variant-outline</v-icon>
+            </v-list-item-action>
+            <v-list-item-content>
+              <v-list-item-title class="iconcolor--text">All Products</v-list-item-title>
+            </v-list-item-content>
+          </v-list-item>
+        </router-link>
+        <router-link to="/basket">
+          <v-list-item link>
+            <v-list-item-action>
+              <v-icon class="iconcolor--text">mdi-briefcase-variant-outline</v-icon>
+            </v-list-item-action>
+            <v-list-item-content>
+              <v-list-item-title class="iconcolor--text">Basket</v-list-item-title>
+            </v-list-item-content>
+          </v-list-item>
+        </router-link>
+
         <router-link to="/admin">
           <v-list-item link>
             <v-list-item-action>

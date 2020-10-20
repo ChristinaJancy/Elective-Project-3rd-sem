@@ -10,7 +10,7 @@
         </div>
       </div>
       <div class="header-box" align="center">
-        <h1 v-scrollanimation>NoLabels (THIS LOOK OF THIS PAGE IS JUST FOR A SCROLLTRIGGER TEST)</h1>
+        <h1 v-scrollanimation>We challenge fashion industry norms for what is considered menswear and womenswear and instead focus on creating great fitting clothing that makes you feel comfortable and confident in who you are.</h1>
       </div>
     </section>
     <section class="description">

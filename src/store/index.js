@@ -15,8 +15,7 @@ Vue.use(Vuex)
 
 export default new Vuex.Store({
   state: {
-    basketItems: [
-    ],
+    basketItems: [],
     products: [],
     currentUser: null,
     userProfile: {}
@@ -34,6 +33,8 @@ export default new Vuex.Store({
             state.basketItems.push({
               name: item.name,
               size: item.size,
+              color: item.color,
+              image: item.image,
               price: item.price,
               quantity: 1,
             });
@@ -68,6 +69,7 @@ export default new Vuex.Store({
         products = []
       }
     )},
+    
     setUserProfile(state, val) {
       state.userProfile = val
       

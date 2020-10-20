@@ -18,12 +18,12 @@ const fb = firebase.initializeApp(firebaseConfig);
 const db = firebase.firestore()
 const auth = firebase.auth()
 const dbProductAdd = db.collection('products');
-const usersCollection = db.collection('users')
+const usersCollection = db.collection('users');
 
 export {
  fb, 
  db,
  auth,
- dbProductAdd,
+ dbProductAdd, 
  usersCollection
 }

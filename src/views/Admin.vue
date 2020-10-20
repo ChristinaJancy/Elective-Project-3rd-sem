@@ -18,10 +18,11 @@
                     </v-btn>
                     <tr>
                       <th class="text-left">Product</th>
-                       <th class="text-left">Info</th>
+                      <th class="text-left">Info</th>
                       <th class="text-left">Price</th>
                       <th class="text-left">Edit</th>
                       <th class="text-left">Remove</th>
+                      <th class="text-left">Add to basket</th>
                     </tr>
                   </thead>
                   <tbody>
@@ -65,6 +66,11 @@
                           <v-icon color="iconcolor">mdi-delete</v-icon>
                         </v-btn>
                       </td>
+                      <td>
+                      <v-btn @click="addToBasket(item)" depressed text small>
+                          <v-icon color="iconcolor">mdi-plus</v-icon>
+                        </v-btn>
+                        </td>
                     </tr>
                   </tbody>
                 </v-simple-table>
@@ -169,7 +175,7 @@ import { dbProductAdd } from "../firebase.js";
 export default {
   data() {
     return {
-      basket: [],
+      basketDump: [],
       dialog: false,
       item: [],
       activeEditItem: null,
@@ -188,6 +194,9 @@ export default {
   },
 
   methods: {
+    addCheckoutItem(){
+    this.$store.dispatch('setCheckoutItem')
+    },
     editItem(item) {
       this.item = item;
       this.activeEditItem = item.id;
@@ -216,23 +225,36 @@ export default {
           console.error("Error removing document: ", error);
         });
     },
-    addToBasket(item) {
-      if (this.basket.find((itemInArray) => item.name === itemInArray.name)) {
-        item = this.basket.find(
-          (itemInArray) => item.name === itemInArray.name
-        );
-        this.increaseQnt(item);
-      } else {
-        this.basket.push({
+    // addToBasket(item) {
+    //   if (this.basket.find((itemInArray) => item.name === itemInArray.name)) {
+    //     item = this.basket.find(
+    //       (itemInArray) => item.name === itemInArray.name
+    //     );
+    //     this.increaseQnt(item);
+    //   } else {
+    //     this.basket.push({
+    //       name: item.name,
+    //       size: item.size,
+    //       type: item.type,
+    //       category: item.category,
+    //       season: item.season,
+    //       price: item.price,
+    //       quantity: 1,
+    //     });
+    //   }
+    // },
+        addToBasket(item) {
+       this.basketDump.push({
           name: item.name,
           size: item.size,
-          type: item.type,
-          category: item.category,
-          season: item.season,
+          color: item.color,
           price: item.price,
+         image: this.image,
           quantity: 1,
         });
-      }
+        this.$store.commit('addBasketItems', this.basketDump);
+        // console.log("what is this", this.basketDump);
+        this.basketDump = [];
     },
     increaseQnt(item) {
       item.quantity++;

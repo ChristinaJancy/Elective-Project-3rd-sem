@@ -7,48 +7,75 @@
     >
         <v-container>
           <v-row>
-            <v-col offset-md="2" md="8" sm="12" xs="12">
-              <h1>Basket</h1>
+            <v-col cols="12" md="6" sm="12" xs="12">
+              <h1 class="title text-center">Basket</h1>
               <div class="pa-2" id="info">
-                <v-simple-table id="product-table" light>
-                  <thead>
+                 <v-simple-table v-if="basket.length > 0">
+                    <thead>
                     <tr>
-                      <th class="text-left">Product</th>
-                       <th class="text-left">Info</th>
-                      <th class="text-left">Price</th>
-                      <th class="text-left">Remove product</th>
+                  
+                        <th class="text-left">Product</th>
+                        <th class="text-left">Info</th>
+                        <th class="text-left">Quantity</th>
                     </tr>
                   </thead>
                   <tbody>
-                    <tr v-for="item in products" :key="item.name">
+                      <tr v-for="item in basket" :key="item.name">
                      <td id="id_product_img" style="text-align:center;">
-                        <span id="td_name" >{{item.name}}</span>
                         <v-img v-bind:src="item.image"></v-img>
-                        <br />
-                       
                       </td>
 
-                      <td> 
-                      <b>Size</b> <span v-for="(size, index) in item.size" :key="index"> {{ size + ', ' }}</span>
+                    <td>
+                        <span id="td_name" >{{item.name}}</span>
                         <br>
-                      <b>Color</b> <span v-for="(color, index) in item.color" :key="index"> {{ color }}</span>
+                            {{ item.price }} Dkk
+                        <br><br>
+                        <small>Size:<span v-for="(size, index) in item.size" :key="index"> {{ size + ', ' }}</span></small> 
                         <br>
-                      <b>Types:</b> <span v-for="(type, index) in item.type" :key="index">{{ type + ', '}}</span>
+                        <small> Color:<span v-for="(color, index) in item.color" :key="index"> {{ color }}</span> </small> 
                         <br>
-                        <b>Categories:</b> <span v-for="(category, index) in item.category" :key="index">{{ category + ', ' }}</span>
-                      <br>
-                      <b>Seasons:</b> <span v-for="(season, index) in item.season" :key="index">{{ season + ', '}}</span>
                     </td>
-                      <td>{{ item.price }} DKK</td>
-                      <td>
-                        <v-btn @click="deleteItem(item.id)" depressed text small>
-                          <v-icon color="iconcolor">mdi-delete</v-icon>
-                        </v-btn>
+
+                     <td>
+                        <v-icon small color="iconcolor" @click="increaseQnt(item)">mdi-plus</v-icon>
+                        {{ item.quantity}}
+                        <v-icon small color="iconcolor" @click="decreaseQnt(item)">mdi-minus</v-icon>
                       </td>
                     </tr>
                   </tbody>
                 </v-simple-table>
-              </div>
+                <v-simple-table light v-else>
+                    <h4>The basket is empty</h4>
+                  
+                </v-simple-table>
+              </div> 
+            </v-col>
+
+            <v-col cols="12" md="6" sm="12" xs="12">
+            <h1 class="title text-center">Checkout</h1>
+               <div class="pa-2" id="info">
+                <v-row id="basket-checkout" class="mt-12" style="margin:0">
+                  <v-col>
+                    <p>Subtotal:</p>
+                    <p>Delivery</p>
+                    <p>
+                      <strong>Total amount:</strong>
+                    </p>
+                  </v-col>
+
+                  <v-col class="text-right">
+                    <p>{{ subTotal }} DKK</p>
+                    <p> 10 DKK</p>
+                    <p>
+                      <strong>{{ total }} DKK</strong>
+                    </p>
+                  </v-col>
+                </v-row>
+                <v-row style="margin:0">
+                  <v-spacer></v-spacer>
+                  <v-btn dark class="orangebtn" @click="addCheckoutItem">Checkout</v-btn>
+                </v-row>
+               </div>
             </v-col>
           </v-row>
         </v-container>
@@ -63,7 +90,7 @@ import { dbProductAdd } from "../firebase.js";
 export default {
   data() {
     return {
-      basket: [],
+      basketDump: [],
       dialog: false,
       item: [],
       activeEditItem: null,
@@ -71,6 +98,7 @@ export default {
       snackbar: false,
       updatedText: "Product has been updated",
       size: [],
+      image: null,
       color: [],
       type: [],
       category: [],
@@ -82,10 +110,6 @@ export default {
   },
 
   methods: {
-    editItem(item) {
-      this.item = item;
-      this.activeEditItem = item.id;
-    },
     updateItem() {
       dbProductAdd
         .doc(this.activeEditItem)
@@ -120,8 +144,10 @@ export default {
         this.basket.push({
           name: item.name,
           size: item.size,
+          color: item.color,
           type: item.type,
           category: item.category,
+          image: item.image,
           season: item.season,
           price: item.price,
           quantity: 1,
@@ -140,6 +166,10 @@ export default {
     },
   },
   computed: {
+          basket(){ //for vuex
+      // return this.$store.state.basketItems //we want to contact state in our vuex store
+      return this.$store.getters.getBasketItems
+    },
     products() {
       return this.$store.getters.getProducts;
     },

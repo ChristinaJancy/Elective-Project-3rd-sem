@@ -54,7 +54,7 @@
     </v-row>
     <v-parallax :height="$vuetify.breakpoint.smAndDown ? 300 : 300" src="https://firebasestorage.googleapis.com/v0/b/endproject-pwa.appspot.com/o/assets%2Fyosemite1.jpg?alt=media&token=c055750c-044c-4842-8f48-0989b79958eb"></v-parallax>
   </section> -->
-   <div id="homePage">
+   <div id="products">
     <v-row class="pa-0 ma-0 ">
       <v-col class="pa-0 ma-0 d-none d-lg-block" cols="3">
         <div class="optionsMenuBox">
@@ -75,7 +75,7 @@ import DisplayProducts from "../components/customer/DisplayProducts.vue";
 import OptionsMenu from "../components/customer/OptionsMenu.vue";
 
 export default {
-  name: "Home",
+  name: "products",
   show: true,
     components: {
     DisplayProducts,

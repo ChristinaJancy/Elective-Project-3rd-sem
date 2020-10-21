@@ -89,7 +89,7 @@
 
       <v-spacer></v-spacer>
 
-      <!-- Basket badge + v-if/v-else start -->
+      <!-- BASKET AND BADGE START HERE -->
       <v-badge
         v-if="basket.length > 0"
         bordered
@@ -100,10 +100,66 @@
         offset-y="20"
       >
         <template v-slot:badge>
-          {{  basketCounter }}
+          {{ basketCounter }}
         </template>
         <router-link to="/basket">
-          <v-icon class="iconcolor--text pa-2">mdi-basket</v-icon>
+          <v-menu open-on-hover offset-y :close-on-content-click='false'>
+            <template v-slot:activator="{ on, attrs }">
+              <v-icon v-bind="attrs" v-on="on" class="iconcolor--text pa-2"
+                >mdi-basket</v-icon
+              >
+            </template>
+            <v-list>
+              <v-card depressed flat>
+
+                 <v-col>
+                    <router-link to="/basket">
+              <h1 class="title text-center">Basket</h1>
+                    </router-link>
+              <div class="pa-2" id="info">
+                 <v-simple-table>
+                    <thead>
+                    <tr>
+                  
+                        <th class="text-left">Product</th>
+                        <th class="text-left">Info</th>
+                        <th class="text-left">Quantity</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                      <tr v-for="item in basket" :key="item.name">
+                     <td id="id_product_img" style="text-align:center;">
+                        <v-img width="50" v-bind:src="item.image"></v-img>
+                      </td>
+
+                    <td>
+                        <span id="td_name" >{{item.name}}</span>
+                        <br>
+                            {{ item.price }} Dkk
+                        <br><br>
+                        <small>Size:<span v-for="(size, index) in item.size" :key="index"> {{ size + ', ' }}</span></small> 
+                        <br>
+                        <small> Color:<span v-for="(color, index) in item.color" :key="index"> {{ color }}</span> </small> 
+                        <br>
+                    </td>
+
+                     <td>
+                        <v-icon small color="iconcolor" @click="increaseQnt(item)">mdi-plus</v-icon>
+                        {{ item.quantity}}
+                        <v-icon small color="iconcolor" @click="decreaseQnt(item)">mdi-minus</v-icon>
+                      </td>
+                    </tr>
+                  </tbody>
+                </v-simple-table>
+              </div> 
+            </v-col>
+              <div  align="right">
+               <v-btn depressed class="orangebtn" @click="addCheckoutItem"><b>Checkout</b></v-btn>
+               </div>
+              </v-card>
+             
+            </v-list>
+          </v-menu>
         </router-link>
       </v-badge>
 
@@ -111,7 +167,7 @@
         <v-icon class="iconcolor--text pa-2">mdi-basket</v-icon>
       </router-link>
 
-      <!-- Basket badge end -->
+      <!-- BASKET END HERE ---------------------------- -->
       <router-link to="/favourites">
         <v-icon class="error--text pa-2">mdi-heart</v-icon>
       </router-link>
@@ -225,3 +281,45 @@ export default {
   beforeCreate() {},
 };
 </script>
+
+<style lang="scss" scoped>
+#info {
+  background-color: rgb(255, 255, 255);
+}
+
+tr th {
+  font-weight: bold;
+}
+
+#id_product_img{
+  max-width:40px;
+  max-height:40px;
+  padding:0;
+}
+
+#td_name {
+  font-weight: bold;
+}
+#product_description {
+  font-style: italic;
+  font-weight: 300;
+  color: black;
+  font-size: 13px;
+}
+
+.col h1 {
+  text-align: right;
+}
+
+.col:last-child h1 {
+  text-align: left;
+}
+
+#basket-checkout {
+  font-size: 13px;
+}
+
+#basket-checkout {
+  line-height: 2px;
+}
+</style>

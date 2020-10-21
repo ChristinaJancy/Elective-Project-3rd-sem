@@ -70,7 +70,13 @@
                       <v-btn @click="addToBasket(item)" depressed text small>
                           <v-icon color="iconcolor">mdi-plus</v-icon>
                         </v-btn>
-                        </td>
+                      </td>
+                       <td>
+                      <v-btn @click="addToFavourite(item)"  depressed text small>
+                          <v-icon color="iconcolor">mdi-plus</v-icon>
+                        </v-btn>
+                      </td>
+
                     </tr>
                   </tbody>
                 </v-simple-table>
@@ -136,7 +142,6 @@
                   <v-checkbox v-model="item.season" label="Spring" value="Spring"></v-checkbox>
                 </v-row>
 
-
                       <v-row class="ma-0 pa-0">
                         <v-col cols="6" align="left">
                           <v-btn
@@ -176,6 +181,7 @@ export default {
   data() {
     return {
       basketDump: [],
+      favouriteDump: [],
       dialog: false,
       item: [],
       activeEditItem: null,
@@ -243,7 +249,20 @@ export default {
     //     });
     //   }
     // },
-        addToBasket(item) {
+     addToFavourite(item) {
+       this.favouriteDump.push({
+          name: item.name,
+          size: item.size,
+          color: item.color,
+          price: item.price,
+          image: item.image,
+          quantity: 1,
+        });
+        this.$store.commit('addFavouriteItems', this.favouriteDump);
+        // console.log("what is this", this.favouriteDump);
+        this.favouriteDump = [];
+    },
+    addToBasket(item) {
        this.basketDump.push({
           name: item.name,
           size: item.size,
@@ -264,6 +283,7 @@ export default {
 
       if (item.quantity === 0) {
         this.basket.splice(this.basket.indexOf(item), 1);
+        this.favourite.splice(this.favourite.indexOf(item), 1);
       }
     },
   },
@@ -284,6 +304,7 @@ export default {
       var totalCost = this.subTotal;
       return totalCost + deliveryPrice;
     },
+
   },
 };
 </script>
@@ -305,10 +326,10 @@ export default {
 h1 {
   @include infobox_mixin(
     5px,
-    map-get($colorz, white),
+   white,
     10px,
     5px,
-    map-get($colorz, white)
+    white
   );
   font-weight: bold;
   text-transform: uppercase;

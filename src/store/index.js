@@ -16,9 +16,10 @@ Vue.use(Vuex)
 export default new Vuex.Store({
   state: {
     basketItems: [],
+    favouriteItems: [],
     products: [],
     currentUser: null,
-    userProfile: {}
+    userProfile: {},
   },
   mutations: {
     addBasketItems: (state, basketItems) => {
@@ -42,7 +43,27 @@ export default new Vuex.Store({
         })
       }
     },
-
+    addFavouriteItems: (state, favouriteItems) => {
+      if (favouriteItems instanceof Array) {
+        favouriteItems.forEach(item => {
+          if (state.favouriteItems.find((itemInArray) => item.name === itemInArray.name)) {
+            item = state.favouriteItems.find(
+              (itemInArray) => item.name === itemInArray.name
+            )
+            item.quantity++;
+          } else {
+            state.favouriteItems.push({
+              name: item.name,
+              size: item.size,
+              color: item.color,
+              image: item.image,
+              price: item.price,
+              quantity: 1,
+            });
+          }
+        })
+      }
+    },
     userStatus(state, user) {
       if (user) {
         state.currentUser = user
@@ -73,10 +94,22 @@ export default new Vuex.Store({
     setUserProfile(state, val) {
       state.userProfile = val
       
-    }
+    },
+
   },
 
   actions: {
+    async updateProfile({ dispatch }, user) {
+      const userId = fb.auth.currentUser.uid
+      // update user object
+      const userRef = await fb.usersCollection.doc(userId).update({
+        name: user.name,
+        title: user.title
+      })
+    
+      dispatch('fetchUserProfile', { uid: userId })
+    },    
+    
     setUser(context, user) {
       context.commit('userStatus', user)
     },
@@ -133,8 +166,9 @@ export default new Vuex.Store({
 
   getters: {
     getBasketItems: state => state.basketItems,
+    getFavouriteItems: state => state.favouriteItems,
     currentUser: state => state.currentUser,
-    getProducts: state => state.products
+    getProducts: state => state.products,
   },
 
 })

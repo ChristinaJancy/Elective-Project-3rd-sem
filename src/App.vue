@@ -1,5 +1,5 @@
 <template>
-  <v-app>
+  <v-app id="app">
     <Navigation></Navigation>
 
     <v-main>
@@ -38,6 +38,8 @@ export default {
 
 
 <style lang="scss">
-
+#app{
+ background: #28575b;
+}
 </style>
 

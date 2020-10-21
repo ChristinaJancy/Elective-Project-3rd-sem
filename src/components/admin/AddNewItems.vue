@@ -257,10 +257,10 @@ export default {
 h1 {
   @include infobox_mixin(
     5px,
-    map-get($colorz, white),
+    white,
     10px,
     5px,
-    map-get($colorz, white)
+   white,
   );
   font-weight: bold;
   text-transform: uppercase;

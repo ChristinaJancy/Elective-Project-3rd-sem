@@ -6,6 +6,8 @@ import Products from '../views/Products.vue'
 import Basket from '../views/Basket.vue'
 import AddNewItems from '../components/admin/AddNewItems.vue'
 import Login from '../components/admin/Login.vue'
+import Account from '../views/Account.vue'
+import Favourite from '../views/Favourite.vue'
 import { auth } from '../firebase.js'
 // import { auth } from '../../firebase.js'
 import 'firebase/firestore'
@@ -42,6 +44,20 @@ Vue.use(VueRouter)
     meta: {
       requiresAuth: true
     }
+  },
+  {
+    path: '/account',
+    name: 'Account',
+    component: Account,
+    meta: {
+      requiresAuth: true
+    }
+  },
+  {
+  path: '/favourites',
+  name: 'Favourite',
+  component: Favourite,
+    meta: {requiresAuth: true}
   },
   {
     path: '/products',

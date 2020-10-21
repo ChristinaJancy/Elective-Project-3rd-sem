@@ -1,26 +1,27 @@
 <template>
-  <section class="Basket">
+  <section class="favourite">
     <v-img
       :min-height="'calc(100vh - ' + $vuetify.application.top + 'px)'"
       src="https://firebasestorage.googleapis.com/v0/b/endproject-pwa.appspot.com/o/assets%2Fyellow-flower.jpg?alt=media&token=14d019d8-9ad6-4fdf-b19a-caa08252632b"
       cover
     >
-        <v-container>
-          <v-row>
-            <v-col cols="12" md="6" sm="12" xs="12">
-              <h1 class="title text-center">Basket</h1>
+        <v-container class="page_container">
+          <v-row row wrap>
+            <v-col cols="12" md="12" sm="12" xs="12">
+              <h1 class="title text-center">Favourite</h1>
               <div class="pa-2" id="info">
-                 <v-simple-table v-if="basket.length > 0">
+               <span id="total-items">{{favourite.length}} ITEMS</span>
+                 <v-simple-table v-if="favourite.length > 0">
                     <thead>
                     <tr>
-                  
                         <th class="text-left">Product</th>
                         <th class="text-left">Info</th>
-                        <th class="text-left">Quantity</th>
+                        <th class="text-left">Remove</th>
+                        <th class="text-left">Add to basket</th>
                     </tr>
                   </thead>
                   <tbody>
-                      <tr v-for="item in basket" :key="item.name">
+                      <tr v-for="item in favourite" :key="item.name">
                      <td id="id_product_img" style="text-align:center;">
                         <v-img v-bind:src="item.image"></v-img>
                       </td>
@@ -37,45 +38,21 @@
                     </td>
 
                      <td>
-                        <v-icon small color="iconcolor" @click="increaseQnt(item)">mdi-plus</v-icon>
-                        {{ item.quantity}}
-                        <v-icon small color="iconcolor" @click="decreaseQnt(item)">mdi-minus</v-icon>
+                        <v-icon x-large color="iconcolor" @click="decreaseQnt(item)">mdi-minus</v-icon>
+                      </td>
+                      <td>
+                        <v-btn @click="addToBasket(item)" depressed text small>
+                          <v-icon x-large color="iconcolor">mdi-plus</v-icon>
+                        </v-btn>
                       </td>
                     </tr>
                   </tbody>
                 </v-simple-table>
                 <v-simple-table light v-else>
-                    <h4>The basket is empty</h4>
+                    <h4>You have no favourites yet</h4>
                   
                 </v-simple-table>
               </div> 
-            </v-col>
-
-            <v-col cols="12" md="6" sm="12" xs="12">
-            <h1 class="title text-center">Checkout</h1>
-               <div class="pa-2" id="info">
-                <v-row id="basket-checkout" class="mt-12" style="margin:0">
-                  <v-col>
-                    <p>Subtotal:</p>
-                    <p>Delivery</p>
-                    <p>
-                      <strong>Total amount:</strong>
-                    </p>
-                  </v-col>
-
-                  <v-col class="text-right">
-                    <p>{{ subTotal }} DKK</p>
-                    <p> 10 DKK</p>
-                    <p>
-                      <strong>{{ total }} DKK</strong>
-                    </p>
-                  </v-col>
-                </v-row>
-                <v-row style="margin:0">
-                  <v-spacer></v-spacer>
-                  <v-btn dark class="orangebtn" @click="addCheckoutItem">Checkout</v-btn>
-                </v-row>
-               </div>
             </v-col>
           </v-row>
         </v-container>
@@ -90,6 +67,7 @@ import { dbProductAdd } from "../firebase.js";
 export default {
   data() {
     return {
+      favouritetDump: [],
       basketDump: [],
       dialog: false,
       item: [],
@@ -134,14 +112,14 @@ export default {
           console.error("Error removing document: ", error);
         });
     },
-    addToBasket(item) {
-      if (this.basket.find((itemInArray) => item.name === itemInArray.name)) {
-        item = this.basket.find(
+    addToFavourite(item) {
+      if (this.favourite.find((itemInArray) => item.name === itemInArray.name)) {
+        item = this.favourite.find(
           (itemInArray) => item.name === itemInArray.name
         );
         this.increaseQnt(item);
       } else {
-        this.basket.push({
+        this.favourite.push({
           name: item.name,
           size: item.size,
           color: item.color,
@@ -154,6 +132,19 @@ export default {
         });
       }
     },
+    addToBasket(item) {
+       this.basketDump.push({
+          name: item.name,
+          size: item.size,
+          color: item.color,
+          price: item.price,
+          image: item.image,
+          quantity: 1,
+        });
+        this.$store.commit('addBasketItems', this.basketDump);
+        // console.log("what is this", this.basketDump);
+        this.basketDump = [];
+    },
     increaseQnt(item) {
       item.quantity++;
     },
@@ -161,22 +152,22 @@ export default {
       item.quantity--;
 
       if (item.quantity === 0) {
-        this.basket.splice(this.basket.indexOf(item), 1);
+        this.favourite.splice(this.favourite.indexOf(item), 1);
       }
     },
   },
   computed: {
-          basket(){ //for vuex
+     favourite(){ //for vuex
       // return this.$store.state.basketItems //we want to contact state in our vuex store
-      return this.$store.getters.getBasketItems
+      return this.$store.getters.getFavouriteItems
     },
     products() {
       return this.$store.getters.getProducts;
     },
     subTotal() {
       var subCost = 0;
-      for (var items in this.basket) {
-        var individualItem = this.basket[items];
+      for (var items in this.favourite) {
+        var individualItem = this.favourite[items];
         subCost += individualItem.quantity * individualItem.price;
       }
       return subCost;
@@ -186,10 +177,6 @@ export default {
       var totalCost = this.subTotal;
       return totalCost + deliveryPrice;
     },
-    // basketBadge(){
-    //  basketLength = basket.length;
-    //   var individualItem = this.basket[items];
-    // },
   },
 };
 </script>

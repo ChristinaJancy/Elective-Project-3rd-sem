@@ -10,7 +10,7 @@
             <v-col cols="12" md="12" sm="12" xs="12">
               <h1 class="title text-center">Favourite</h1>
               <div class="pa-2" id="info">
-               <span id="total-items">{{favourite.length}} ITEMS</span>
+               <span id="total-items">{{favourite.length}} ITEMS </span>
                  <v-simple-table v-if="favourite.length > 0">
                     <thead>
                     <tr>
@@ -49,7 +49,7 @@
                   </tbody>
                 </v-simple-table>
                 <v-simple-table light v-else>
-                    <h4>You have no favourites yet</h4>
+                    <h4>You have no favourites yet.</h4>
                   
                 </v-simple-table>
               </div> 

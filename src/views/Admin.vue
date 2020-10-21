@@ -23,6 +23,7 @@
                       <th class="text-left">Edit</th>
                       <th class="text-left">Remove</th>
                       <th class="text-left">Add to basket</th>
+                      <th class="text-left">Add to favourite</th>
                     </tr>
                   </thead>
                   <tbody>
@@ -68,12 +69,12 @@
                       </td>
                       <td>
                       <v-btn @click="addToBasket(item)" depressed text small>
-                          <v-icon color="iconcolor">mdi-plus</v-icon>
+                          <v-icon color="iconcolor">mdi-basket</v-icon>
                         </v-btn>
                       </td>
                        <td>
                       <v-btn @click="addToFavourite(item)"  depressed text small>
-                          <v-icon color="iconcolor">mdi-plus</v-icon>
+                          <v-icon color="iconcolor">mdi-heart</v-icon>
                         </v-btn>
                       </td>
 

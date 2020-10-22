@@ -1,6 +1,7 @@
 <template>
   <div>
     <section class="about-header">
+      <!-- Updated the About Page -->
       <div align="center" class="header-title">
         <div v-scrollanimation>
           <span

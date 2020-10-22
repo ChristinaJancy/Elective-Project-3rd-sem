@@ -1,6 +1,10 @@
 <template>
   <v-app id="App">
     <Search></Search>
+<<<<<<< Updated upstream
+=======
+
+>>>>>>> Stashed changes
     <v-main>
       <v-container fluid class="pa-0 ma-0">
         <router-view />
@@ -38,6 +42,7 @@ export default {
 
 <style lang="scss">
 #App {
+  font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS", sans-serif;
   color: white;
   background-color: #0a292c;
 }

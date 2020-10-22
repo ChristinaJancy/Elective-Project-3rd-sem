@@ -6,7 +6,11 @@
           <span
             :class="[$vuetify.breakpoint.smAndDown ? 'display-2' : 'display-3']"
             class="font-weight-black white--text"
+<<<<<<< Updated upstream
             >No Label</span
+=======
+            >No Labels</span
+>>>>>>> Stashed changes
           >
         </div>
       </div>
@@ -15,6 +19,7 @@
       </div>
     </section>
     <section class="description">
+<<<<<<< Updated upstream
       <p v-scrollanimation>
         Lorem Ipsum is simply dummy text of the printing and typesetting
         industry. Lorem Ipsum has been the industry's standard dummy text ever
@@ -53,13 +58,24 @@
       </p>
     </section>
     <section class="images">
+=======
+      <p v-scrollanimation>Autheticity</p>
+      <p v-scrollanimation>Be apart of the better future.</p>
+    </section>
+    <section class="images">
+      <img v-scrollanimation src="../assets/fox/fox-leaf.png" alt />
+>>>>>>> Stashed changes
       <img
         v-scrollanimation
         src="https://firebasestorage.googleapis.com/v0/b/endproject-pwa.appspot.com/o/assets%2Fyosemite1.jpg?alt=media&token=c055750c-044c-4842-8f48-0989b79958eb"
         alt
       />
+<<<<<<< Updated upstream
       <img v-scrollanimation src="../assets/fox/fox.png" alt />
       <img v-scrollanimation src="../assets/fox/fox-leaf.png" alt />
+=======
+
+>>>>>>> Stashed changes
       <img v-scrollanimation src="../assets/fox/fox-fullback.png" alt />
     </section>
     <br />

@@ -2,14 +2,14 @@
   <div class="optionsMenu">
     <v-row class="pa-0 ma-0">
       <v-col class="pa-0 ma-0">
-        <h3>All Products</h3>
-        <br />
-        <h1>Categories</h1>
+        <h4>Categories</h4>
       </v-col>
     </v-row>
+    <hr />
+    <br />
     <v-row class="pa-0 ma-0">
       <v-col class="pa-0 ma-0">
-        <h2>Shop by Product</h2>
+        <p>Shop by Product</p>
         <br />
         <div
           id="categoryBox"
@@ -21,16 +21,26 @@
             :label="productCategorie.category"
             value="white"
             dark
+<<<<<<< Updated upstream
+=======
+            class="pa-0 ma-0"
+>>>>>>> Stashed changes
           >
           </v-checkbox>
         </div>
       </v-col>
     </v-row>
+    <hr />
+    <br />
     <v-row class="pa-0 ma-0">
       <v-col class="pa-0 ma-0">
         <div class="sizeOptions">
+<<<<<<< Updated upstream
           <h2>Sizes</h2>
           <br />
+=======
+          <p>Sizes</p>
+>>>>>>> Stashed changes
           <div
             id="productSizes"
             v-for="(menuOption, i) in menuOptions"
@@ -41,6 +51,10 @@
               :label="menuOption.size"
               value="white"
               dark
+<<<<<<< Updated upstream
+=======
+              class="pa-0 ma-0"
+>>>>>>> Stashed changes
             >
             </v-checkbox>
           </div>
@@ -90,7 +104,7 @@ export default {
 <style lang="scss" scoped>
 .optionsMenu {
   padding-left: 5vh;
-  padding-top: 5vh;
+  padding-top: 2vh;
 }
 
 #sizeButtons {

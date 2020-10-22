@@ -1,16 +1,15 @@
 <template>
   <div class="optionsMenu">
-    <!-- Options Menu that displays on the left on Products Page -->
     <v-row class="pa-0 ma-0">
       <v-col class="pa-0 ma-0">
-        <h4>Categories</h4>
+        <h3>All Products</h3>
+        <br />
+        <h1>Categories</h1>
       </v-col>
     </v-row>
-    <hr />
-    <br />
     <v-row class="pa-0 ma-0">
-      <v-col lg="12" class="pa-0 ma-0">
-        <p>Shop by Product</p>
+      <v-col class="pa-0 ma-0">
+        <h2>Shop by Product</h2>
         <br />
         <div
           id="categoryBox"
@@ -22,28 +21,29 @@
             :label="productCategorie.category"
             value="white"
             dark
-            class="pa-0 ma-0"
           >
           </v-checkbox>
         </div>
       </v-col>
     </v-row>
-    <hr />
-    <br />
     <v-row class="pa-0 ma-0">
-      <v-col lg="12" class="pa-0 ma-0">
-        <p>Sizes</p>
-        <br />
-        <!-- Error: Weird issue going on here with the selection on checkbox, the product category seems to work fine -->
-        <div id="categoryBox" v-for="(menuOption, i) in menuOptions" :key="i">
-          <v-checkbox
-            v-model="menuOption.size"
-            :label="menuOption.size"
-            value="white"
-            dark
-            class="pa-0 ma-0"
+      <v-col class="pa-0 ma-0">
+        <div class="sizeOptions">
+          <h2>Sizes</h2>
+          <br />
+          <div
+            id="productSizes"
+            v-for="(menuOption, i) in menuOptions"
+            :key="i"
           >
-          </v-checkbox>
+            <v-checkbox
+              v-model="menuOption.size"
+              :label="menuOption.size"
+              value="white"
+              dark
+            >
+            </v-checkbox>
+          </div>
         </div>
       </v-col>
     </v-row>
@@ -68,6 +68,20 @@ export default {
         { size: "XL" },
         { size: "XXL" },
       ],
+      ex4: [
+        "red",
+        "indigo",
+        "orange",
+        "primary",
+        "secondary",
+        "success",
+        "info",
+        "warning",
+        "error",
+        "red darken-3",
+        "indigo darken-3",
+        "orange darken-3",
+      ],
     };
   },
 };
@@ -76,9 +90,14 @@ export default {
 <style lang="scss" scoped>
 .optionsMenu {
   padding-left: 5vh;
+  padding-top: 5vh;
 }
 
-#categoryBox {
-  color: white;
+#sizeButtons {
+  margin-bottom: 2vh;
+}
+
+.sizeOptions {
+  display: grid;
 }
 </style>

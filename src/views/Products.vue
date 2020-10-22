@@ -1,14 +1,18 @@
 <template>
-  <section class="ProductsPage">
+  <div class="ProductsPage">
     <v-row class="pa-0 ma-0">
-      <v-col class="pa-0 ma-0 d-none d-lg-block" lg="2" xs="0">
-        <OptionsMenu></OptionsMenu>
+      <v-col class="pa-0 ma-0 d-none d-lg-block" lg="3" xs="0">
+        <div class="optionsMenuBox">
+          <OptionsMenu></OptionsMenu>
+        </div>
       </v-col>
-      <v-col class="pa-0 ma-0" lg="10" xs="12">
-        <DisplayProducts></DisplayProducts>
+      <v-col class="pa-0 ma-0" lg="9" xs="12">
+        <div class="displayProductsBox">
+          <DisplayProducts></DisplayProducts>
+        </div>
       </v-col>
     </v-row>
-  </section>
+  </div>
 </template>
 
 <script>

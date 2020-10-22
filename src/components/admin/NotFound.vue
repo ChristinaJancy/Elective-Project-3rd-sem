@@ -1,36 +1,16 @@
 <template>
-  <div>
+  <div class="NotFound">
     <section class="about-header">
       <div align="center" class="header-title">
         <div v-scrollanimation>
           <span
             :class="[$vuetify.breakpoint.smAndDown ? 'display-2' : 'display-3']"
             class="font-weight-black white--text"
-            >No Labels</span
+            >Oops, seems like that page doesn't exist</span
           >
         </div>
       </div>
-      <div class="header-box" align="center">
-        <h1 v-scrollanimation>We don't believe in labels.</h1>
-      </div>
     </section>
-    <section class="description">
-      <p v-scrollanimation>Autheticity</p>
-      <p v-scrollanimation>Be apart of the better future.</p>
-    </section>
-    <section class="images">
-      <img v-scrollanimation src="../assets/fox/fox-leaf.png" alt />
-      <img
-        v-scrollanimation
-        src="https://firebasestorage.googleapis.com/v0/b/endproject-pwa.appspot.com/o/assets%2Fyosemite1.jpg?alt=media&token=c055750c-044c-4842-8f48-0989b79958eb"
-        alt
-      />
-
-      <img v-scrollanimation src="../assets/fox/fox-fullback.png" alt />
-    </section>
-    <br />
-    <br />
-    <br />
   </div>
 </template>
 
@@ -125,45 +105,12 @@ p {
     transform: translateY(0px);
   }
 }
-
-// images:
-.images {
-  .before-enter {
-    opacity: 0;
-    transform: scale(0.5) rotateZ(-25deg);
-    transition: all 1s ease-out;
-  }
-  .enter {
-    opacity: 1;
-    transform: scale(1) rotateZ(0deg);
-  }
-}
-
-.images {
-  position: relative;
-  width: 100%;
-
-  img {
-    float: left;
-    width: 50%;
-    height: auto;
-  }
-}
 </style>
 
 
 <script scoped>
 export default {
-  name: "Home",
-
-  data() {
-    return {
-      logos: [],
-    };
-  },
-  methods: {},
-
-  mounted() {},
+  name: "404",
 };
 </script>
 

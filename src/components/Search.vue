@@ -1,15 +1,13 @@
 <template>
-  <div class="Search_Bar">
+  <div class="hidden-xs-only">
     <v-row align="center" justify="start" class="pa-0 ma-0">
       <v-col lg="" class="pa-0">
         <div id="MenuButton">
-          <v-btn small @click.stop="drawer = !drawer">
-            No Labels
-          </v-btn>
+          <v-btn small @click.stop="drawer = !drawer"> No Labels </v-btn>
         </div>
       </v-col>
-      <v-spacer></v-spacer>
-      <v-col class="pa-0 ma-0">
+      <!-- <v-spacer></v-spacer>
+       <v-col class="pa-0 ma-0">
         <v-text-field dark
           placeholder="Search No Labels"
           clearable
@@ -17,7 +15,7 @@
       </v-col>
       <v-col class="pa-0 ma-0">
         <v-icon class="iconcolor--text">mdi-magnify</v-icon>
-      </v-col>
+      </v-col> -->
     </v-row>
     <v-navigation-drawer v-model="drawer" temporary app clipped>
       <v-list dense justify="center">
@@ -30,7 +28,7 @@
           </v-list-item-avatar>
           <v-list-item-title>{{ currentUser.email }}</v-list-item-title>
         </v-list-item>
-        <hr style="border:0.1px solid grey" v-if="currentUser" />
+        <hr style="border: 0.1px solid grey" v-if="currentUser" />
 
         <router-link to="/">
           <v-list-item link>
@@ -40,6 +38,19 @@
             <v-list-item-content>
               <v-list-item-title class="iconcolor--text"
                 >Home</v-list-item-title
+              >
+            </v-list-item-content>
+          </v-list-item>
+        </router-link>
+
+        <router-link to="/products">
+          <v-list-item link>
+            <v-list-item-action>
+              <v-icon class="iconcolor--text">mdi-sleep</v-icon>
+            </v-list-item-action>
+            <v-list-item-content>
+              <v-list-item-title class="iconcolor--text"
+                >Products</v-list-item-title
               >
             </v-list-item-content>
           </v-list-item>
@@ -112,7 +123,7 @@ import firebase from "firebase";
 import "firebase/firestore";
 import store from "../store/index.js";
 
-firebase.auth().onAuthStateChanged(function(user) {
+firebase.auth().onAuthStateChanged(function (user) {
   if (user) {
     //user is signed in
     store.dispatch("setUser", user);
@@ -142,10 +153,4 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.Search_Bar {
-  margin-left: 5vh;
-  color: white;
-  background-color: #0a292c;
-}
-
 </style>

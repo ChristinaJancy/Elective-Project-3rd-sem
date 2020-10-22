@@ -1,11 +1,11 @@
 <template>
   <v-app id="App">
     <Search></Search>
-    <v-content>
+    <v-main>
       <v-container fluid class="pa-0 ma-0">
         <router-view />
       </v-container>
-    </v-content>
+    </v-main>
 
     <Navigation></Navigation>
   </v-app>
@@ -14,14 +14,13 @@
 <script>
 import { mapState } from "vuex";
 import Navigation from "@/components/Navigation";
-import Search from '@/components/Search.vue';
+import Search from "@/components/Search.vue";
 
 export default {
   name: "App",
-
   components: {
     Navigation,
-    Search
+    Search,
   },
 
   data: () => ({}),

@@ -1,24 +1,36 @@
 <template>
   <div id="displayProducts">
     <v-row class="pa-0 ma-0">
-      <v-col class="pa-0 ma-0">
-        <h1>All Products</h1>
+      <v-col class="pa-0 ma-0" lg="3" md="12" sm="12">
+        <p>All Products</p>
       </v-col>
     </v-row>
     <v-row class="pa-0 ma-0">
-      <v-col 
-        lg="3" 
+      <v-col
+        v-for="(productCategory, i) in productCategories"
+        :key="i"
+        class="pa-0 ma-0"
+        lg="3"
+        md="12"
+        sm="12"
+      >
+        <p>{{ productCategory.category }}</p>
+      </v-col>
+    </v-row>
+    <v-row class="pa-0 ma-0" id="productBackground">
+      <v-col
+        lg="3"
+        md="12"
         sm="12"
         class="pa-0 ma-0"
         v-for="(product, i) in products"
         :key="i"
       >
         <div id="productDisplayBox">
-          <img :src="product.productImage" alt="" height="200px" />
+          <img :src="product.productImage" alt="" height="120px" />
           <div id="ImageContentBox">
             <p>{{ product.productName }}</p>
             <p>{{ product.productPrice }}</p>
-            <p>{{ product.productColor }}</p>
           </div>
         </div>
       </v-col>
@@ -31,6 +43,12 @@ export default {
   data() {
     return {
       drawer: false,
+      productCategories: [
+        { category: "Shirt" },
+        { category: "Pants" },
+        { category: "Shoes" },
+        { category: "Hats" },
+      ],
       products: [
         {
           productName: "Long Sleeve Shirt 001",
@@ -137,23 +155,22 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-#displayProducts {
-  margin-left: 10vh;
-}
 #productDisplayBox {
-  border-radius: 25px;
+  color: #053135;
+  height: 100%;
   display: grid;
   justify-content: center;
-  padding: 2vh;
-  margin-bottom: 5vh;
-  width: 250px;
-  background: #182f31;
+  padding: 0.5vh;
+  width: 100%;
+  margin-bottom: 20px;
 }
 
 #productDisplayBox:hover {
-  background-color: #28575b;
+  color: white;
+  background-color: #053135;
 }
-img {
-  border-radius: 2vh;
+
+#productBackground {
+  background-color: white;
 }
 </style>

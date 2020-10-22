@@ -50,12 +50,12 @@ Vue.use(VueRouter)
     },
     {
       path: "/products",
-      name: "Products",
+      name: "products",
       component: Products,
     },
     {
-      path: "/Product",
-      name: "Product",
+      path: "/product",
+      name: "product",
       component: Product,
     },
     {

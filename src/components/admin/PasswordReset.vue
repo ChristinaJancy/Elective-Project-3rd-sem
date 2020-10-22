@@ -8,7 +8,11 @@
           <div v-if="!showSuccess">
             <p>Enter your email to reset your password</p>
             <form @submit.prevent>
-              <input v-model.trim="email" type="email" placeholder="you@email.com" />
+              <input
+                v-model.trim="email"
+                type="email"
+                placeholder="you@email.com"
+              />
             </form>
             <button @click="resetPassword()" class="button">Reset</button>
           </div>
@@ -30,7 +34,7 @@ export default {
     return {
       email: "",
       showSuccess: false,
-      errorMsg: ''
+      errorMsg: "",
     };
   },
   methods: {
@@ -47,3 +51,6 @@ export default {
   },
 };
 </script>
+
+<style lang="scss" scoped>
+</style>

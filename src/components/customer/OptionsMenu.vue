@@ -1,29 +1,49 @@
 <template>
   <div class="optionsMenu">
+    <!-- Options Menu that displays on the left on Products Page -->
     <v-row class="pa-0 ma-0">
       <v-col class="pa-0 ma-0">
-        <h3>All Products</h3>
-        <br />
-        <h1>Categories</h1>
+        <h4>Categories</h4>
       </v-col>
     </v-row>
+    <hr />
+    <br />
     <v-row class="pa-0 ma-0">
-      <v-col class="pa-0 ma-0">
-        <h2>Shop by Product</h2>
+      <v-col lg="12" class="pa-0 ma-0">
+        <p>Shop by Product</p>
         <br />
-        <p v-for="(productCategorie, i) in productCategories" :key="i">
-          <span>{{ productCategorie.category }}</span>
-        </p>
+        <div
+          id="categoryBox"
+          v-for="(productCategorie, i) in productCategories"
+          :key="i"
+        >
+          <v-checkbox
+            v-model="productCategorie.catergory"
+            :label="productCategorie.category"
+            value="white"
+            dark
+            class="pa-0 ma-0"
+          >
+          </v-checkbox>
+        </div>
       </v-col>
     </v-row>
+    <hr />
+    <br />
     <v-row class="pa-0 ma-0">
-      <v-col class="pa-0 ma-0">
-        <div class="sizeOptions">
-          <h2>Sizes</h2>
-          <br />
-          <v-btn id="sizeButtons" small tile width="50px" v-for="(menuOption, i) in menuOptions" :key="i">
-            <span>{{ menuOption.name }}</span>
-          </v-btn>
+      <v-col lg="12" class="pa-0 ma-0">
+        <p>Sizes</p>
+        <br />
+        <!-- Error: Weird issue going on here with the selection on checkbox, the product category seems to work fine -->
+        <div id="categoryBox" v-for="(menuOption, i) in menuOptions" :key="i">
+          <v-checkbox
+            v-model="menuOption.size"
+            :label="menuOption.size"
+            value="white"
+            dark
+            class="pa-0 ma-0"
+          >
+          </v-checkbox>
         </div>
       </v-col>
     </v-row>
@@ -41,12 +61,12 @@ export default {
         { category: "Hats" },
       ],
       menuOptions: [
-        { name: "XS" },
-        { name: "S" },
-        { name: "M" },
-        { name: "L" },
-        { name: "XL" },
-        { name: "XXL" },
+        { size: "XS" },
+        { size: "S" },
+        { size: "M" },
+        { size: "L" },
+        { size: "XL" },
+        { size: "XXL" },
       ],
     };
   },
@@ -56,14 +76,9 @@ export default {
 <style lang="scss" scoped>
 .optionsMenu {
   padding-left: 5vh;
-  padding-top: 5vh;
 }
 
-#sizeButtons {
-  margin-bottom: 2vh;
-}
-
-.sizeOptions {
-  display: grid;
+#categoryBox {
+  color: white;
 }
 </style>

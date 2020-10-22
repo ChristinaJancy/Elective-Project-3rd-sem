@@ -110,7 +110,7 @@ import firebase from "firebase";
 import "firebase/firestore";
 import store from "../store/index.js";
 
-firebase.auth().onAuthStateChanged(function(user) {
+firebase.auth().onAuthStateChanged(function (user) {
   if (user) {
     //user is signed in
     store.dispatch("setUser", user);
@@ -126,7 +126,7 @@ export default {
     drawer: null,
     navItems: [
       { name: "Favorites", link: "/Favorites", icon: "mdi-google-fit" },
-      { name: "OutFit", link: "/RandomOutFit", icon: "mdi-foot-print" },
+      { name: "Products", link: "/products", icon: "mdi-foot-print" },
       { name: "No Labels", link: "/", icon: "mdi-ferris-wheel" },
       { name: "Basket", link: "/Basket", icon: "mdi-blur" },
       { name: "Account", link: "/AccountPage", icon: "mdi-account-box" },

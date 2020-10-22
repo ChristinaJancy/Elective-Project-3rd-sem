@@ -1,11 +1,12 @@
 <template>
   <v-app id="App">
     <Search></Search>
-    <v-content>
+
+    <v-main>
       <v-container fluid class="pa-0 ma-0">
         <router-view />
       </v-container>
-    </v-content>
+    </v-main>
 
     <Navigation></Navigation>
   </v-app>
@@ -14,14 +15,13 @@
 <script>
 import { mapState } from "vuex";
 import Navigation from "@/components/Navigation";
-import Search from '@/components/Search.vue';
+import Search from "@/components/Search.vue";
 
 export default {
   name: "App",
-
   components: {
     Navigation,
-    Search
+    Search,
   },
 
   data: () => ({}),
@@ -39,6 +39,8 @@ export default {
 
 <style lang="scss">
 #App {
+  // We need to find a good font for the page
+  font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS", sans-serif;
   color: white;
   background-color: #0a292c;
 }

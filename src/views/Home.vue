@@ -28,9 +28,13 @@
 
       <img v-scrollanimation src="../assets/fox/fox-fullback.png" alt />
     </section>
-    <br />
-    <br />
-    <br />
+    <section class="description">
+      <p v-scrollanimation>Our Latest Products</p>
+      <p v-scrollanimation>Be apart of the better future.</p>
+    </section>
+    <section class="images">
+      <img v-scrollanimation src="../assets/fox/fox-leaf.png" alt />
+    </section>
   </div>
 </template>
 

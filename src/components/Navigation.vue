@@ -99,6 +99,53 @@
       <span>{{ navItem.name }}</span>
       <v-icon>{{ navItem.icon }}</v-icon>
     </v-btn>
+    <v-menu offset-y>
+      <template v-slot:activator="{ on, attrs }">
+        <v-btn v-bind="attrs" v-on="on" depressed>
+          <v-icon class="iconcolor--text">mdi-account-circle-outline</v-icon>
+        </v-btn>
+      </template>
+      <v-list>
+        <router-link to="/randomOutfit">
+          <v-list-item link>
+            <v-list-item-content>
+              <v-list-item-title class="iconcolor--text"
+                >Random Outfit</v-list-item-title
+              >
+            </v-list-item-content>
+          </v-list-item>
+        </router-link>
+        <router-link to="/account">
+          <v-list-item link>
+            <v-list-item-content>
+              <v-list-item-title class="iconcolor--text"
+                >Profile</v-list-item-title
+              >
+            </v-list-item-content>
+          </v-list-item>
+        </router-link>
+
+        <router-link to="/login" v-if="!currentUser">
+          <v-list-item link>
+            <v-list-item-content>
+              <v-list-item-title class="iconcolor--text"
+                >Login</v-list-item-title
+              >
+            </v-list-item-content>
+          </v-list-item>
+        </router-link>
+
+        <v-router v-if="currentUser" @click="logout()">
+          <v-list-item link>
+            <v-list-item-content>
+              <v-list-item-title class="iconcolor--text"
+                >Logout</v-list-item-title
+              >
+            </v-list-item-content>
+          </v-list-item>
+        </v-router>
+      </v-list>
+    </v-menu>
   </v-bottom-navigation>
 </template>
 
@@ -129,7 +176,6 @@ export default {
       { name: "Products", link: "/products", icon: "mdi-foot-print" },
       { name: "No Labels", link: "/", icon: "mdi-ferris-wheel" },
       { name: "Basket", link: "/Basket", icon: "mdi-blur" },
-      { name: "Account", link: "/AccountPage", icon: "mdi-account-box" },
     ],
   }),
   methods: {

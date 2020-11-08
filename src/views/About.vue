@@ -1,264 +1,188 @@
 <template>
-  <section class="favourite">
-    <v-img
-      :min-height="'calc(100vh - ' + $vuetify.application.top + 'px)'"
-      src="https://firebasestorage.googleapis.com/v0/b/endproject-pwa.appspot.com/o/assets%2Fyellow-flower.jpg?alt=media&token=14d019d8-9ad6-4fdf-b19a-caa08252632b"
-      cover
-    >
-        <v-container class="page_container">
-          <v-row row wrap>
-            <v-col cols="12" md="12" sm="12" xs="12">
-              <h1 class="title text-center">Favourite</h1>
-              <div class="pa-2" id="info">
-               <span id="total-items">{{favourite.length}} ITEMS </span>
-                 <v-simple-table v-if="favourite.length > 0">
-                    <thead>
-                    <tr>
-                        <th class="text-left">Product</th>
-                        <th class="text-left">Info</th>
-                        <th class="text-left">Remove</th>
-                        <th class="text-left">Add to basket</th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                      <tr v-for="item in favourite" :key="item.name">
-                     <td id="id_product_img" style="text-align:center;">
-                        <v-img v-bind:src="item.image"></v-img>
-                      </td>
-                    <td>
-                        <span id="td_name" >{{item.name}}</span>
-                        <br>
-                            {{ item.price }} Dkk
-                        <br><br>
-                        <small>Size:<span v-for="(size, index) in item.size" :key="index"> {{ size + ', ' }}</span></small> 
-                        <br>
-                        <small> Color:<span v-for="(color, index) in item.color" :key="index"> {{ color }}</span> </small> 
-                        <br>
-                    </td>
-
-                     <td>
-                        <v-icon x-large color="iconcolor" @click="deleteOrderItem(item.id)">mdi-minus</v-icon>
-                      </td>
-                      <td>
-                        <v-btn @click="addToBasket(item)" depressed text small>
-                          <v-icon x-large color="iconcolor">mdi-plus</v-icon>
-                        </v-btn>
-                      </td>
-                    </tr>
-                  </tbody>
-                </v-simple-table>
-                <v-simple-table light v-else>
-                    <h4>You have no favourites yet.</h4>
-                  
-                </v-simple-table>
-              </div> 
-            </v-col>
-          </v-row>
-        </v-container>
-    </v-img>
-  </section>
+  <div>
+    <section class="about-header">
+      <!-- Updated the About Page -->
+      <div align="center" class="header-title">
+        <div v-scrollanimation>
+          <span
+            :class="[$vuetify.breakpoint.smAndDown ? 'display-2' : 'display-3']"
+            class="font-weight-black white--text"
+            >About Us</span
+          >
+        </div>
+      </div>
+      <div class="header-box" align="center">
+        <h1 v-scrollanimation>2 Developers, 1 Vision</h1>
+      </div>
+    </section>
+    <section class="description">
+      <div id="developerSection">
+        <img
+          v-scrollanimation
+          src="https://scontent.faal1-1.fna.fbcdn.net/v/t1.0-9/120096874_10217602732286849_951694977245750817_o.jpg?_nc_cat=104&ccb=2&_nc_sid=09cbfe&_nc_ohc=C5yPCRwW1DgAX8frBJT&_nc_ht=scontent.faal1-1.fna&oh=73d520701795b9622ebb1e459cf90caa&oe=5FB708BC"
+          alt
+          height="120vh"
+        />
+        <p v-scrollanimation>Christina Jancy</p>
+        <p v-scrollanimation>
+          <a href="https://github.com/ChristinaJancy"> Github</a>
+        </p>
+      </div>
+      <br />
+      <br />
+      <div id="developerSection">
+        <img
+          v-scrollanimation
+          src="https://i.imgur.com/AFD34PF.jpg"
+          alt
+          height="120vh"
+        />
+        <p v-scrollanimation>Penda Svane</p>
+        <p v-scrollanimation>
+          <a href="https://github.com/TheSvaneMan"> Github</a>
+        </p>
+      </div>
+      <div id="copyrightSection" v-scrollanimation>
+        MMD 3rd Semester Project 2020 - BASW (Esbjerg, Denmark)
+      </div>
+    </section>
+  </div>
 </template>
 
-<script scoped>
-import { dbProductAdd, usersCollection } from "../firebase.js";
-// import { dbProductAdd } from "../../firebase.js";
-
-export default {
-  data() {
-    return {
-      favouritetDump: [],
-      basketDump: [],
-      dialog: false,
-      item: [],
-      activeEditItem: null,
-      multiLine: true,
-      snackbar: false,
-      updatedText: "Product has been updated",
-      size: [],
-      image: null,
-      color: [],
-      type: [],
-      category: [],
-      season: [],
-    };
-  },
-  beforeCreate() {
-    this.$store.dispatch("setProducts");
-    this.$store.dispatch("setUsers")
-  },
-
-  methods: {
-    deleteFavouriteItem(id){
-        usersCollection.doc(id).delete().then(() => {
-          console.log("Stuff is deleted");
-        }).catch(()=>{
-          
-        })
-    },
-    updateItem() {
-      dbProductAdd
-        .doc(this.activeEditItem)
-        .update(this.item)
-        .then(() => {
-          this.snackbar = true;
-          console.log("it works!");
-        })
-        .catch(function (error) {
-          console.error("oh no, I got an error", error);
-        });
-    },
-    deleteItem(id) {
-      //we want to target/grab the id
-      dbProductAdd
-        .doc(id)
-        .delete()
-        .then(function () {
-          console.log("Document successfully deleted!");
-        })
-        .catch(function (error) {
-          console.error("Error removing document: ", error);
-        });
-    },
-    // addToFavourite(item) {
-    //   if (this.favourite.find((itemInArray) => item.name === itemInArray.name)) {
-    //     item = this.favourite.find(
-    //       (itemInArray) => item.name === itemInArray.name
-    //     );
-    //     this.increaseQnt(item);
-    //   } else {
-    //     this.favourite.push({
-    //       name: item.name,
-    //       size: item.size,
-    //       color: item.color,
-    //       type: item.type,
-    //       category: item.category,
-    //       image: item.image,
-    //       season: item.season,
-    //       price: item.price,
-    //       quantity: 1,
-    //     });
-    //   }
-    // },
-    addToBasket(item) {
-       this.basketDump.push({
-          name: item.name,
-          size: item.size,
-          color: item.color,
-          price: item.price,
-          image: item.image,
-          quantity: 1,
-        });
-        this.$store.commit('addBasketItems', this.basketDump);
-        // console.log("what is this", this.basketDump);
-        this.basketDump = [];
-    },
-    increaseQnt(item) {
-      item.quantity++;
-    },
-    decreaseQnt(item) {
-      item.quantity--;
-
-      if (item.quantity === 0) {
-        this.favourite.splice(this.favourite.indexOf(item), 1);
-      }
-    },
-  },
-  computed: {
-      users(){ //for vuex
-      // return this.$store.state.basketItems //we want to contact state in our vuex store
-      return this.$store.getters.getUsers;
-    },
-     favourite(){ //for vuex
-      // return this.$store.state.basketItems //we want to contact state in our vuex store
-      return this.$store.getters.getFavouriteItems
-    },
-    products() {
-      return this.$store.getters.getProducts;
-    },
-    subTotal() {
-      var subCost = 0;
-      for (var items in this.favourite) {
-        var individualItem = this.favourite[items];
-        subCost += individualItem.quantity * individualItem.price;
-      }
-      return subCost;
-    },
-    total() {
-      var deliveryPrice = 10;
-      var totalCost = this.subTotal;
-      return totalCost + deliveryPrice;
-    },
-  },
-};
-</script>
 
 <style lang="scss" scoped>
-@mixin infobox_mixin(
-  $border-radius,
-  $border-color,
-  $padding,
-  $margin-bottom,
-  $color
-) {
-  border: $border-radius solid $border-color;
-  padding: $padding;
-  margin-bottom: $margin-bottom;
-  color: $color;
+.header-title {
+  padding-top: 200px;
+  .before-enter {
+    opacity: 0;
+    transform: translateX(100px);
+    transition: all 1s cubic-bezier(0.41, 0.01, 0.57, 1.61);
+  }
+  .enter {
+    opacity: 1;
+    transform: translate(0px);
+  }
 }
-
-h1 {
-  @include infobox_mixin(
-    5px,
-    white,
-    10px,
-    5px,
-   white,
+.about-header {
+  position: relative;
+  width: 100%;
+  min-height: 100vh;
+  background-image: url("");
+  background-position: center;
+  background-size: cover;
+  overflow: hidden;
+}
+.header-box {
+  position: absolute;
+  width: 100%;
+  height: 300px;
+  padding: 20px;
+  bottom: 0;
+  color: #efefef;
+  background: linear-gradient(
+    to bottom,
+    rgba($color: #000, $alpha: 0),
+    rgba($color: #000, $alpha: 0.7),
+    rgba($color: #000, $alpha: 0.9)
   );
-  font-weight: bold;
-  text-transform: uppercase;
-  font-size: 16px;
-  text-align: center;
+  .before-enter {
+    opacity: 0;
+    transform: translateY(100px);
+    transition: all 2s ease-out;
+  }
+  .enter {
+    opacity: 1;
+    transform: translateY(0px);
+  }
 }
-
-// Starts here:
-#info {
-  background-color: rgb(255, 255, 255);
+h1 {
+  font-size: 1.5rem;
+  padding: 10px 20px;
+  transition-delay: 0.2s;
 }
-
-tr th {
-  font-weight: bold;
+p {
+  font-size: 1.2rem;
+  padding: 10px 20px;
+  transition-delay: 0.1s;
 }
-
-#id_product_img{
-  max-width:40px;
-  max-height:40px;
-  padding:0;
+//text:
+* {
+  box-sizing: border-box;
+  margin: 0 auto;
+  padding: 0 auto;
 }
-
-#td_name {
-  font-weight: bold;
+// Description Zone -------------------------------- //
+.description {
+  padding-top: 12vh;
+  position: relative;
+  width: 100%;
+  min-height: 100vh;
+  .before-enter {
+    opacity: 0;
+    transform: translateY(100px);
+    transition: all 2s ease-out;
+  }
+  .enter {
+    opacity: 1;
+    transform: translateY(0px);
+  }
+  div {
+    font-size: 1.2rem;
+  }
+  h1 {
+    font-size: 1.5rem;
+    padding: 10px 20px;
+  }
+  p {
+    font-size: 1.2rem;
+    padding: 10px 20px;
+  }
 }
-#product_description {
-  font-style: italic;
-  font-weight: 300;
-  color: black;
-  font-size: 13px;
+#developerSection {
+  display: grid;
+  justify-content: center;
+  align-content: center;
 }
-
-.col h1 {
-  text-align: right;
+// Copyright Tag -------------------------------- //
+#copyrightSection {
+  font-size: 1vh;
+  display: grid;
+  justify-content: center;
+  align-content: center;
 }
-
-.col:last-child h1 {
-  text-align: left;
+// images:
+.images {
+  .before-enter {
+    opacity: 0;
+    transform: scale(0.5) rotateZ(-25deg);
+    transition: all 1s ease-out;
+  }
+  .enter {
+    opacity: 1;
+    transform: scale(1) rotateZ(0deg);
+  }
 }
-
-#basket-checkout {
-  font-size: 13px;
-}
-
-#basket-checkout {
-  line-height: 2px;
+.images {
+  position: relative;
+  width: 100%;
+  img {
+    float: left;
+    width: 50%;
+    height: auto;
+  }
 }
 </style>
 
+
+<script scoped>
+export default {
+  name: "About",
+  data() {
+    return {
+      logos: [],
+    };
+  },
+  methods: {},
+  mounted() {},
+};
+</script>

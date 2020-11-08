@@ -1,125 +1,206 @@
 <template>
-  <!-- <section class="home ma-0 pa-0">
-    <v-row no-gutters class="ma-0 pa-0">
-      <v-img
-        :min-height="'calc(100vh - ' + $vuetify.application.top + 'px)'"
-        src="https://firebasestorage.googleapis.com/v0/b/endproject-pwa.appspot.com/o/assets%2Fyosemite1.jpg?alt=media&token=c055750c-044c-4842-8f48-0989b79958eb"
+  <section id="displayProducts">
+    <v-row class="pa-0 ma-0">
+      <v-col
+        class="pa-0 ma-0"
+        lg="12"
+        md="12"
+        sm="12"
+        xs="12"
+        align-self="center"
+        justify="center"
       >
-        <v-theme-provider dark>
-          <v-container fill-height>
-            <v-row align="center" class="white--text mx-auto" justify="center">
-              <v-col class="white--text text-center" cols="12" tag="h1">
+        <div id="allProductsTitle">
+          <h4>All Products</h4>
+          <!-- We can make this dynamic depending on the filter set on Categories-->
+        </div>
+      </v-col>
+    </v-row>
+    <hr />
+    <br />
+    <v-row class="pa-0 ma-0" id="productBackground">
+      <v-col
+        lg="4"
+        md="12"
+        sm="12"
+        xs="12"
+        class="pa-0 ma-0"
+        v-for="item in products"
+        :key="item.name"
+      >
+        <div id="productDisplayBox">
+          <v-row class="pa-0 ma-0">
+            <v-col lg="8" xs="6" class="pa-0 ma-0">
+              <router-link
+                v-bind:to="{
+                  name: 'Product',
+                  params: {
+                    id: item.name,
+                    name: item.name,
+                    size: item.size,
+                    color: item.color,
+                    price: item.price,
+                    image: item.image,
+                  },
+                }"
+              >
                 <v-img
-                  :src="require('../assets/fox/fox-leaf.png')"
-                  class="my-3 fox"
+                  id="productImageDisplay"
+                  width="15vw"
                   contain
-                  height="auto"
-                  max-height="200"
-                />
-
-                <span
-                  :class="[$vuetify.breakpoint.smAndDown ? 'display-1' : 'display-2']"
-                  class="font-weight-light black--text"
-                >Welcome to</span>
-                <br />
-                <span
-                  :class="[$vuetify.breakpoint.smAndDown ? 'display-2': 'display-3']"
-                  class="font-weight-black black--text"
-                >PWA Mandatory project</span>
-
-                <br />
-                <br />
-                <v-btn color="white" @click="$vuetify.goTo('.pizza')" icon x-large>
-
-                  <v-icon color="black">mdi-chevron-double-down</v-icon>
-                </v-btn>
-              </v-col>
-            </v-row>
-          </v-container>
-        </v-theme-provider>
-      </v-img>
-    </v-row>
-    <v-row class="text-center ma-0 pa-0">
-      <v-col cols="12">
-        <v-img :src="require('../assets/fox/fox-fullback.png')" class="my-3 pizza" contain height="500" />
-      </v-col>
-
-      <v-col class="mb-4">
-        <h1 class="display-2 font-weight-bold mb-3">Welcome to PWA elective project</h1>
-
-        <p class="subheading font-weight-regular">Buy stuff thank you or not that's fine</p>
-      </v-col>
-
- 
-    </v-row>
-    <v-parallax :height="$vuetify.breakpoint.smAndDown ? 300 : 300" src="https://firebasestorage.googleapis.com/v0/b/endproject-pwa.appspot.com/o/assets%2Fyosemite1.jpg?alt=media&token=c055750c-044c-4842-8f48-0989b79958eb"></v-parallax>
-  </section> -->
-   <div id="products">
-    <v-row class="pa-0 ma-0 ">
-      <v-col class="pa-0 ma-0 d-none d-lg-block" cols="3">
-        <div class="optionsMenuBox">
-          <OptionsMenu></OptionsMenu>
-        </div>
-      </v-col>
-      <v-col class="pa-0 ma-0" cols="9">
-        <div class="displayProductsBox">
-          <DisplayProducts></DisplayProducts>
+                  v-bind:src="item.image"
+                ></v-img>
+              </router-link>
+            </v-col>
+            <v-col lg="4" xs="2" class="pa-0 ma-0">
+              <br />
+              <p>{{ item.name }}</p>
+              <br />
+              <br />
+              <p>Price: {{ item.price }} kr</p>
+              <span v-for="(size, index) in item.size" :key="index">
+                {{ size + ", " }}</span
+              ><br />
+              <hr />
+              <br />
+              <b>Colors:</b>
+              <span v-for="(color, i) in item.color" :key="'A' + i">
+                {{ color + ", " }}</span
+              >
+              <br />
+              <b>Types: </b>
+              <span v-for="(type, i) in item.type" :key="'B' + i">{{
+                type
+              }}</span>
+              <br />
+              <b>Categories: </b>
+              <span v-for="(category, i) in item.category" :key="'C' + i">{{
+                category
+              }}</span>
+              <br />
+              <b>Seasons: </b>
+              <span v-for="(season, i) in item.season" :key="'D' + i">{{
+                season + ", "
+              }}</span>
+              <br />
+              <br />
+              <hr />
+              <br />
+              <!-- Add to Basket -->
+              <v-btn @click="addToBasket(item)" depressed text small>
+                <v-icon color="white">mdi-basket</v-icon>
+              </v-btn>
+              <!-- Add to Favorites -->
+              <v-btn @click="addToFavourite(item)" depressed text small>
+                <v-icon color="white">mdi-heart</v-icon>
+              </v-btn>
+            </v-col>
+          </v-row>
         </div>
       </v-col>
     </v-row>
-  </div>
+  </section>
 </template>
 
 <script>
-import DisplayProducts from "../components/customer/DisplayProducts.vue";
-import OptionsMenu from "../components/customer/OptionsMenu.vue";
-
 export default {
-  name: "products",
-  show: true,
-    components: {
-    DisplayProducts,
-    OptionsMenu,
-  },
-
   data() {
     return {
-      importantLinks: [
-        {
-          text: "Documentation",
-          href: "https://vuetifyjs.com",
-        },
-        {
-          text: "Chat",
-          href: "https://community.vuetifyjs.com",
-        },
-        {
-          text: "Made with Vuetify",
-          href: "https://madewithvuejs.com/vuetify",
-        },
-        {
-          text: "Twitter",
-          href: "https://twitter.com/vuetifyjs",
-        },
-        {
-          text: "Articles",
-          href: "https://medium.com/vuetify",
-        },
-      ],
+      drawer: false,
+      basketDump: [],
+      favouriteDump: [],
+      dialog: false,
+      item: [],
+      activeEditItem: null,
+      multiLine: true,
+      snackbar: false,
+      updatedText: "Product has been updated",
+      size: [],
+      color: [],
+      type: [],
+      category: [],
+      season: [],
     };
   },
-  mounted() {
-    this.show = true; // might need this.$nextTick
+  beforeCreate() {
+    this.$store.dispatch("setProducts");
+  },
+  methods: {
+    greet: function (event) {
+      // `this` inside methods point to the Vue instance
+      alert("Hello " + this.name + "!");
+      // `event` is the native DOM event
+      alert(event.target.tagName);
+    },
+    addToBasket(item) {
+      this.basketDump.push({
+        name: item.name,
+        size: item.size,
+        color: item.color,
+        price: item.price,
+        image: item.image,
+        quantity: 1,
+      });
+      this.$store.commit("addBasketItems", this.basketDump);
+      // console.log("what is this", this.basketDump);
+      this.basketDump = [];
+    },
+    addToFavourite(item) {
+      this.favouriteDump.push({
+        name: item.name,
+        size: item.size,
+        color: item.color,
+        price: item.price,
+        image: item.image,
+        quantity: 1,
+      });
+      this.$store.commit("addFavouriteItems", this.favouriteDump);
+      // console.log("what is this", this.favouriteDump);
+      this.favouriteDump = [];
+    },
+  },
+  computed: {
+    products() {
+      return this.$store.getters.getProducts;
+    },
   },
 };
 </script>
 
 <style lang="scss" scoped>
-.fade-enter-active,
-.fade-leave-active {
-  transition: opacity 0.5s;
+#displayProducts {
+  padding-top: 2vh;
 }
-.fade-enter, .fade-leave-to /* .fade-leave-active below version 2.1.8 */ {
-  opacity: 0;
+/* Product Box Control Section */
+#allProductsTitle {
+  display: table;
+  margin: auto;
+}
+#productDisplayBox {
+  color: #053135;
+  height: 100%;
+  display: flex;
+  padding: 0.5vh;
+  width: 100%;
+}
+#productDisplayBox:hover {
+  transform: translateY(-20px);
+  box-shadow: 5px 5px 5px #053135;
+  color: white;
+  background-color: #053135;
+}
+#productDescription {
+  margin-left: 1vw;
+}
+#productBackground {
+  background-color: white;
+}
+p {
+  font-size: 15px;
+}
+/* Image Control Section */
+#productImageDisplay:hover {
+  transform: scale(1.1); /* 
+  box-shadow: 5px 5px 5px #000000; */
 }
 </style>

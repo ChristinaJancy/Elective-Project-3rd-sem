@@ -39,6 +39,7 @@
 
         <form v-else @submit.prevent>
           <h1>Get Started</h1>
+
           <div>
             <label for="name">Name</label>
             <input v-model.trim="signupForm.name" type="text" placeholder="Savvy Apps" id="name" />
@@ -114,6 +115,7 @@ export default {
         password: this.loginForm.password,
       });
     },
+
     signup() {
       this.$store.dispatch("signup", {
         email: this.signupForm.email,

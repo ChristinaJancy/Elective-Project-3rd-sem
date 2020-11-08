@@ -3,7 +3,7 @@ import Vuex from 'vuex'
 
 import 'firebase/firestore'
 import router from '../router/index'
-import { dbProductAdd } from '../firebase.js'
+import { dbProductAdd, usersCollection } from '../firebase.js'
 // import { dbProductAdd } from '../../firebase.js'
 // import * as fb from '../../firebase'
 import * as fb from '../firebase'
@@ -73,6 +73,24 @@ export default new Vuex.Store({
       }
     },
 
+    setUsers: state => {
+      let users = []
+
+      usersCollection.onSnapshot((snapshotItems) => {
+        users = []
+        snapshotItems.forEach((doc) => {
+          var usersData = doc.data();
+          users.push({
+            ...usersData,
+            id: doc.id
+          })
+        })
+        console.log(users)
+        state.users = users;
+    
+      }
+    )},
+
     setProducts: state => {
       let products = []
 
@@ -99,6 +117,9 @@ export default new Vuex.Store({
   },
 
   actions: {
+    addToFavourite(context){
+      context.commit('addToFavourite')
+    },
     async updateProfile({ dispatch }, user) {
       const userId = fb.auth.currentUser.uid
       // update user object
@@ -108,8 +129,24 @@ export default new Vuex.Store({
       })
     
       dispatch('fetchUserProfile', { uid: userId })
-    },    
-    
+    },  
+
+    //User favourites test -------------------------------------------------
+    // getFavourites(){
+
+    // },
+  
+  
+    // addToFavourite(productId) {
+    //   const currentUserId = firebase.auth().currentUser.id
+    //   const userDoc = firebase.firestore().collection('users').doc(currentUserId)
+    //   userDoc.update({
+    //     favourites: fb.firestore.FieldValue.arrayUnion(productId)
+    //   })
+    // },   
+
+    //User favourites end.------------------------------------------------
+
     setUser(context, user) {
       context.commit('userStatus', user)
     },
@@ -152,7 +189,7 @@ export default new Vuex.Store({
       // create user profile object in userCollections
       await fb.usersCollection.doc(user.uid).set({
         name: form.name,
-        title: form.title
+        title: form.title,
       })
     
       // fetch user profile and set in state

@@ -37,7 +37,7 @@
                         <br>
                     </td>
 
-                     <td>
+                       <td>
                         <v-icon x-large color="iconcolor" @click="decreaseQnt(item)">mdi-minus</v-icon>
                       </td>
                       <td>
@@ -61,7 +61,7 @@
 </template>
 
 <script scoped>
-import { dbProductAdd } from "../firebase.js";
+import { dbProductAdd, usersCollection } from "../firebase.js";
 // import { dbProductAdd } from "../../firebase.js";
 
 export default {
@@ -85,9 +85,17 @@ export default {
   },
   beforeCreate() {
     this.$store.dispatch("setProducts");
+    this.$store.dispatch("setUsers")
   },
 
   methods: {
+    deleteFavouriteItem(id){
+        usersCollection.doc(id).delete().then(() => {
+          console.log("Stuff is deleted");
+        }).catch(()=>{
+          
+        })
+    },
     updateItem() {
       dbProductAdd
         .doc(this.activeEditItem)
@@ -112,26 +120,26 @@ export default {
           console.error("Error removing document: ", error);
         });
     },
-    addToFavourite(item) {
-      if (this.favourite.find((itemInArray) => item.name === itemInArray.name)) {
-        item = this.favourite.find(
-          (itemInArray) => item.name === itemInArray.name
-        );
-        this.increaseQnt(item);
-      } else {
-        this.favourite.push({
-          name: item.name,
-          size: item.size,
-          color: item.color,
-          type: item.type,
-          category: item.category,
-          image: item.image,
-          season: item.season,
-          price: item.price,
-          quantity: 1,
-        });
-      }
-    },
+    // addToFavourite(item) {
+    //   if (this.favourite.find((itemInArray) => item.name === itemInArray.name)) {
+    //     item = this.favourite.find(
+    //       (itemInArray) => item.name === itemInArray.name
+    //     );
+    //     this.increaseQnt(item);
+    //   } else {
+    //     this.favourite.push({
+    //       name: item.name,
+    //       size: item.size,
+    //       color: item.color,
+    //       type: item.type,
+    //       category: item.category,
+    //       image: item.image,
+    //       season: item.season,
+    //       price: item.price,
+    //       quantity: 1,
+    //     });
+    //   }
+    // },
     addToBasket(item) {
        this.basketDump.push({
           name: item.name,
@@ -157,6 +165,10 @@ export default {
     },
   },
   computed: {
+      users(){ //for vuex
+      // return this.$store.state.basketItems //we want to contact state in our vuex store
+      return this.$store.getters.getUsers;
+    },
      favourite(){ //for vuex
       // return this.$store.state.basketItems //we want to contact state in our vuex store
       return this.$store.getters.getFavouriteItems

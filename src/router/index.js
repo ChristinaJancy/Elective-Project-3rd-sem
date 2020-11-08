@@ -3,6 +3,7 @@ import VueRouter from 'vue-router'
 import Home from '../views/Home.vue'
 import Admin from '../views/Admin.vue'
 import Products from '../views/Products.vue'
+import Product from '../components/customer/Product.vue'
 import Basket from '../views/Basket.vue'
 import AddNewItems from '../components/admin/AddNewItems.vue'
 import Login from '../components/admin/Login.vue'
@@ -63,6 +64,11 @@ Vue.use(VueRouter)
     path: '/products',
     name: 'Products',
     component: Products
+  },
+  {
+    path: '/product/:id',
+    name: 'Product',
+    component: Product
   },
   {
     path: '/basket',

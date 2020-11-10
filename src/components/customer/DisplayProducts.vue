@@ -2,6 +2,7 @@
   <section id="displayProducts">
     <v-row class="pa-0 ma-0">
       <v-col
+        cols="12"
         class="pa-0 ma-0"
         lg="12"
         md="12"
@@ -12,91 +13,77 @@
       >
         <div id="allProductsTitle">
           <h4>All Products</h4>
-          <!-- We can make this dynamic depending on the filter set on Categories-->
+          <!-- We can make this dynamic depending on the filter set on Categories -->
         </div>
+        <br />
       </v-col>
     </v-row>
-    <hr />
-    <br />
-    <v-row class="pa-0 ma-0" id="productBackground">
+    <v-row class="pa-0 ma-0">
       <v-col
-        lg="4"
-        md="12"
-        sm="12"
-        xs="12"
-        class="pa-0 ma-0"
+        cols="6"
+        lg="3"
+        xs="3"
+        class="pa-4 ma-0"
         v-for="item in products"
         :key="item.name"
+        id="productDisplayBox"
       >
-        <div id="productDisplayBox">
-          <v-row class="pa-0 ma-0">
-            <v-col lg="8" xs="6" class="pa-0 ma-0">
-              <router-link
-                :to="{
-                  name: 'product',
-                  params: {
-                    id: item.name,
-                    name: item.name,
-                    size: item.size,
-                    color: item.color,
-                    price: item.price,
-                    image: item.image,
-                  },
-                }"
-              >
-                <v-img
-                  id="productImageDisplay"
-                  width="15vw"
-                  contain
-                  v-bind:src="item.image"
-                ></v-img>
-              </router-link>
-            </v-col>
-            <v-col lg="4" xs="2" class="pa-0 ma-0">
-              <br />
-              <p>{{ item.name }}</p>
-              <br />
-              <br />
+        <v-row class="pa-0 ma-0">
+          <v-col
+            class="pa-0 ma-0"
+            cols="12"
+            lg="12"
+            xs="6"
+            align-self="center"
+            justify="center"
+          >
+            <router-link
+              :to="{
+                name: 'product',
+                params: {
+                  id: item.name,
+                  name: item.name,
+                  size: item.size,
+                  color: item.color,
+                  price: item.price,
+                  image: item.image,
+                },
+              }"
+            >
+              <!-- Product Images -->
+              <v-img
+                id="productImageDisplay"
+                contain
+                v-bind:src="item.image"
+              ></v-img>
+            </router-link>
+          </v-col>
+          <v-col class="pa-0 ma-0" cols="12" lg="9" xs="6">
+            <!-- Product Description -->
+            <div id="productDescription">
+              <b>{{ item.name }}</b>
               <p>Price: {{ item.price }} kr</p>
               <span v-for="(size, index) in item.size" :key="index">
                 {{ size + ", " }}</span
-              ><br />
-              <hr />
+              >
               <br />
               <b>Colors:</b>
               <span v-for="(color, i) in item.color" :key="'A' + i">
                 {{ color + ", " }}</span
               >
-              <br />
-              <b>Types: </b>
-              <span v-for="(type, i) in item.type" :key="'B' + i">{{
-                type
-              }}</span>
-              <br />
-              <b>Categories: </b>
-              <span v-for="(category, i) in item.category" :key="'C' + i">{{
-                category
-              }}</span>
-              <br />
-              <b>Seasons: </b>
-              <span v-for="(season, i) in item.season" :key="'D' + i">{{
-                season + ", "
-              }}</span>
-              <br />
-              <br />
-              <hr />
-              <br />
-              <!-- Add to Basket -->
-              <v-btn @click="addToBasket(item)" depressed text small>
-                <v-icon color="white">mdi-basket</v-icon>
-              </v-btn>
-              <!-- Add to Favorites -->
-              <v-btn @click="addToFavourite(item)" depressed text small>
-                <v-icon color="white">mdi-heart</v-icon>
-              </v-btn>
-            </v-col>
-          </v-row>
-        </div>
+            </div>
+          </v-col>
+          <v-col class="pa-0 ma-0" cols="12" lg="3" xs="6">
+            <!-- Add to Basket -->
+            <v-btn @click="addToBasket(item)" depressed text small>
+              <v-icon color="white">mdi-basket</v-icon>
+            </v-btn>
+            <!-- Add to Favorites -->
+            <v-btn @click="addToFavourite(item)" depressed text small>
+              <v-icon color="white">mdi-heart</v-icon>
+            </v-btn>
+          </v-col>
+        </v-row>
       </v-col>
     </v-row>
   </section>
@@ -168,45 +155,44 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-#displayProducts {
-  padding-top: 2vh;
-}
 /* Product Box Control Section */
+
 #allProductsTitle {
   display: table;
   margin: auto;
 }
-#productDisplayBox {
-  color: #053135;
-  height: 100%;
-  display: flex;
-  padding: 0.5vh;
-  width: 100%;
+
+#productImageDisplay {
+  height: 60vh;
 }
 
 #productDisplayBox:hover {
-  transform: translateY(-20px);
-  box-shadow: 5px 5px 5px #053135;
-  color: white;
-  background-color: #053135;
+  background-color: rgb(4, 31, 31);
 }
 
 #productDescription {
-  margin-left: 1vw;
+  padding-left: 2vw;
 }
 
 #productBackground {
   background-color: white;
 }
 
+/* ---------- Font Size ---------------- */
+span {
+  font-size: 12px;
+}
+b {
+  font-size: 12px;
+}
 p {
-  font-size: 15px;
+  font-size: 12px;
 }
 
-/* Image Control Section */
-
-#productImageDisplay:hover {
-  transform: scale(1.1); /* 
-  box-shadow: 5px 5px 5px #000000; */
+/* -------------------------- */
+@media only screen and (max-width: 600px) {
+  #productImageDisplay {
+    height: 35vh;
+  }
 }
 </style>

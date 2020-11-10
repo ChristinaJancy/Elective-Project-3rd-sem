@@ -19,7 +19,7 @@
           <v-checkbox
             v-model="productCategorie.catergory"
             :label="productCategorie.category"
-            value="white"
+            :value="productCategorie.category"
             dark
             class="pa-0 ma-0"
           >
@@ -35,13 +35,13 @@
           <p>Sizes</p>
           <div
             id="productSizes"
-            v-for="(menuOption, i) in menuOptions"
-            :key="i"
+            v-for="(menuOption, index) in menuOptions"
+            :key="index"
           >
             <v-checkbox
               v-model="menuOption.size"
               :label="menuOption.size"
-              value="white"
+              :value="menuOption.size"
               dark
               class="pa-0 ma-0"
             >
@@ -71,22 +71,9 @@ export default {
         { size: "XL" },
         { size: "XXL" },
       ],
-      ex4: [
-        "red",
-        "indigo",
-        "orange",
-        "primary",
-        "secondary",
-        "success",
-        "info",
-        "warning",
-        "error",
-        "red darken-3",
-        "indigo darken-3",
-        "orange darken-3",
-      ],
     };
   },
+  methods: {},
 };
 </script>
 

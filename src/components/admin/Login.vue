@@ -1,12 +1,16 @@
 <template>
   <div id="login">
-    <PasswordReset v-if="showPasswordReset" @close="togglePasswordReset()"></PasswordReset>
+    <PasswordReset
+      v-if="showPasswordReset"
+      @close="togglePasswordReset()"
+    ></PasswordReset>
     <section>
       <div class="col1">
         <h1>NoLabel</h1>
         <p>
           Welcome to the
-          <router-link to="/">NoLabels'</router-link> clothing shop with no labels.
+          <router-link to="/">NoLabels'</router-link> clothing shop with no
+          labels.
         </p>
       </div>
       <div :class="{ 'signup-form': !showLoginForm }" class="col2">
@@ -42,11 +46,21 @@
 
           <div>
             <label for="name">Name</label>
-            <input v-model.trim="signupForm.name" type="text" placeholder="Savvy Apps" id="name" />
+            <input
+              v-model.trim="signupForm.name"
+              type="text"
+              placeholder="Savvy Apps"
+              id="name"
+            />
           </div>
           <div>
             <label for="title">Title</label>
-            <input v-model.trim="signupForm.title" type="text" placeholder="Company" id="title" />
+            <input
+              v-model.trim="signupForm.title"
+              type="text"
+              placeholder="Company"
+              id="title"
+            />
           </div>
           <div>
             <label for="email2">Email</label>
@@ -77,21 +91,21 @@
 </template>
 
 <style lang="scss" scoped>
-  section{
-    max-width: 1200px;
-  }
+section {
+  max-width: 1200px;
+}
 </style>
 
 
 <script>
-import PasswordReset from './PasswordReset'
+import PasswordReset from "./PasswordReset";
 import { auth } from "../../firebase";
 // import { auth } from "../../../firebase";
 
 export default {
-      components: {
-       PasswordReset
-    },
+  components: {
+    PasswordReset,
+  },
   data() {
     return {
       loginForm: {
@@ -124,7 +138,7 @@ export default {
         title: this.signupForm.title,
       });
     },
-        async resetPassword() {
+    async resetPassword() {
       this.errorMsg = "";
 
       try {

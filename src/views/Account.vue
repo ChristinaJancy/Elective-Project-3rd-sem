@@ -1,25 +1,26 @@
 <template>
   <section id="account">
-    <div  :class="{ 'settings': !showProfile }" class="col1" >
-      <h3 v-if="showProfile">{{userProfile.name}}</h3>
-       <h3 v-else>Update your profile</h3>
+    <div :class="{ settings: !showProfile }" class="col1">
       <transition name="fade">
         <p v-if="showSuccess" class="success">profile updated</p>
       </transition>
+      <div v-if="showProfile"> <h3 class="mb-1">{{ userProfile.name }} </h3>
+        <small>{{ userProfile.permission }}</small>
+      </div>
+      <h3 v-else>Update your profile</h3>
+      <br>
+      <hr />
 
-
-      <form v-if="showProfile">
-        
-  
-
-
-       <div class="extras">
-           <a @click="toggleForm()">Update your profile</a>
+      <form v-if="showProfile" class="mt-2">
+        <p>
+          Occupation: <b>{{ userProfile.title }}</b>
+        </p>
+        <div class="extras pt-12">
+          <a @click="toggleForm()">Update your profile</a>
         </div>
       </form>
-      
-      
-      <form @submit.prevent v-else >
+
+      <form @submit.prevent v-else>
         <label for="name">Name</label>
         <input
           v-model.trim="name"
@@ -27,8 +28,7 @@
           :placeholder="userProfile.name"
           id="name"
         />
-
-        <label for="title">Title</label>
+        <label for="title">Occupation</label>
         <input
           v-model.trim="title"
           type="text"
@@ -36,13 +36,18 @@
           id="title"
         />
 
-<v-row>
-  <v-col align="left"> <button @click="updateProfile()" class="button">Update Profile</button></v-col>
-  <v-col align="right">  <button @click="toggleForm()"  class="button error">Cancel</button></v-col>
-</v-row>
-       
-       
-           
+        <v-row>
+          <v-col align="left">
+            <button @click="updateProfile()" class="button">
+              Update Profile
+            </button></v-col
+          >
+          <v-col align="right">
+            <button @click="toggleForm()" class="button error">
+              Cancel
+            </button></v-col
+          >
+        </v-row>
       </form>
     </div>
   </section>
@@ -69,12 +74,11 @@ export default {
     updateProfile() {
       this.$store.dispatch("updateProfile", {
         name: this.name !== "" ? this.name : this.userProfile.name,
-        title: this.title !== "" ? this.title : this.userProfile.title,
+        birthday: this.birthday !== "" ? this.birthday : this.userProfile.birthday,
       });
 
       this.name = "";
       this.title = "";
-
       this.showSuccess = true;
 
       setTimeout(() => {
@@ -83,7 +87,7 @@ export default {
     },
     toggleForm() {
       this.showSettings = !this.showSettings;
-    this.showProfile = !this.showProfile;
+      this.showProfile = !this.showProfile;
     },
   },
 };

@@ -1,9 +1,9 @@
 <template>
   <div id="Navigation">
-    <v-navigation-drawer v-model="drawer" temporary app dark clipped>
+    <v-navigation-drawer v-model="drawer" app dark clipped class="nolabelgreen"> <!-- temporary -->
       <v-list dense>
-        <v-list-item-subtitle class="pl-4" v-if="currentUser"
-          >Logged In</v-list-item-subtitle
+        <v-list-item-subtitle class="pl-6" v-if="currentUser"
+          >Logged in:</v-list-item-subtitle
         >
         <v-list-item v-if="currentUser">
           <v-list-item-avatar>
@@ -11,7 +11,7 @@
           </v-list-item-avatar>
           <v-list-item-title>{{ currentUser.email }}</v-list-item-title>
         </v-list-item>
-        <hr style="border: 0.1px solid grey" v-if="currentUser" />
+        <hr style="border: 0.1px solid #efefef75" v-if="currentUser" />
 
         <router-link to="/">
           <v-list-item link>
@@ -54,21 +54,6 @@
           </v-list-item>
         </router-link>
 
-        <router-link to="/basket">
-          <v-list-item link>
-            <v-list-item-action>
-              <v-icon class="iconcolor--text"
-                >mdi-briefcase-variant-outline</v-icon
-              >
-            </v-list-item-action>
-            <v-list-item-content>
-              <v-list-item-title class="iconcolor--text"
-                >Basket</v-list-item-title
-              >
-            </v-list-item-content>
-          </v-list-item>
-        </router-link>
-
         <router-link to="/admin">
           <v-list-item link>
             <v-list-item-action>
@@ -84,10 +69,16 @@
       </v-list>
     </v-navigation-drawer>
 
-    <v-app-bar app clipped-left light>
+    <v-app-bar app clipped-left dark style="background-color:#102021f1;">
       <v-app-bar-nav-icon @click.stop="drawer = !drawer"></v-app-bar-nav-icon>
 
-      <v-spacer></v-spacer>
+     
+      <v-toolbar-title>
+        <router-link to="/">
+        <v-img width="140" src="../assets/nolabel-logo-white.png"></v-img>
+          </router-link>
+      </v-toolbar-title>
+       <v-spacer></v-spacer>
 
       <!-- BASKET AND BADGE START HERE -->
       <v-badge
@@ -164,12 +155,12 @@
       </v-badge>
 
       <router-link to="/basket" v-else>
-        <v-icon class="iconcolor--text pa-2">mdi-basket</v-icon>
+        <v-icon class="iconcolor--text pr-2">mdi-basket</v-icon>
       </router-link>
 
       <!-- BASKET END HERE ---------------------------- -->
       <router-link to="/favourites">
-        <v-icon class="error--text pa-2">mdi-heart</v-icon>
+        <v-icon class="error--text pl-2">mdi-heart</v-icon>
       </router-link>
 
       <div class="text-center">

@@ -3,52 +3,107 @@
     <section class="about-header">
       <div align="center" class="header-title">
         <div v-scrollanimation>
-          <span
-            :class="[$vuetify.breakpoint.smAndDown ? 'display-2': 'display-3']"
-            class="font-weight-black white--text"
-          >No Label</span>
+          <v-img width="500" src="../assets/nolabel-logo-white.png"></v-img>
         </div>
       </div>
       <div class="header-box" align="center">
-        <h1 v-scrollanimation>We don't believe in labels.</h1>
+        <h1>We don't believe in labels.</h1>
+
+        <v-btn
+          color="white"
+          outlined
+          icon
+          rounded
+          @click="$vuetify.goTo('.homesection1')"
+        >
+          <v-icon color="icons">mdi-chevron-double-down</v-icon>
+        </v-btn>
       </div>
     </section>
-    <section class="description">
-      <p
-        v-scrollanimation
-      >Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</p>
-      <p
-        v-scrollanimation
-      >It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using 'Content here, content here', making it look like readable English. Many desktop publishing packages and web page editors now use Lorem Ipsum as their default model text, and a search for 'lorem ipsum' will uncover many web sites still in their infancy. Various versions have evolved over the years, sometimes by accident, sometimes on purpose (injected humour and the like).</p>
-      <p
-        v-scrollanimation
-      >Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin literature from 45 BC, making it over 2000 years old. Richard McClintock, a Latin professor at Hampden-Sydney College in Virginia, looked up one of the more obscure Latin words, consectetur, from a Lorem Ipsum passage, and going through the cites of the word in classical literature, discovered the undoubtable source. Lorem Ipsum comes from sections 1.10.32 and 1.10.33 of "de Finibus Bonorum et Malorum" (The Extremes of Good and Evil) by Cicero, written in 45 BC. This book is a treatise on the theory of ethics, very popular during the Renaissance. The first line of Lorem Ipsum, "Lorem ipsum dolor sit amet..", comes from a line in section 1.10.32.</p>
+    <section class="homesection1">
+      <div align="center" class="nolabelgreen pt-10 pb-16">
+        <div>
+          <span
+            :class="[$vuetify.breakpoint.smAndDown ? 'display-2' : 'display-3']"
+            class="font-weight-black white--text"
+            >New collection!</span>
+        </div>
+      </div>
+      <v-row>
+        <v-col cols="12" md="6" xs="12" style="background-color: #e8e7e4">
+          <v-card
+            class="pt-15 pb-5"
+            elevation="24"
+            max-width="444"
+            align="center"
+            style="background-color: #e8e7e4"
+          >
+            <v-carousel
+              hide-delimiters
+              cycle
+              continuous
+              height="500"
+              show-arrows-on-hover
+              touch
+            >
+              <v-carousel-item
+                v-for="item in products"
+                :key="item.name"
+                v-bind:src="item.image"
+                align="center"
+                contain
+                reverse-transition
+              ></v-carousel-item>
+            </v-carousel>
+          </v-card>
+        </v-col>
+        <v-col cols="12" md="6" xs="12" style="background-color: #e8e7e4"> 
+          <h2 align="center" class="black--text">You define you.</h2>
+          <p align="center" class="black--text my-12"><b>We exist to give you the confidence to be whoever you want to be.</b></p>
+        </v-col>
+      </v-row>
+      <br />
+      <br /><br /><br /><br />
     </section>
-    <section class="images">
-      <img v-scrollanimation src="https://firebasestorage.googleapis.com/v0/b/endproject-pwa.appspot.com/o/assets%2Fyosemite1.jpg?alt=media&token=c055750c-044c-4842-8f48-0989b79958eb" alt />
-      <img v-scrollanimation src="../assets/fox/fox.png" alt />
-      <img v-scrollanimation src="../assets/fox/fox-leaf.png" alt />
-      <img v-scrollanimation src="../assets/fox/fox-fullback.png" alt />
-    </section>
-    <br />
-    <br />
-    <br />
   </div>
 </template>
 
 
-<style lang="scss" scoped>
+<script scoped>
+export default {
+  name: "About",
 
-  h1 {
-    font-size: 1.5rem;
-    padding: 10px 20px;
-     transition-delay: .2s;
-  }
-  p {
-    font-size: 1.2rem;
-    padding: 10px 20px;
-     transition-delay: .1s;
-  }
+  data() {
+    return {
+      logos: [],
+      model: null,
+    };
+  },
+  methods: {},
+  beforeCreate() {
+    this.$store.dispatch("setProducts");
+  },
+  computed: {
+    products() {
+      return this.$store.getters.getProducts;
+    },
+  },
+};
+</script>
+
+
+
+<style lang="scss" scoped>
+h1 {
+  font-size: 1.5rem;
+  padding: 10px 20px;
+  transition-delay: 0.2s;
+}
+p {
+  font-size: 1.2rem;
+  padding: 10px 20px;
+  transition-delay: 0.1s;
+}
 //text:
 * {
   box-sizing: border-box;
@@ -79,21 +134,19 @@
   p {
     font-size: 1.2rem;
     padding: 10px 20px;
-    
   }
 }
 .header-title {
   padding-top: 200px;
-  .before-enter{
+  .before-enter {
     opacity: 0;
     transform: translateX(100px);
-    transition: all 1s cubic-bezier(.41,.01,.57,1.61);
+    transition: all 1s cubic-bezier(0.41, 0.01, 0.57, 1.61);
   }
-  .enter{
+  .enter {
     opacity: 1;
     transform: translate(0px);
   }
- 
 }
 
 .about-header {
@@ -131,8 +184,6 @@
   }
 }
 
-
-
 // images:
 .images {
   .before-enter {
@@ -157,26 +208,4 @@
   }
 }
 </style>
-
-
-<script scoped>
-
-export default {
-  name: "About",
-
-  data() {
-    return {
-      logos: [
-       
-      ],
-    };
-  },
-  methods: {
-
-  },
-
-  mounted() {
-   },
-};
-</script>
 

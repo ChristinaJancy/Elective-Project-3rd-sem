@@ -20,9 +20,9 @@
               alt
               height="160vh"
             />
-            <p v-scrollanimation>Christina Jancy</p>
+            <p v-scrollanimation><b>Christina Jancy</b></p>
             <p v-scrollanimation style="margin-top: -30px">
-              <a href="https://github.com/ChristinaJancy"> Github</a>
+              <a href="https://github.com/ChristinaJancy" target="_blank"> Github</a>
             </p>
           </div>
         </v-col>
@@ -34,9 +34,9 @@
               alt
               height="160vh"
             />
-            <p v-scrollanimation>Penda Svane</p>
+            <p v-scrollanimation><b>Penda Svane</b></p>
             <p v-scrollanimation style="margin-top: -30px">
-              <a href="https://github.com/TheSvaneMan"> Github</a>
+              <a href="https://github.com/TheSvaneMan" target="_blank">Github</a>
             </p>
           </div>
         </v-col>

@@ -39,7 +39,7 @@ export default {
 
 <style lang="scss">
 #app{
- background: #28575b;
+ background: #102021;
 }
 </style>
 

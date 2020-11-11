@@ -75,10 +75,10 @@ export default {
   data: () => ({
     drawer: null,
     navItems: [
-      { name: "Favorites", link: "/Favorites", icon: "mdi-google-fit" },
+      { name: "Favorites", link: "/favourites", icon: "mdi-google-fit" },
       { name: "Products", link: "/products", icon: "mdi-foot-print" },
       { name: "No Labels", link: "/", icon: "mdi-ferris-wheel" },
-      { name: "Basket", link: "/Basket", icon: "mdi-blur" },
+      { name: "Basket", link: "/basket", icon: "mdi-blur" },
     ],
   }),
   methods: {

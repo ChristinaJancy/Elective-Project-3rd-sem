@@ -6,7 +6,7 @@
     ></PasswordReset>
     <section>
       <div class="col1">
-        <h1>NoLabel</h1>
+       <v-img width="200" src="../../assets/nolabel-logo-white.png"></v-img>
         <p>
           Welcome to the
           <router-link to="/">NoLabels'</router-link> clothing shop with no
@@ -36,8 +36,8 @@
           </div>
           <button @click="login()" class="button">Log In</button>
           <div class="extras">
-            <a @click="togglePasswordReset()">Forgot Password</a>
-            <a @click="toggleForm()">Create an Account</a>
+            <a style="color:#102021" @click="togglePasswordReset()">Forgot Password</a>
+            <a style="color:#102021" @click="toggleForm()">Create an Account</a>
           </div>
         </form>
 
@@ -49,16 +49,16 @@
             <input
               v-model.trim="signupForm.name"
               type="text"
-              placeholder="Savvy Apps"
+              placeholder="Bob"
               id="name"
             />
           </div>
           <div>
-            <label for="title">Title</label>
+            <label for="title">Occupation</label>
             <input
               v-model.trim="signupForm.title"
               type="text"
-              placeholder="Company"
+              placeholder="Student"
               id="title"
             />
           </div>
@@ -82,7 +82,7 @@
           </div>
           <button @click="signup()" class="button">Sign Up</button>
           <div class="extras">
-            <a @click="toggleForm()">Back to Log In</a>
+            <a style="color:#102021" @click="toggleForm()">Back to Log In</a>
           </div>
         </form>
       </div>

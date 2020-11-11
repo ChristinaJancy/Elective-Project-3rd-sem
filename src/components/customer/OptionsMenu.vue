@@ -2,28 +2,51 @@
   <div class="optionsMenu">
     <v-row class="pa-0 ma-0">
       <v-col class="pa-0 ma-0">
-        <h3>All Products</h3>
-        <br />
-        <h1>Categories</h1>
+        <h4 class="white--text">Categories</h4>
       </v-col>
     </v-row>
+    <hr />
+    <br />
     <v-row class="pa-0 ma-0">
-      <v-col class="pa-0 ma-0">
-        <h2>Shop by Product</h2>
+      <v-col class="pa-0 ma-0 white--text" >
+        <p >Shop by Product</p>
         <br />
-        <p v-for="(productCategorie, i) in productCategories" :key="i">
-          <span>{{ productCategorie.category }}</span>
-        </p>
+        <div
+          id="categoryBox"
+          v-for="(productCategorie, i) in productCategories"
+          :key="i"
+        >
+          <v-checkbox
+            v-model="productCategorie.catergory"
+            :label="productCategorie.category"
+            :value="productCategorie.category"
+            dark
+            class="pa-0 ma-0"
+          >
+          </v-checkbox>
+        </div>
       </v-col>
     </v-row>
+    <hr />
+    <br />
     <v-row class="pa-0 ma-0">
-      <v-col class="pa-0 ma-0">
+      <v-col class="pa-0 ma-0 white--text">
         <div class="sizeOptions">
-          <h2>Sizes</h2>
-          <br />
-          <v-btn id="sizeButtons" small tile width="50px" v-for="(menuOption, i) in menuOptions" :key="i">
-            <span>{{ menuOption.name }}</span>
-          </v-btn>
+          <p>Sizes</p>
+          <div
+            id="productSizes"
+            v-for="(menuOption, index) in menuOptions"
+            :key="index"
+          >
+            <v-checkbox
+              v-model="menuOption.size"
+              :label="menuOption.size"
+              :value="menuOption.size"
+              dark
+              class="pa-0 ma-0"
+            >
+            </v-checkbox>
+          </div>
         </div>
       </v-col>
     </v-row>
@@ -41,28 +64,27 @@ export default {
         { category: "Hats" },
       ],
       menuOptions: [
-        { name: "XS" },
-        { name: "S" },
-        { name: "M" },
-        { name: "L" },
-        { name: "XL" },
-        { name: "XXL" },
+        { size: "XS" },
+        { size: "S" },
+        { size: "M" },
+        { size: "L" },
+        { size: "XL" },
+        { size: "XXL" },
       ],
     };
   },
+  methods: {},
 };
 </script>
 
 <style lang="scss" scoped>
 .optionsMenu {
   padding-left: 5vh;
-  padding-top: 5vh;
+  padding-top: 2vh;
 }
-
 #sizeButtons {
   margin-bottom: 2vh;
 }
-
 .sizeOptions {
   display: grid;
 }

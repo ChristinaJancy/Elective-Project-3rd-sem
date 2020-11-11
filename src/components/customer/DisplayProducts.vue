@@ -1,29 +1,86 @@
 <template>
-  <div id="displayProducts">
-    <v-row class="pa-0 ma-0">
-      <v-col class="pa-0 ma-0">
-        <h1>All Products</h1>
-      </v-col>
-    </v-row>
-    <v-row class="pa-0 ma-0">
-      <v-col 
-        lg="3" 
-        sm="12"
-        class="pa-0 ma-0"
-        v-for="(product, i) in products"
-        :key="i"
-      >
-        <div id="productDisplayBox">
-          <img :src="product.productImage" alt="" height="200px" />
-          <div id="ImageContentBox">
-            <p>{{ product.productName }}</p>
-            <p>{{ product.productPrice }}</p>
-            <p>{{ product.productColor }}</p>
-          </div>
+  <section id="displayProducts">
+    <section class="product-header white">
+      <div align="center" class="header-title nolabelgreen pb-3">
+        <div v-scrollanimation>
+          <span
+            :class="[$vuetify.breakpoint.smAndDown ? 'display-2' : 'display-3']"
+            class="font-weight-black white--text"
+            >All products.</span
+          >
         </div>
+      </div>
+    </section>
+    <v-row class="pa-0 ma-0">
+      <v-col
+        cols="6"
+        lg="3"
+        xs="3"
+        class="pa-4 ma-0"
+        v-for="item in products"
+        :key="item.name"
+        id="productDisplayBox"
+      >
+        <v-row class="pa-0 ma-0">
+          <v-col
+            class="pa-0 ma-0"
+            cols="12"
+            lg="12"
+            xs="6"
+            align-self="center"
+            justify="center"
+          >
+            <router-link
+              :to="{
+                name: 'Product',
+                params: {
+                  id: item.name,
+                  name: item.name,
+                  size: item.size,
+                  color: item.color,
+                  price: item.price,
+                  image: item.image,
+                  description: item.description,
+                },
+              }"
+            >
+              <!-- Product Images -->
+              <v-img
+                id="productImageDisplay"
+                contain
+                v-bind:src="item.image"
+              ></v-img>
+            </router-link>
+          </v-col>
+          <v-col class="pa-0 ma-0" cols="12" lg="9" xs="6">
+            <!-- Product Description -->
+            <div id="productDescription" class="white--text">
+              <b>{{ item.name }}</b>
+              <p>Price: {{ item.price }} kr</p>
+              <span v-for="(size, index) in item.size" :key="index">
+                {{ size + ", " }}</span
+              >
+              <br />
+              <b>Colors:</b>
+              <span v-for="(color, i) in item.color" :key="'A' + i">
+                {{ color + ", " }}</span
+              >
+            </div>
+          </v-col>
+          <v-col class="pa-0 ma-0" cols="12" lg="3" xs="6">
+            <!-- Add to Basket -->
+            <v-btn @click="addToBasket(item)" depressed text small>
+              <v-icon color="white">mdi-basket</v-icon>
+            </v-btn>
+            <!-- Add to Favorites -->
+            <v-btn @click="addToFavourite(item)" depressed text small>
+              <v-icon color="white">mdi-heart</v-icon>
+            </v-btn>
+          </v-col>
+        </v-row>
       </v-col>
     </v-row>
-  </div>
+  </section>
 </template>
 
 <script>
@@ -31,129 +88,98 @@ export default {
   data() {
     return {
       drawer: false,
-      products: [
-        {
-          productName: "Long Sleeve Shirt 001",
-          productImage:
-            "https://cdn09.nnnow.com/web-images/medium/styles/N6I2NVHN9JT/1563454009563/1.jpg",
-          productPrice: "42,000",
-          productColor: "red",
-        },
-        {
-          productName: "Baige Baggy Pants 001",
-          productImage:
-            "https://ae01.alicdn.com/kf/HTB1gw_zLXXXXXXSXFXXq6xXFXXXj/Fashion-Trousers-For-Women-Sashes-Plus-Size-Elegant-Women-s-Pants-Trousers-Mid-Wasit-Wide-Leg.jpg",
-          productPrice: "22,000",
-          productColor: "baige",
-        },
-        {
-          productName: "Running Pants 004",
-          productImage:
-            "https://www.footasylum.com/images/products/medium/4025846.jpg",
-          productPrice: "67,000",
-          productColor: "black",
-        },
-        {
-          productName: "Chillout Outfit",
-          productImage:
-            "https://www.scotch-soda.com/dw/image/v2/AANA_PRD/on/demandware.static/-/Sites-scotch-master-catalog-FW20/default/dw477ce65a/images/xlarge-0D0C8366-0AEE-4D9A-BC1DFD3B58657EBC.png?sw=500&strip=false&bgcolor=EDEEE5",
-          productPrice: "102,000",
-          productColor: "Baige",
-        },
-        {
-          productName: "Wood Shirt 006",
-          productImage:
-            "https://images.allsaints.com/products/600/MS001J/6135/MS001J-6135-1.jpg",
-          productPrice: "12,000",
-          productColor: "Tree Green",
-        },
-        {
-          productName: "Free Spirit Shirt 007",
-          productImage:
-            "https://s1.thcdn.com//productimg/1600/1600/11859687-5154726106687607.jpg",
-          productPrice: "93,000",
-          productColor: "black",
-        },
-        {
-          productName: "Work From Home 1023",
-          productImage:
-            "https://www.banana-moon-clothing.co.uk/images/h551-d08e0b7b4b98e795ba7a86a9ca823a8c.jpg?width=356&height=398",
-          productPrice: "75,000",
-          productColor: "white",
-        },
-        {
-          productName: "Long Sleeve Shirt 001",
-          productImage:
-            "https://cdn09.nnnow.com/web-images/medium/styles/N6I2NVHN9JT/1563454009563/1.jpg",
-          productPrice: "42,000",
-          productColor: "red",
-        },
-        {
-          productName: "Baige Baggy Pants 001",
-          productImage:
-            "https://ae01.alicdn.com/kf/HTB1gw_zLXXXXXXSXFXXq6xXFXXXj/Fashion-Trousers-For-Women-Sashes-Plus-Size-Elegant-Women-s-Pants-Trousers-Mid-Wasit-Wide-Leg.jpg",
-          productPrice: "22,000",
-          productColor: "baige",
-        },
-        {
-          productName: "Running Pants 004",
-          productImage:
-            "https://www.footasylum.com/images/products/medium/4025846.jpg",
-          productPrice: "67,000",
-          productColor: "black",
-        },
-        {
-          productName: "Chillout Outfit",
-          productImage:
-            "https://www.scotch-soda.com/dw/image/v2/AANA_PRD/on/demandware.static/-/Sites-scotch-master-catalog-FW20/default/dw477ce65a/images/xlarge-0D0C8366-0AEE-4D9A-BC1DFD3B58657EBC.png?sw=500&strip=false&bgcolor=EDEEE5",
-          productPrice: "102,000",
-          productColor: "Baige",
-        },
-        {
-          productName: "Wood Shirt 006",
-          productImage:
-            "https://images.allsaints.com/products/600/MS001J/6135/MS001J-6135-1.jpg",
-          productPrice: "12,000",
-          productColor: "Tree Green",
-        },
-        {
-          productName: "Free Spirit Shirt 007",
-          productImage:
-            "https://s1.thcdn.com//productimg/1600/1600/11859687-5154726106687607.jpg",
-          productPrice: "93,000",
-          productColor: "black",
-        },
-        {
-          productName: "Work From Home 1023",
-          productImage:
-            "https://www.banana-moon-clothing.co.uk/images/h551-d08e0b7b4b98e795ba7a86a9ca823a8c.jpg?width=356&height=398",
-          productPrice: "75,000",
-          productColor: "white",
-        },
-      ],
+      basketDump: [],
+      favouriteDump: [],
+      dialog: false,
+      item: [],
+      activeEditItem: null,
+      multiLine: true,
+      snackbar: false,
+      updatedText: "Product has been updated",
+      size: [],
+      color: [],
+      type: [],
+      category: [],
+      season: [],
     };
+  },
+  beforeCreate() {
+    this.$store.dispatch("setProducts");
+  },
+  methods: {
+    greet: function (event) {
+      // `this` inside methods point to the Vue instance
+      alert("Hello " + this.name + "!");
+      // `event` is the native DOM event
+      alert(event.target.tagName);
+    },
+    addToBasket(item) {
+      this.basketDump.push({
+        name: item.name,
+        size: item.size,
+        color: item.color,
+        price: item.price,
+        image: item.image,
+        quantity: 1,
+      });
+      this.$store.commit("addBasketItems", this.basketDump);
+      // console.log("what is this", this.basketDump);
+      this.basketDump = [];
+    },
+    addToFavourite(item) {
+      this.favouriteDump.push({
+        name: item.name,
+        size: item.size,
+        color: item.color,
+        price: item.price,
+        image: item.image,
+        quantity: 1,
+      });
+      this.$store.commit("addFavouriteItems", this.favouriteDump);
+      // console.log("what is this", this.favouriteDump);
+      this.favouriteDump = [];
+    },
+  },
+  computed: {
+    products() {
+      return this.$store.getters.getProducts;
+    },
   },
 };
 </script>
 
 <style lang="scss" scoped>
-#displayProducts {
-  margin-left: 10vh;
+/* Product Box Control Section */
+#allProductsTitle {
+  display: table;
+  margin: auto;
 }
-#productDisplayBox {
-  border-radius: 25px;
-  display: grid;
-  justify-content: center;
-  padding: 2vh;
-  margin-bottom: 5vh;
-  width: 250px;
-  background: #182f31;
+#productImageDisplay {
+  height: 60vh;
 }
-
 #productDisplayBox:hover {
-  background-color: #28575b;
+  background-color: rgb(4, 31, 31);
 }
-img {
-  border-radius: 2vh;
+#productDescription {
+  padding-left: 2vw;
+}
+#productBackground {
+  background-color: white;
+}
+/* ---------- Font Size ---------------- */
+span {
+  font-size: 12px;
+}
+b {
+  font-size: 12px;
+}
+p {
+  font-size: 12px;
+}
+/* -------------------------- */
+@media only screen and (max-width: 600px) {
+  #productImageDisplay {
+    height: 35vh;
+  }
 }
 </style>

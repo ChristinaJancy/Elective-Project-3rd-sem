@@ -5,13 +5,14 @@
     <v-main>
       <router-view />
     </v-main>
-
+      <MobileNavigation></MobileNavigation>
   </v-app>
 </template>
 
 <script>
 import { mapState } from 'vuex'
 import Navigation from "@/components/Navigation";
+import MobileNavigation from "@/components/MobileNavigation";
 
 
 export default {
@@ -19,6 +20,7 @@ export default {
 
   components: {
     Navigation,
+    MobileNavigation
   },
 
   data: () => ({

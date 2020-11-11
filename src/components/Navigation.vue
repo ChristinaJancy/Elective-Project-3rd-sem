@@ -1,5 +1,5 @@
 <template>
-  <div id="Navigation">
+  <div id="Navigation" class="hidden-sm-only hidden-xs-only">
     <v-navigation-drawer v-model="drawer" app dark clipped class="nolabelgreen"> <!-- temporary -->
       <v-list dense>
         <v-list-item-subtitle class="pl-6" v-if="currentUser"

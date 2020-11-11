@@ -1,10 +1,5 @@
 <template>
   <section class="about">
-    <v-img
-      :min-height="'calc(100vh - ' + $vuetify.application.top + 'px)'"
-      src="https://firebasestorage.googleapis.com/v0/b/endproject-pwa.appspot.com/o/assets%2Fyellow-flower.jpg?alt=media&token=14d019d8-9ad6-4fdf-b19a-caa08252632b"
-      cover
-    >
         <v-container>
           <v-row>
             <v-col offset-md="2" md="8" sm="12" xs="12">
@@ -170,7 +165,6 @@
             </v-dialog>
           </v-row>
         </v-container>
-    </v-img>
   </section>
 </template>
 

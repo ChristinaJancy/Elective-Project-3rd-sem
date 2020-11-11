@@ -1,19 +1,14 @@
 <template>
-  <div class="OutFitGeneratorr">
-    <v-row class="pa-0 ma-0">
-      <v-col class="pa-0 ma-0">
-        <h4>Create your new Random Outfit</h4>
-        <br />
-        <p>
-          or gain the assistance of AI
-        </p>
-      </v-col>
-    </v-row>
+  <div id="RandomOutfit">
+    <OutfitGenerator></OutfitGenerator>
   </div>
 </template>
 
 <script>
-export default {};
+import OutfitGenerator from "@/components/customer/OutfitGenerator.vue";
+export default {
+  components: {
+    OutfitGenerator,
+  },
+};
 </script>
-
-<style lang="scss" scoped></style>

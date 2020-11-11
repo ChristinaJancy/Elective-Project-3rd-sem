@@ -1,5 +1,6 @@
 <template>
   <v-app id="app">
+    <!-- <PageLoader /> -->
     <Navigation></Navigation>
 
     <v-main>
@@ -13,6 +14,7 @@
 import { mapState } from 'vuex'
 import Navigation from "@/components/Navigation";
 import MobileNavigation from "@/components/MobileNavigation";
+// import PageLoader from '@/components/PageLoader.vue'
 
 
 export default {
@@ -20,7 +22,8 @@ export default {
 
   components: {
     Navigation,
-    MobileNavigation
+    MobileNavigation,
+    // PageLoader
   },
 
   data: () => ({

@@ -4,17 +4,27 @@
       <transition name="fade">
         <p v-if="showSuccess" class="success">profile updated</p>
       </transition>
-      <div v-if="showProfile"> <h3 class="mb-1">{{ userProfile.name }} </h3>
+      <div v-if="showProfile" align="center">
+        <v-img width="90" src="../assets/avatar.png"></v-img>
         <small>{{ userProfile.permission }}</small>
+        <v-row>
+          <v-col>
+            <h3 class="mb-1" style="text-align: center">
+              {{ userProfile.name }}
+            </h3>
+          </v-col>
+        </v-row>
       </div>
       <h3 v-else>Update your profile</h3>
-      <br>
+
       <hr />
 
       <form v-if="showProfile" class="mt-2">
         <p>
-          Occupation: <b>{{ userProfile.title }}</b>
+        Occupation: 
+          <br><b>{{ userProfile.title }}</b>
         </p>
+        <h2>Favourites: </h2>
         <div class="extras pt-12">
           <a @click="toggleForm()">Update your profile</a>
         </div>
@@ -74,7 +84,8 @@ export default {
     updateProfile() {
       this.$store.dispatch("updateProfile", {
         name: this.name !== "" ? this.name : this.userProfile.name,
-        birthday: this.birthday !== "" ? this.birthday : this.userProfile.birthday,
+        birthday:
+          this.birthday !== "" ? this.birthday : this.userProfile.birthday,
       });
 
       this.name = "";

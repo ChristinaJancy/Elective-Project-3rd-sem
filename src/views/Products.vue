@@ -24,4 +24,12 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+// Products Page Margin Bot
+
+/* -------------------------- */
+@media only screen and (max-width: 600px) {
+  .ProductsPage {
+    margin-bottom: 2vh;
+  }
+}
 </style>

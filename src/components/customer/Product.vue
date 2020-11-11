@@ -2,34 +2,15 @@
   <section class="singleProduct">
     <!-- Product Name -->
     <v-row class="pa-0 ma-0"
-      ><v-col
-        class="pa-0 ma-0"
-        cols="12"
-        lg="9"
-        xs="12"
-        align-self="center"
-        justify="center"
-        ><h1>{{ item.name }}</h1>
+      ><v-col class="pa-0 ma-0" cols="12" lg="9" xs="6" id="ProductTitle"
+        ><b>{{ item.name }}</b>
       </v-col>
     </v-row>
     <!-- Product Images -->
     <v-row class="pa-0 ma-0">
-      <v-col class="pa-0 ma-0" cols="12" lg="4" xs="6">
+      <v-col class="pa-0 ma-0" cols="12" lg="6" xs="6">
         <v-img
           id="imgMain"
-          aspect-ratio="1"
-          contain
-          v-bind:src="item.image"
-        ></v-img> </v-col
-      ><v-col class="pa-0 ma-0 d-none d-lg-block" cols="12" lg="2" xs="6">
-        <v-img
-          id="imgSide"
-          aspect-ratio="1"
-          contain
-          v-bind:src="item.image"
-        ></v-img>
-        <v-img
-          id="imgSide"
           aspect-ratio="1"
           contain
           v-bind:src="item.image"
@@ -38,7 +19,7 @@
       <!-- Product Description -->
       <v-col
         cols="12"
-        class="ma-0 pa-2"
+        class="ma-0 pa-4"
         lg="3"
         md="12"
         xs="12"
@@ -49,25 +30,10 @@
         <p>Price: {{ item.price }}</p>
         <hr />
         <br />
-        <p>
-          Shirt in woven viscose quality with collar and buttons at the front.
-          The shirt has long balloon sleeves with a cuff and button closure.
-          Support piece cutting at the back and rounded edge at the bottom with
-          a slightly longer back piece.
-        </p>
+        <p>Description: {{ item.description }}</p>
         <hr />
-      </v-col>
-
-      <!-- Add to Basket -->
-      <v-col
-        cols="12"
-        class="ma-0 pa-0"
-        lg="3"
-        xs="12"
-        md="12"
-        align-self="center"
-        justify="center"
-      >
+        <br />
+        <!-- Add to Basket -->
         <v-btn
           id="productDisplayContainer"
           @click="addToBasket(item)"
@@ -76,6 +42,16 @@
           small
         >
           <v-icon color="white">mdi-basket</v-icon>
+        </v-btn>
+        <!-- Add to Favorites -->
+        <v-btn
+          id="productDisplayContainer"
+          @click="addToFavourite(item)"
+          depressed
+          text
+          small
+        >
+          <v-icon color="white">mdi-heart</v-icon>
         </v-btn>
       </v-col>
     </v-row>
@@ -143,6 +119,7 @@ export default {
         color: item.color,
         price: item.price,
         image: item.image,
+        description: item.description,
       },
       drawer: false,
       basketDump: [],
@@ -160,6 +137,9 @@ export default {
       // slide show
       model: null,
     };
+  },
+  beforeCreate() {
+    this.$store.dispatch("setProducts");
   },
   methods: {
     greet: function (event) {
@@ -204,16 +184,18 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+/* ---------- Title Heading ---------------- */
+/* ---------- Buttons ---------------- */
+
 #productDisplayContainer {
   color: #ffffff;
-  width: 100%;
-  height: 90px;
+  width: 75px;
+  height: 75px;
   background-color: #04191b;
 }
 
 #productDisplayContainer:hover {
-  transform: translateY(-20px);
-  height: 90px;
+  transform: translateY(-5px);
   color: white;
   background-color: #0b5d64;
 }
@@ -233,7 +215,7 @@ span {
   font-size: 12px;
 }
 b {
-  font-size: 12px;
+  font-size: 15px;
 }
 p {
   font-size: 12px;

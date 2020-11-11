@@ -47,6 +47,7 @@
                   color: item.color,
                   price: item.price,
                   image: item.image,
+                  description: item.description,
                 },
               }"
             >

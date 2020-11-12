@@ -1,82 +1,128 @@
 <template>
-  <section id="randomOutfit">
-    <v-row class="pa-0 ma-0">
-      <v-col
-        cols="12"
-        class="pa-0 ma-0"
-        lg="12"
-        md="12"
-        sm="12"
-        xs="12"
-        align-self="center"
-        justify="center"
-      >
-        <div id="allProductsTitle">
-          <h1 class="white--text">Generate Custom Fit</h1>
-          <!-- We can make this dynamic depending on the filter set on Categories-->
+  <section id="outFitGenerator">
+    <section class="product-header white">
+      <div align="center" class="header-title nolabelgreen pb-3">
+        <div v-scrollanimation>
+          <h1>Out Fit Generator</h1>
         </div>
+      </div>
+    </section>
+    <hr />
+    <!-- -------------------------------------------------------------------------------------------------------- -->
+    <!-- Shirts -->
+    <v-row class="pa-0 ma-0">
+      <v-col cols="12" lg="3" class="pa-4 ma-0">
+        <h2>Shirts</h2>
+        <v-card color="transparent" flat width="500">
+          <v-carousel
+            hide-delimiters
+            continuous
+            height="200"
+            show-arrows-on-hover
+            touch
+          >
+            <v-carousel-item
+              v-for="item in filterShirt"
+              :key="item.name"
+              v-bind:src="item.image"
+              align="center"
+              contain
+              reverse-transition
+              :to="{
+                name: 'Product',
+                params: {
+                  id: item.name,
+                  name: item.name,
+                  size: item.size,
+                  color: item.color,
+                  price: item.price,
+                  image: item.image,
+                  description: item.description,
+                },
+              }"
+            >
+            </v-carousel-item>
+          </v-carousel>
+        </v-card>
       </v-col>
     </v-row>
     <hr />
-    <br />
-    <v-row class="pa-0 ma-0" id="productBackground">
-      <v-col
-        cols="12"
-        lg="2"
-        md="12"
-        sm="12"
-        xs="12"
-        class="pa-5 ma-0"
-        v-for="item in products"
-        :key="item.name"
-      >
-        <div id="productDisplayBox">
-          <v-img
-            id="productImageDisplay"
-            width="15vw"
-            contain
-            v-bind:src="item.image"
-          ></v-img>
-        </div>
-        <v-btn>Random {{ item.name }}</v-btn>
-      </v-col>
-    </v-row>
-    <br />
-    <hr />
-
+    <!-- -------------------------------------------------------------------------------------------------------- -->
+    <!-- Pants -->
     <v-row class="pa-0 ma-0">
-      <v-col class="pa-0 ma-0" lg="12">
-        <p>
-          Customer is able to scroll left and right through different items
-          sections or click on random generate to make a bombination
-        </p>
+      <v-col cols="12" lg="3" class="pa-4 ma-0">
+        <h2>Pants</h2>
+        <br />
+        <v-card color="transparent" flat width="500">
+          <v-carousel
+            hide-delimiters
+            continuous
+            height="150"
+            show-arrows-on-hover
+            touch
+          >
+            <v-carousel-item
+              v-for="item in filterPant"
+              :key="item.name"
+              v-bind:src="item.image"
+              align="center"
+              contain
+              reverse-transition
+              :to="{
+                name: 'Product',
+                params: {
+                  id: item.name,
+                  name: item.name,
+                  size: item.size,
+                  color: item.color,
+                  price: item.price,
+                  image: item.image,
+                  description: item.description,
+                },
+              }"
+            >
+            </v-carousel-item>
+          </v-carousel>
+        </v-card>
       </v-col>
     </v-row>
     <hr />
-    <v-row class="pa-0 ma-0" id="productBackground">
-      <v-col
-        lg="2"
-        md="12"
-        sm="12"
-        xs="12"
-        class="pa-0 ma-0"
-        v-for="item in products"
-        :key="item.name"
-      >
-        <div id="productDisplayBox">
-          <v-img
-            id="productImageDisplay"
-            width="25vw"
-            contain
-            v-bind:src="item.image"
-          ></v-img>
-        </div>
-      </v-col>
-    </v-row>
-    <v-spacer></v-spacer>
+    <!-- -------------------------------------------------------------------------------------------------------- -->
+    <!-- Shoe -->
     <v-row class="pa-0 ma-0">
-      <v-col class="pa-0 ma-0" lg="12">
-        <v-btn> Generate Outfit </v-btn>
+      <v-col cols="12" lg="3" class="pa-4 ma-0">
+        <h2>Shoes</h2>
+        <v-card color="transparent" flat width="500">
+          <v-carousel
+            hide-delimiters
+            continuous
+            height="150"
+            show-arrows-on-hover
+            touch
+          >
+            <v-carousel-item
+              v-for="item in filterShoe"
+              :key="item.name"
+              v-bind:src="item.image"
+              align="center"
+              contain
+              reverse-transition
+              :to="{
+                name: 'Product',
+                params: {
+                  id: item.name,
+                  name: item.name,
+                  size: item.size,
+                  color: item.color,
+                  price: item.price,
+                  image: item.image,
+                  description: item.description,
+                },
+              }"
+            >
+            </v-carousel-item>
+          </v-carousel>
+        </v-card>
       </v-col>
     </v-row>
   </section>
@@ -95,11 +141,47 @@ export default {
       multiLine: true,
       snackbar: false,
       updatedText: "Product has been updated",
-      size: [],
+      // Size Filter
+      clothingSizes: [" ", "XS", "S", "M", "L", "XL"],
+      filteredSizes: " ",
+      // Season Filter
+      clothingSeason: [" ", "Summer", "Spring", "Winter", "Autumn"],
+      filteredSeason: " ",
+      // Color Filter
+      clothingColor: [
+        " ",
+        "Brown",
+        "White",
+        "Black",
+        "Blue",
+        "Green",
+        "Yellow",
+        "Pink",
+        "Purple",
+        "Maroon",
+      ],
+      filteredColor: " ",
+      // Category Filter
+      clothingCatergory: [" ", "Chill", "Outdoor", "Sporty"],
+      filteredCatergory: " ",
+      // Type Filter
+      clothingType: [
+        " ",
+        "Shoe",
+        "Pants",
+        "Sweater",
+        "Short-sleeved",
+        "Long-sleeved",
+        "T-shirt",
+      ],
+      filteredType: " ",
+      // Filtered Shirt
+      filteredPants: "Pants",
+      filteredShirts: "T-shirt",
+      filteredShoes: "Shoe",
       color: [],
       type: [],
       category: [],
-      season: [],
     };
   },
   beforeCreate() {
@@ -138,53 +220,58 @@ export default {
       // console.log("what is this", this.favouriteDump);
       this.favouriteDump = [];
     },
+
+    // Test multiselection Methods
+    testButton: function () {
+      return this.test1, this.test2, this.test3;
+    },
+    testButton2: function () {
+      return this.test2, this.test3, this.test1;
+    },
   },
   computed: {
     products() {
       return this.$store.getters.getProducts;
     },
-    // Random Generate
-    randomProducts() {
-      return Math.floor(Math.random() * 10);
+    // Filter Pants
+    filterPant() {
+      return this.products.filter((item) =>
+        item.type.includes(this.filteredPants)
+      );
+    },
+    // Filter Shirts
+    filterShirt() {
+      return this.products.filter((item2) =>
+        item2.type.includes(this.filteredShirts)
+      );
+    },
+    // Filter Shoes
+    filterShoe() {
+      return this.products.filter((item3) =>
+        item3.type.includes(this.filteredShoes)
+      );
+    },
+    filterColor() {
+      return this.filterShoe.filter((item8) =>
+        item8.color.includes(this.filteredColor)
+      );
+    },
+
+    test1() {
+      return console.log("test1 and ");
+    },
+    test2() {
+      return console.log("test2 and ");
+    },
+    test3() {
+      return console.log("test3 and");
     },
   },
 };
 </script>
 
 <style lang="scss" scoped>
-#randomOutfit {
-  padding-top: 2vh;
-}
-/* Product Box Control Section */
-#allProductsTitle {
-  display: table;
-  margin: auto;
-}
-#productDisplayBox {
-  color: #053135;
-  height: 100%;
-  display: flex;
-  padding: 0.5vh;
-  width: 100%;
-}
-#productDisplayBox:hover {
-  transform: translateY(-10px);
-  box-shadow: 5px 5px 5px #053135;
+#outFitGenerator {
   color: white;
-  background-color: #053135;
-}
-#productDescription {
-  margin-left: 1vw;
-}
-#productBackground {
-  background-color: white;
-}
-p {
-  font-size: 15px;
-}
-/* Image Control Section */
-#productImageDisplay:hover {
-  transform: scale(1.1); /* 
-  box-shadow: 5px 5px 5px #000000; */
 }
 </style>

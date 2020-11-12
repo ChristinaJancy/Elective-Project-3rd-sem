@@ -330,7 +330,7 @@ h1 {
     5px,
     white
   );
-  background-color: rgba(0, 0, 0, 0.589);
+  background-color: rgba(0, 0, 0, 0.219);
 }
 
 // Starts here:

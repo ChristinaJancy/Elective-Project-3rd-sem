@@ -169,6 +169,15 @@
                 </v-list-item-content>
               </v-list-item>
             </router-link>
+             <router-link to="/randomoutfit">
+              <v-list-item link>
+                <v-list-item-content>
+                  <v-list-item-title class="iconcolor--text"
+                    >Outfit Generator</v-list-item-title
+                  >
+                </v-list-item-content>
+              </v-list-item>
+            </router-link>
 
             <router-link to="/login" v-if="!currentUser">
               <v-list-item link>

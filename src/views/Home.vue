@@ -45,6 +45,7 @@
               show-arrows-on-hover
               touch
             >
+            
               <v-carousel-item
                 v-for="item in products"
                 :key="item.name"

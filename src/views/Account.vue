@@ -6,7 +6,6 @@
       </transition>
       <div v-if="showProfile" align="center">
         <v-img width="90" src="../assets/avatar.png"></v-img>
-        <small>{{ userProfile.permission }}</small>
         <v-row>
           <v-col>
             <h1 class="mb-1" style="text-align: center">
@@ -90,21 +89,21 @@ export default {
     ...mapState(["userProfile"]),
   },
   methods: {
-    updateProfile() {
-      this.$store.dispatch("updateProfile", {
-        name: this.name !== "" ? this.name : this.userProfile.name,
-        birthday:
-          this.birthday !== "" ? this.birthday : this.userProfile.birthday,
-      });
+updateProfile() {
+  this.$store.dispatch('updateProfile', {
+    name: this.name !== '' ? this.name : this.userProfile.name,
+    title: this.title !== '' ? this.title : this.userProfile.title
+  })
 
-      this.name = "";
-      this.title = "";
-      this.showSuccess = true;
+  this.name = ''
+  this.title = ''
 
-      setTimeout(() => {
-        this.showSuccess = false;
-      }, 2000);
-    },
+  this.showSuccess = true
+
+  setTimeout(() => {
+    this.showSuccess = false
+  }, 2000)
+},
     toggleForm() {
       this.showSettings = !this.showSettings;
       this.showProfile = !this.showProfile;

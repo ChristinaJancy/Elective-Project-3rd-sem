@@ -1,5 +1,5 @@
 <template>
-  <section class="Basket">
+  <section class="Basket pb-14">
     <v-img
       :min-height="'calc(100vh - ' + $vuetify.application.top + 'px)'"
       src="https://firebasestorage.googleapis.com/v0/b/endproject-pwa.appspot.com/o/assets%2Fyellow-flower.jpg?alt=media&token=14d019d8-9ad6-4fdf-b19a-caa08252632b"

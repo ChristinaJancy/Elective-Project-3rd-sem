@@ -78,7 +78,7 @@
           <v-slide-item
             v-for="item in products"
             :key="item.name"
-            v-slot="{ active, toggle }"
+            v-slot="{ active }"
           >
             <v-card
               :color="active ? 'primary' : 'grey lighten-1'"
@@ -90,7 +90,7 @@
                 <v-scale-transition>
                   <router-link
                     :to="{
-                      name: 'product',
+                      name: 'Product',
                       params: {
                         id: item.name,
                         name: item.name,
@@ -107,7 +107,7 @@
                       contain
                       height="25vh"
                       v-bind:src="item.image"
-                      @click="toggle"
+                      
                     ></v-img>
                   </router-link>
                 </v-scale-transition>

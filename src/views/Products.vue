@@ -1,10 +1,7 @@
 <template>
   <section class="ProductsPage pt-12">
     <v-row class="pa-0 ma-0">
-      <v-col class="pa-0 ma-0 d-none d-lg-block" lg="2" xs="0">
-        <OptionsMenu></OptionsMenu>
-      </v-col>
-      <v-col class="pa-0 ma-0" lg="10" xs="12">
+      <v-col class="pa-0 ma-0" lg="12" xs="12">
         <DisplayProducts></DisplayProducts>
       </v-col>
     </v-row>
@@ -13,11 +10,9 @@
 
 <script>
 import DisplayProducts from "../components/customer/DisplayProducts.vue";
-import OptionsMenu from "../components/customer/OptionsMenu.vue";
 export default {
   components: {
     DisplayProducts,
-    OptionsMenu,
   },
 };
 </script>

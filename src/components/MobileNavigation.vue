@@ -93,9 +93,10 @@ export default {
     drawer: null,
     navItems: [
       { name: "Favorites", link: "/favourites", icon: "mdi-google-fit" },
-      { name: "Products", link: "/products", icon: "mdi-foot-print" },
-      { name: "No Labels", link: "/", icon: "mdi-ferris-wheel" },
-      { name: "Basket", link: "/basket", icon: "mdi-blur" },
+      { name: "Basket", link: "/basket", icon: "mdi-basket" },
+      { name: "Products", link: "/products", icon: "mdi-tshirt-crew-outline" },
+      { name: "About us", link: "/about", icon: "mdi-chat-alert-outline" },
+     
     ],
   }),
   methods: {

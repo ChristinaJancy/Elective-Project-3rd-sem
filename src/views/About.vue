@@ -41,8 +41,8 @@
         </v-col>
       </v-row>
 
-      <div id="copyrightSection" v-scrollanimation style="margin-bottom: px">
-        MMD 3rd Semester Project 2020 - BASW (Esbjerg, Denmark)
+      <div id="copyrightSection" v-scrollanimation>
+       <small> MMD 3rd Semester Project 2020 - BASW (Esbjerg, Denmark) </small>
       </div>
     </section>
     <!--Short section about what we believe in as a company - some cheasy text incoming-->

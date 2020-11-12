@@ -1,24 +1,24 @@
 <template>
-  <section class="about">
+  <section class="admin">
         <v-container>
           <v-row>
             <v-col offset-md="2" md="8" sm="12" xs="12">
-              <h1>All Items</h1>
+              <h1 style="text-align:center;">Admin</h1>
               <div class="pa-2" id="info">
                 <v-simple-table id="product-table" light>
                   <thead>
                     <v-btn small text to="/addnew">
                       <v-icon color="iconcolor">mdi-plus</v-icon>
-                      <span style="padding:0 10px;">Add Item</span>
+                      <h3 class="pt-2">Add Item</h3>
                     </v-btn>
                     <tr>
-                      <th class="text-left">Product</th>
-                      <th class="text-left">Info</th>
-                      <th class="text-left">Price</th>
-                      <th class="text-left">Edit</th>
-                      <th class="text-left">Remove</th>
-                      <th class="text-left">Add to basket</th>
-                      <th class="text-left">Add to favourite</th>
+                      <th class="p text-left">Product</th>
+                      <th class="p text-left">Info</th>
+                      <th class="p text-left">Price</th>
+                      <th class="p text-left">Edit</th>
+                      <th class="p text-left">Remove</th>
+                      <!-- <th class="text-left">Add to basket</th>
+                      <th class="text-left">Add to favourite</th> -->
                     </tr>
                   </thead>
                   <tbody>
@@ -62,7 +62,7 @@
                           <v-icon color="iconcolor">mdi-delete</v-icon>
                         </v-btn>
                       </td>
-                      <td>
+                      <!-- <td>
                       <v-btn @click="addToBasket(item)" depressed text small>
                           <v-icon color="iconcolor">mdi-basket</v-icon>
                         </v-btn>
@@ -71,7 +71,7 @@
                       <v-btn @click="addToFavourite(item)" depressed text small>
                           <v-icon color="iconcolor">mdi-heart</v-icon>
                         </v-btn>
-                      </td>
+                      </td> -->
 
                     </tr>
                   </tbody>
@@ -330,10 +330,7 @@ h1 {
     5px,
     white
   );
-  font-weight: bold;
-  text-transform: uppercase;
-  font-size: 16px;
-  text-align: center;
+  background-color: rgba(0, 0, 0, 0.589);
 }
 
 // Starts here:

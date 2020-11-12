@@ -59,7 +59,7 @@ h5
     margin: 0 0 0.5rem;
 }
 
-p {
+p, .p {
   margin: 0 0 0.5rem;
    padding: 5px 10px;
   font-family: 'Ubuntu', sans-serif;

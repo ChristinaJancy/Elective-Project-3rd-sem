@@ -12,10 +12,10 @@
     <section class="product-header white">
       <div align="center" class="header-title nolabelgreen pb-3">
         <div v-scrollanimation>
-          <span
-            :class="[$vuetify.breakpoint.smAndDown ? 'display-2' : 'display-3']"
+            <!-- :class="[$vuetify.breakpoint.smAndDown ? 'display-2' : 'display-3']" -->
+          <h1
             class="font-weight-black white--text"
-            >All products.</span
+            >All products.</h1
           >
         </div>
       </div>

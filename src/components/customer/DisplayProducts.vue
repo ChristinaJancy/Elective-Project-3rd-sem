@@ -15,6 +15,9 @@
           <h4>All Products</h4>
           <!-- We can make this dynamic depending on the filter set on Categories -->
         </div>
+        <v-btn @click="filterSummerSeason()">
+          <p>Summer</p>
+        </v-btn>
         <br />
       </v-col>
     </v-row>
@@ -79,6 +82,7 @@
             <v-btn @click="addToBasket(item)" depressed text small>
               <v-icon color="white">mdi-basket</v-icon>
             </v-btn>
+
             <!-- Add to Favorites -->
             <v-btn @click="addToFavourite(item)" depressed text small>
               <v-icon color="white">mdi-heart</v-icon>
@@ -145,6 +149,10 @@ export default {
       this.$store.commit("addFavouriteItems", this.favouriteDump);
       // console.log("what is this", this.favouriteDump);
       this.favouriteDump = [];
+    },
+    filterSummerSeason() {
+      this.color = "white";
+      console.log("white products");
     },
   },
   computed: {

@@ -4,8 +4,8 @@
       {{ itemAdded }}
       <template v-slot:action="{ attrs }">
         <v-btn color="red" text v-bind="attrs" @click="snackbar = false"
-          >Close</v-btn
-        >
+          >Close
+          </v-btn>
       </template>
     </v-snackbar>
     <v-img
@@ -16,7 +16,7 @@
       <v-theme-provider>
         <v-container>
           <v-row>
-            <v-col md="6" sm="12" xs="12" cols="12">
+            <v-col md="6" sm="12" xs="12" cols="12" style="text-align:center">
               <h1>Add new item</h1>
               <div class="pa-2" id="info">
                 <v-text-field
@@ -45,7 +45,8 @@
                     <v-checkbox v-model="size" label="S" value="S"></v-checkbox>
                     <v-checkbox v-model="size" label="M" value="M"></v-checkbox>
                     <v-checkbox v-model="size" label="L" value="L"></v-checkbox>
-                    <v-checkbox v-model="size" label="XL" value="XL"></v-checkbox>                
+                    <v-checkbox v-model="size" label="XL" value="XL"></v-checkbox>
+                    <v-checkbox v-model="size" label="empty" value=" "></v-checkbox>                                
                  </v-row>
                  <hr>
                   <p><b>Shoe sizes</b></p>
@@ -72,6 +73,7 @@
                   <v-checkbox v-model="color" label="Red" value="Red"></v-checkbox>
                   <v-checkbox v-model="color" label="Green" value="Green"></v-checkbox>
                   <v-checkbox v-model="color" label="Yellow" value="Yellow"></v-checkbox>
+                  <v-checkbox v-model="color" label="empty" value=" "></v-checkbox>
                 </v-row>
                 <hr> 
 
@@ -81,6 +83,7 @@
                   <v-checkbox v-model="type" label="Short-sleeved" value="Short-sleeved"></v-checkbox>
                   <v-checkbox v-model="type" label="Pants" value="Pants"></v-checkbox>
                   <v-checkbox v-model="type" label="Long-sleeved" value="Long-sleeved"></v-checkbox>
+                  <v-checkbox v-model="type" label="empty" value=" "></v-checkbox>
                 </v-row>
                 <hr>
 
@@ -89,6 +92,7 @@
                   <v-checkbox v-model="category" label="Sporty" value="Sporty"></v-checkbox>
                   <v-checkbox v-model="category" label="Chill" value="Chill"></v-checkbox>
                   <v-checkbox v-model="category" label="Outdoor" value="Outdoor"></v-checkbox>
+                  <v-checkbox v-model="category" label="empty" value=" "></v-checkbox>
                 </v-row> 
                 <hr>
 
@@ -98,6 +102,7 @@
                   <v-checkbox v-model="season" label="Winter" value="Winter"></v-checkbox>
                   <v-checkbox v-model="season" label="Autumn" value="Autumn"></v-checkbox>
                   <v-checkbox v-model="season" label="Spring" value="Spring"></v-checkbox>
+                  <v-checkbox v-model="season" label="empty" value=" "></v-checkbox>
                 </v-row>
                 <hr>
                 <v-file-input
@@ -122,7 +127,7 @@
               </div>
             </v-col>
 
-            <v-col md="6" sm="12" xs="12" cols="12">
+            <v-col md="6" sm="12" xs="12" cols="12"  style="text-align:center">
               <h1>PREVIEW</h1>
               <div class="pa-2" id="info">
                 <v-simple-table id="product-table">
@@ -262,10 +267,7 @@ h1 {
     5px,
    white,
   );
-  font-weight: bold;
-  text-transform: uppercase;
-  font-size: 16px;
-  text-align: center;
+background-color:rgba(0, 0, 0, 0.445);
 }
 
 // Starts here:

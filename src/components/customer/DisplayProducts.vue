@@ -72,7 +72,7 @@
               <br />
               <b>Colors:</b>
               <span v-for="(color, i) in item.color" :key="'A' + i">
-                {{ color + ", " }}</span
+                {{ color + "" }}</span
               >
             </div>
           </v-col>

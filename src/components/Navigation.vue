@@ -7,24 +7,11 @@
         >
         <v-list-item v-if="currentUser">
           <v-list-item-avatar>
-            <v-img contain src="../assets/fox/fox.png"></v-img>
+            <v-img contain src="../assets/avatar.png"></v-img>
           </v-list-item-avatar>
           <v-list-item-title>{{ currentUser.email }}</v-list-item-title>
         </v-list-item>
         <hr style="border: 0.1px solid #efefef75" v-if="currentUser" />
-
-        <router-link to="/">
-          <v-list-item link>
-            <v-list-item-action>
-              <v-icon class="iconcolor--text">mdi-home-outline</v-icon>
-            </v-list-item-action>
-            <v-list-item-content>
-              <v-list-item-title class="iconcolor--text"
-                >Home</v-list-item-title
-              >
-            </v-list-item-content>
-          </v-list-item>
-        </router-link>
 
         <router-link to="/about">
           <v-list-item link>

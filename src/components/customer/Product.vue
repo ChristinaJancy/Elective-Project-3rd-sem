@@ -13,10 +13,9 @@
     <br /><br />
     <div align="center" class="header-title nolabelgreen pb-3">
       <div v-scrollanimation>
-        <span
-          :class="[$vuetify.breakpoint.smAndDown ? 'display-1' : 'display-2']"
+        <h1
           class="font-weight-black white--text"
-          >{{ item.name }}</span
+          >{{ item.name }}</h1
         >
       </div>
     </div>
@@ -229,9 +228,7 @@ span {
 b {
   font-size: 15px;
 }
-p {
-  font-size: 12px;
-}
+
 /* -------------------------- */
 @media only screen and (max-width: 600px) {
   #imgMain {

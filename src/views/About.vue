@@ -181,7 +181,7 @@ export default {
 //
 
 .header-title {
-  padding-top: 200px;
+  padding-top: 70px;
   .before-enter {
     opacity: 0;
     transform: translateX(100px);

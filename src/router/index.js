@@ -9,6 +9,7 @@ import AddNewItems from '../components/admin/AddNewItems.vue'
 import Login from '../components/admin/Login.vue'
 import Account from '../views/Account.vue'
 import Favourite from '../views/Favourite.vue'
+import RandomOutfit from "../views/RandomOutfit.vue";
 import { auth } from '../firebase.js'
 // import { auth } from '../../firebase.js'
 import 'firebase/firestore'
@@ -74,6 +75,11 @@ Vue.use(VueRouter)
     path: '/basket',
     name: 'Basket',
     component: Basket
+  },
+  {
+    path: '/randomoutfit',
+    name: 'RandomOutfit',
+    component: RandomOutfit
   },
   {
     path: '/login',

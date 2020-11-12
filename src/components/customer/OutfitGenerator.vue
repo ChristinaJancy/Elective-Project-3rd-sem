@@ -12,7 +12,7 @@
         justify="center"
       >
         <div id="allProductsTitle">
-          <h4>Generate Custom Fit</h4>
+          <h1 class="white--text">Generate Custom Fit</h1>
           <!-- We can make this dynamic depending on the filter set on Categories-->
         </div>
       </v-col>

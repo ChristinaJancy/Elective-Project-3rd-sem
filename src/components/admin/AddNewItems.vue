@@ -46,7 +46,7 @@
                     <v-checkbox v-model="size" label="M" value="M"></v-checkbox>
                     <v-checkbox v-model="size" label="L" value="L"></v-checkbox>
                     <v-checkbox v-model="size" label="XL" value="XL"></v-checkbox>
-                    <v-checkbox v-model="size" label="empty" value=" "></v-checkbox>                                
+                    <!-- <v-checkbox v-model="size" label="empty" value=" "></v-checkbox>                                 -->
                  </v-row>
                  <hr>
                   <p><b>Shoe sizes</b></p>
@@ -61,6 +61,10 @@
                   <v-checkbox v-model="size" label="44" value="44"></v-checkbox>
                   <v-checkbox v-model="size" label="45" value="45"></v-checkbox>
                </v-row>
+                    <small>Both sizes have a shared empty array here:</small>
+                 <v-row style="justify-content:center;">
+                    <v-checkbox v-model="size" label="empty" class="mx-12" value=" "></v-checkbox>    
+                 </v-row>
               </v-col>
               <hr>
 
@@ -83,6 +87,7 @@
                   <v-checkbox v-model="type" label="Short-sleeved" value="Short-sleeved"></v-checkbox>
                   <v-checkbox v-model="type" label="Pants" value="Pants"></v-checkbox>
                   <v-checkbox v-model="type" label="Long-sleeved" value="Long-sleeved"></v-checkbox>
+                  <v-checkbox v-model="type" label="T-shirt" value="T-shirt"></v-checkbox>
                   <v-checkbox v-model="type" label="empty" value=" "></v-checkbox>
                 </v-row>
                 <hr>

@@ -9,8 +9,9 @@
     </section>
     <section class="pt-4 pb-4" style="max-width:70%;">
     <v-row class="pa-0 ma-0" dense>
-      <v-col align="center">
-        <!-- Filter Sizes -->
+    
+        <!-- Filter CLothing sizes -->
+         <v-col align="center">
         <v-menu offset-y open-on-hover>
           <template v-slot:activator="{ on, attrs }">
             <v-btn text color="white" v-bind="attrs" v-on="on">
@@ -35,6 +36,7 @@
           </v-list>
         </v-menu>
       </v-col>
+
       <!-- Filter Seasons -->
       <v-col align="center">
         <v-menu offset-y open-on-hover>
@@ -98,11 +100,11 @@
           </template>
           <v-list class="nolabelgreen pa-2">
             <div
-              v-for="(category, index4) in clothingCatergory"
+              v-for="(category, index4) in clothingCategory"
               :key="index4"
             >
               <v-checkbox
-                v-model="filteredCatergory"
+                v-model="filteredCategory"
                 :label="category"
                 :value="category"
                 dark
@@ -229,7 +231,7 @@ export default {
       multiLine: true,
       snackbar: false,
       updatedText: "Product has been updated",
-      // Size Filter
+      // Size Filter 
       clothingSizes: [" ", "XS", "S", "M", "L", "XL"],
       filteredSizes: " ",
       // Season Filter
@@ -245,19 +247,17 @@ export default {
         "Green",
         "Yellow",
         "Pink",
-        "Purple",
-        "Maroon",
+        "Red",
       ],
       filteredColor: " ",
       // Category Filter
-      clothingCatergory: [" ", "Chill", "Outdoor", "Sporty"],
-      filteredCatergory: " ",
+      clothingCategory: [" ", "Chill", "Outdoor", "Sporty"],
+      filteredCategory: " ",
       // Type Filter
       clothingType: [
         " ",
         "Shoe",
         "Pants",
-        "Sweater",
         "Short-sleeved",
         "Long-sleeved",
         "T-shirt",
@@ -327,7 +327,7 @@ export default {
     },
     filterCategory() {
       return this.filterColor.filter((item4) =>
-        item4.category.includes(this.filteredCatergory)
+        item4.category.includes(this.filteredCategory)
       );
     },
     filterType() {

@@ -158,6 +158,7 @@ export default {
         "Green",
         "Yellow",
         "Pink",
+        "Red",
         "Purple",
         "Maroon",
       ],

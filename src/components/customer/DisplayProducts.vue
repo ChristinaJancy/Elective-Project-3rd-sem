@@ -1,5 +1,14 @@
 <template>
   <section id="displayProducts">
+     <v-snackbar top v-model="favSnackbar" :multi-line="multiLine">
+    {{ favAdded }}
+
+    <template v-slot:action="{ attrs }">
+      <v-btn color="red" text v-bind="attrs" @click="favSnackbar = false">
+        Close
+      </v-btn>
+    </template>
+  </v-snackbar>
     <section class="product-header white">
       <div align="center" class="header-title nolabelgreen pb-3">
         <div v-scrollanimation>
@@ -85,6 +94,8 @@
 
 <script>
 export default {
+  components:{
+  },
   data() {
     return {
       drawer: false,
@@ -95,12 +106,14 @@ export default {
       activeEditItem: null,
       multiLine: true,
       snackbar: false,
+      favSnackbar: false,
       updatedText: "Product has been updated",
       size: [],
       color: [],
       type: [],
       category: [],
       season: [],
+      favAdded: 'Product added to your favourites.'
     };
   },
   beforeCreate() {
@@ -127,6 +140,7 @@ export default {
       this.basketDump = [];
     },
     addToFavourite(item) {
+      this.favSnackbar = true;
       this.favouriteDump.push({
         name: item.name,
         size: item.size,

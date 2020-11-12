@@ -68,7 +68,7 @@
                         </v-btn>
                       </td>
                        <td>
-                      <v-btn @click="addToFavourite(item)"  depressed text small>
+                      <v-btn @click="addToFavourite(item)" depressed text small>
                           <v-icon color="iconcolor">mdi-heart</v-icon>
                         </v-btn>
                       </td>
@@ -192,9 +192,11 @@ export default {
   },
   beforeCreate() {
     this.$store.dispatch("setProducts");
+    this.$store.dispatch("setFavourites");
   },
 
   methods: {
+    
     addCheckoutItem(){
     this.$store.dispatch('setCheckoutItem')
     },
@@ -257,6 +259,7 @@ export default {
         this.$store.commit('addFavouriteItems', this.favouriteDump);
         // console.log("what is this", this.favouriteDump);
         this.favouriteDump = [];
+        // this.favSnackbar = true;
     },
     addToBasket(item) {
        this.basketDump.push({

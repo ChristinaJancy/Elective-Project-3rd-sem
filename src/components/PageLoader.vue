@@ -20,7 +20,7 @@ export default {
           if(document.readyState == "complete")
             this.isloaded = true; 
       }
-      
+
   }
 }
 </script>

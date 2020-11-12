@@ -5,8 +5,7 @@
       <div align="center" class="header-title nolabelgreen pb-3">
         <div v-scrollanimation>
           <span
-            :class="[$vuetify.breakpoint.smAndDown ? 'display-2' : 'display-3']"
-            class="font-weight-black white--text"
+            class="h1 font-weight-black white--text"
             >Who we are.</span
           >
         </div>
@@ -51,8 +50,7 @@
       <div align="center" class="header-title nolabelgreen pb-3">
         <div v-scrollanimation>
           <span
-            :class="[$vuetify.breakpoint.smAndDown ? 'display-2' : 'display-3']"
-            class="font-weight-black white--text"
+            class="h1 font-weight-black white--text"
             >What we believe in.</span
           >
         </div>
@@ -62,13 +60,7 @@
           <v-col cols="12" sm="8" md="6" offset-md="3">
             <div align="left">
               <p class="black--text">
-                We believe in a world where you have total freedom to be you,
-                without judgement. To experiment. To express yourself. To be
-                brave and grab life as the extraordinary adventure it is. So we
-                make sure everyone has an equal chance to discover all the
-                amazing things they’re capable of – no matter who they are,
-                where they’re from or what looks they like to boss. We exist to
-                give you the confidence to be whoever you want to be.
+             {{ believeText}}
               </p>
             </div>
           </v-col>
@@ -87,15 +79,13 @@
         src="https://content.asos-media.com/-/media/hubs/about-us/who-we-are/peak/who_we_are_peak_02.jpg"
       ></v-img>
     </section>
-      <v-row>
-        <v-col cols="12" sm="8" md="6" offset-md="3">
-          <div class="about-textbox" >
-          <h2 align="center" v-scrollanimation style="margin-top:-50px; border-top:0; border-bottom:0; border-style: outset; background-color:" class="white">Choice for all</h2>
-          <div align="left" class="mb-16" style="border-top: 0; border-left: 0; border-style: outset;">
-            <p class="black--text" v-scrollanimation>
-              The clothes YOU wear should make YOU feel great, should fill YOU
-              with confidence and fit YOUR body as well as fitting YOUR ideal
-              sense of self.
+      <v-row class="about-choice">
+        <v-col cols="12" sm="8" md="6" offset-md="3" v-scrollanimation>
+          <div class="nolabelgreen pa-5" style="margin-top:-40px;">
+          <h2 align="center" class="nolabelgreen white--text">Choice for all</h2>
+          <div align="left">
+            <p class="white--text">
+             {{choiceText}}
             </p>
           </div>
           </div>
@@ -115,17 +105,13 @@
         src="https://content.asos-media.com/-/media/hubs/about-us/who-we-are/mobile/who-we-are-mobile-2.jpg"
       ></v-img>
       </section>
-      <v-row>
-        <v-col cols="12" sm="8" md="6" offset-md="3">
-        <div class="about-textbox">
-          <h2 align="center" v-scrollanimation style="margin-top:-50px; border-top:0; border-bottom:0; border-style: outset;" class="white">Planet</h2>
-          <div align="left" style="border-top: 0; border-left: 0; border-style: outset;">
-            <p class="black--text" v-scrollanimation>
-              We believe great fashion shouldn’t come with a compromise, be that
-              style, price or impact. We’ve set ourselves challenging targets to
-              reduce the impact of our product, business and logistics, and
-              we’re always looking for new ways to drive sustainability forward.
-            </p>
+      <v-row class="about-planet">
+        <v-col cols="12" sm="8" md="6" offset-md="3" v-scrollanimation>
+         <div class="nolabelgreen pa-5" style="margin-top:-40px;">
+          <h2 align="center" class="nolabelgreen white--text">Planet.</h2>
+          <div align="left">
+            <p class="white--text">
+            {{planetText}} </p>
           </div>
         </div>
         </v-col>
@@ -134,25 +120,39 @@
   </div>
 </template>
 
+<script scoped>
+export default {
+  name: "About",
+  data() {
+    return {
+      logos: [],
+      believeText: "We believe in a world where you have total freedom to be you, without judgement. To experiment. To express yourself. To be brave and grab life as the extraordinary adventure it is. So we make sure everyone has an equal chance to discover all the amazing things they’re capable of – no matter who they are, where they’re from or what looks they like to boss. We exist to give you the confidence to be whoever you want to be.",
+      choiceText: " The clothes YOU wear should make YOU feel great, should fill YOU with confidence and fit YOUR body as well as fitting YOUR ideal sense of self.",
+      planetText: "We believe great fashion shouldn’t come with a compromise, be that style, price or impact. We have set ourselves challenging targets to reduce the impact of our product, business and logistics, and we’re always looking for new ways to drive sustainability forward.",    
+    };
+  },
+  methods: {},
+  mounted() {},
+};
+</script>
 
 <style lang="scss" scoped>
-
-// .img {
-// .before-enter {
-//     opacity: 0;
-//     transform: translateX(-100px);
-//     transition: all 1s cubic-bezier(0.41, 0.01, 0.57, 1.61);
-//   }
-//   .enter {
-//     opacity: 1;
-//     transform: translate(0px);
-//   }
-// }
-
-.about-textbox {
+.about-choice {
   .before-enter {
       opacity: 0;
-      transform: translateY(-100px);
+      transform: translateY(100px);
+      transition: all 1s cubic-bezier(0.41, 0.01, 0.57, 1.61);
+    }
+    .enter {
+      opacity: 1;
+      transform: translate(0px);
+    }
+}
+
+.about-planet {
+  .before-enter {
+      opacity: 0;
+      transform: translateY(100px);
       transition: all 1s cubic-bezier(0.41, 0.01, 0.57, 1.61);
     }
     .enter {
@@ -227,13 +227,9 @@
   }
 }
 h1 {
-  font-size: 1.5rem;
-  padding: 10px 20px;
   transition-delay: 0.2s;
 }
 p {
-  font-size: 1.2rem;
-  padding: 10px 20px;
   transition-delay: 0.1s;
   letter-spacing: 0.6px;
   line-height: 24px;
@@ -307,15 +303,3 @@ p {
 </style>
 
 
-<script scoped>
-export default {
-  name: "About",
-  data() {
-    return {
-      logos: [],
-    };
-  },
-  methods: {},
-  mounted() {},
-};
-</script>

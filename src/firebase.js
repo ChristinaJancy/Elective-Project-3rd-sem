@@ -25,5 +25,5 @@ export {
  db,
  auth,
  dbProductAdd, 
- usersCollection
+ usersCollection,
 }

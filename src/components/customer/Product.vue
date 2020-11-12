@@ -1,7 +1,16 @@
 <template>
   <section class="singleProduct">
+    <v-snackbar top v-model="favSnackbar" :multi-line="multiLine">
+      {{ favAdded }}
+
+      <template v-slot:action="{ attrs }">
+        <v-btn color="red" text v-bind="attrs" @click="favSnackbar = false">
+          Close
+        </v-btn>
+      </template>
+    </v-snackbar>
     <!-- Product name -->
-    <br><br>
+    <br /><br />
     <div align="center" class="header-title nolabelgreen pb-3">
       <div v-scrollanimation>
         <span
@@ -9,10 +18,9 @@
           class="font-weight-black white--text"
           >{{ item.name }}</span
         >
-     
       </div>
     </div>
-       <br><br><br>
+    <br /><br /><br />
     <!-- Product Images -->
     <v-row class="pa-0 ma-0">
       <v-col class="pa-0 ma-0" cols="12" lg="6" xs="6">
@@ -143,6 +151,8 @@ export default {
       season: [],
       // slide show
       model: null,
+      favAdded: 'Product added to your favourites.',
+      favSnackbar: false,
     };
   },
   beforeCreate() {
@@ -169,6 +179,7 @@ export default {
       this.basketDump = [];
     },
     addToFavourite(item) {
+      this.favSnackbar = true;
       this.favouriteDump.push({
         name: item.name,
         size: item.size,

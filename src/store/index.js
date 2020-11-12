@@ -3,7 +3,7 @@ import Vuex from 'vuex'
 
 import 'firebase/firestore'
 import router from '../router/index'
-import { dbProductAdd, usersCollection } from '../firebase.js'
+import { dbProductAdd, usersCollection} from '../firebase.js'
 // import { dbProductAdd } from '../../firebase.js'
 // import * as fb from '../../firebase'
 import * as fb from '../firebase'

@@ -8,7 +8,7 @@
         <v-container>
           <v-row>
             <v-col cols="12" md="6" sm="12" xs="12">
-              <h1 class="title text-center">Basket</h1>
+              <h1 class="text-center">Basket</h1>
               <div class="pa-2" id="info">
                  <v-simple-table v-if="basket.length > 0">
                     <thead>
@@ -45,14 +45,13 @@
                   </tbody>
                 </v-simple-table>
                 <v-simple-table light v-else>
-                    <h4>The basket is empty</h4>
-                  
+                    <h2>The basket is empty</h2>
                 </v-simple-table>
               </div> 
             </v-col>
 
             <v-col cols="12" md="6" sm="12" xs="12">
-            <h1 class="title text-center">Checkout</h1>
+            <h1 class=" text-center">Checkout</h1>
                <div class="pa-2" id="info">
                 <v-row id="basket-checkout" class="mt-12" style="margin:0">
                   <v-col>
@@ -216,10 +215,7 @@ h1 {
     5px,
    white,
   );
-  font-weight: bold;
-  text-transform: uppercase;
-  font-size: 16px;
-  text-align: center;
+  background-color: rgba(0, 0, 0, 0.589);
 }
 
 // Starts here:

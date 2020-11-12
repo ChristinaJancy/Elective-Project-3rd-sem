@@ -7,7 +7,7 @@
         </div>
       </div>
       <div class="header-box" align="center">
-        <h1>We don't believe in labels.</h1>
+        <h2 class="pb-4">We don't believe in labels.</h2>
 
         <v-btn
           color="white"
@@ -24,8 +24,7 @@
       <div align="center" class="nolabelgreen pt-10 pb-16">
         <div>
           <span
-            :class="[$vuetify.breakpoint.smAndDown ? 'display-2' : 'display-3']"
-            class="font-weight-black white--text"
+            class="h1 font-weight-black white--text"
             >New collection!</span>
         </div>
       </div>
@@ -36,7 +35,7 @@
             elevation="24"
             max-width="444"
             align="center"
-            style="background-color: #e8e7e4"
+            color="transparent"
           >
             <v-carousel
               hide-delimiters
@@ -59,7 +58,7 @@
         </v-col>
         <v-col cols="12" md="6" xs="12" style="background-color: #e8e7e4"> 
           <h2 align="center" class="black--text">You define you.</h2>
-          <p align="center" class="black--text my-12"><b>We exist to give you the confidence to be whoever you want to be.</b></p>
+          <p align="center" class="black--text my-12">We exist to give you the confidence to be whoever you want to be.</p>
         </v-col>
       </v-row>
       <br />
@@ -94,16 +93,7 @@ export default {
 
 
 <style lang="scss" scoped>
-h1 {
-  font-size: 1.5rem;
-  padding: 10px 20px;
-  transition-delay: 0.2s;
-}
-p {
-  font-size: 1.2rem;
-  padding: 10px 20px;
-  transition-delay: 0.1s;
-}
+
 //text:
 * {
   box-sizing: border-box;
@@ -126,14 +116,6 @@ p {
   }
   div {
     font-size: 1.2rem;
-  }
-  h1 {
-    font-size: 1.5rem;
-    padding: 10px 20px;
-  }
-  p {
-    font-size: 1.2rem;
-    padding: 10px 20px;
   }
 }
 .header-title {
@@ -163,7 +145,7 @@ p {
 .header-box {
   position: absolute;
   width: 100%;
-  height: 300px;
+  height: 350px;
   padding: 20px;
   bottom: 0;
   color: #efefef;

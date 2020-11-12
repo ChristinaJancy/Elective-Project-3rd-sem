@@ -9,24 +9,29 @@
         <small>{{ userProfile.permission }}</small>
         <v-row>
           <v-col>
-            <h3 class="mb-1" style="text-align: center">
+            <h1 class="mb-1" style="text-align: center">
               {{ userProfile.name }}
-            </h3>
+            </h1>
           </v-col>
         </v-row>
       </div>
-      <h3 v-else>Update your profile</h3>
+      <h1 v-else>Update your profile</h1>
 
       <hr />
 
       <form v-if="showProfile" class="mt-2">
+         <v-row class="pa-0 ma-0">
+           <v-sheet  class="mx-4" max-width="90%">
+              <h2>Occupation</h2>
         <p>
-        Occupation: 
-          <br><b>{{ userProfile.title }}</b>
+          {{ userProfile.title }}
         </p>
-        <h2>Favourites: </h2>
+
+           </v-sheet>
+         </v-row>
+                <FavouritesCarousel/>
         <div class="extras pt-12">
-          <a @click="toggleForm()">Update your profile</a>
+          <button @click="toggleForm()" class="button">Update your profile</button>
         </div>
       </form>
 
@@ -65,9 +70,13 @@
 
 
 <script>
+import FavouritesCarousel from '../components/customer/FavouritesCarousel.vue'
 import { mapState } from "vuex";
 
 export default {
+  components:{
+    FavouritesCarousel,
+  },
   data() {
     return {
       name: "",

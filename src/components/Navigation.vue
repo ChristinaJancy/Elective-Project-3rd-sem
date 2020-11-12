@@ -1,6 +1,6 @@
 <template>
-  <div id="Navigation" class="hidden-sm-only hidden-xs-only">
-    <v-navigation-drawer v-model="drawer" app dark clipped class="nolabelgreen"> <!-- temporary -->
+  <div id="Navigation" class="hidden-xs-only">
+    <v-navigation-drawer v-model="drawer" app dark clipped class="nolabelgreen ma-0 pa-0"> <!-- temporary -->
       <v-list dense>
         <v-list-item-subtitle class="pl-6" v-if="currentUser"
           >Logged in:</v-list-item-subtitle
@@ -160,8 +160,9 @@
 
       <!-- BASKET END HERE ---------------------------- -->
       <router-link to="/favourites">
-        <v-icon class="error--text pl-2">mdi-heart</v-icon>
+        <v-icon class="pl-2 error--text">mdi-heart</v-icon>
       </router-link>
+
 
       <div class="text-center">
         <v-menu offset-y>
@@ -251,6 +252,12 @@ export default {
     },
   },
   computed: {
+         favourites() {
+      //for vuex
+      // return this.$store.state.basketItems //we want to contact state in our vuex store
+      return this.$store.getters.getBasketItems;
+    },
+
     basketCounter() {
       var basketCount = 0;
 
@@ -268,6 +275,7 @@ export default {
       // return this.$store.state.basketItems //we want to contact state in our vuex store
       return this.$store.getters.getBasketItems;
     },
+
   },
   beforeCreate() {},
 };

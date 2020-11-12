@@ -4,6 +4,7 @@
       <div align="center" class="header-title nolabelgreen pb-3">
         <div v-scrollanimation>
           <h1>Out Fit Generator</h1>
+          <small>Work-in-progress</small>
         </div>
       </div>
     </section>

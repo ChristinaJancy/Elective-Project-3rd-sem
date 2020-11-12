@@ -1,32 +1,156 @@
 <template>
   <section id="displayProducts">
-     <v-snackbar top v-model="favSnackbar" :multi-line="multiLine">
-    {{ favAdded }}
-
-    <template v-slot:action="{ attrs }">
-      <v-btn color="red" text v-bind="attrs" @click="favSnackbar = false">
-        Close
-      </v-btn>
-    </template>
-  </v-snackbar>
     <section class="product-header white">
       <div align="center" class="header-title nolabelgreen pb-3">
         <div v-scrollanimation>
-            <!-- :class="[$vuetify.breakpoint.smAndDown ? 'display-2' : 'display-3']" -->
-          <h1
-            class="font-weight-black white--text"
-            >All products.</h1
-          >
+          <h1 class="font-weight-black white--text">All Products</h1>
         </div>
       </div>
     </section>
+    <section class="pt-4 pb-4" style="max-width:70%;">
+    <v-row class="pa-0 ma-0" dense>
+      <v-col align="center">
+        <!-- Filter Sizes -->
+        <v-menu offset-y open-on-hover>
+          <template v-slot:activator="{ on, attrs }">
+            <v-btn text color="white" v-bind="attrs" v-on="on">
+              Clothing sizes
+              <v-icon>mdi-chevron-down</v-icon>
+            </v-btn>
+          </template>
+          <v-list class="nolabelgreen pa-2">
+            <div
+              v-for="(size, index) in clothingSizes"
+              :key="index"
+            >
+              <v-checkbox
+                v-model="filteredSizes"
+                :label="size"
+                :value="size"
+                dark
+                class="pa-0 ma-0"
+              >
+              </v-checkbox>
+            </div>
+          </v-list>
+        </v-menu>
+      </v-col>
+      <!-- Filter Seasons -->
+      <v-col align="center">
+        <v-menu offset-y open-on-hover>
+          <template v-slot:activator="{ on, attrs }">
+            <v-btn  text color="white" v-bind="attrs" v-on="on">
+              Seasons
+               <v-icon>mdi-chevron-down</v-icon>
+            </v-btn>
+          </template>
+          <v-list class="nolabelgreen pa-2">
+            <div
+              v-for="(season, index2) in clothingSeason"
+              :key="index2"
+            >
+              <v-checkbox
+                v-model="filteredSeason"
+                :label="season"
+                :value="season"
+                dark
+                class="pa-0 ma-0"
+              >
+              </v-checkbox>
+            </div>
+          </v-list>
+        </v-menu>
+      </v-col>
+      <!-- Filter Colors -->
+      <v-col align="center">
+        <v-menu offset-y open-on-hover>
+          <template v-slot:activator="{ on, attrs }">
+            <v-btn  text color="white" 
+             v-bind="attrs" v-on="on"> Colors 
+              <v-icon>mdi-chevron-down</v-icon>
+             </v-btn>
+          </template>
+          <v-list class="nolabelgreen pa-2">
+            <div
+              v-for="(color, index3) in clothingColor"
+              :key="index3"
+            >
+              <v-checkbox
+                v-model="filteredColor"
+                :label="color"
+                :value="color"
+                dark
+                class="pa-0 ma-0"
+              >
+              </v-checkbox>
+            </div>
+          </v-list>
+        </v-menu>
+      </v-col>
+      <!--  Filter Category -->
+      <v-col align="center">
+        <v-menu offset-y open-on-hover>
+          <template v-slot:activator="{ on, attrs }">
+            <v-btn  text color="white"   v-bind="attrs" v-on="on">
+              Categories
+               <v-icon>mdi-chevron-down</v-icon>
+            </v-btn>
+          </template>
+          <v-list class="nolabelgreen pa-2">
+            <div
+              v-for="(category, index4) in clothingCatergory"
+              :key="index4"
+            >
+              <v-checkbox
+                v-model="filteredCatergory"
+                :label="category"
+                :value="category"
+                dark
+                class="pa-0 ma-0"
+              >
+              </v-checkbox>
+            </div>
+          </v-list>
+        </v-menu>
+      </v-col>
+      <!-- Filter Type -->
+      <v-col align="center">
+        <v-menu offset-y open-on-hover>
+          <template v-slot:activator="{ on, attrs }">
+            <v-btn  text color="white" 
+              v-bind="attrs" v-on="on"> Types 
+               <v-icon>mdi-chevron-down</v-icon>
+              </v-btn>
+          </template>
+          <v-list class="nolabelgreen pa-2">
+            <div
+              v-for="(type, index5) in clothingType"
+              :key="index5"
+              
+            >
+              <v-checkbox
+                v-model="filteredType"
+                :label="type"
+                :value="type"
+                dark
+                class="pa-0 ma-0"
+              >
+              </v-checkbox>
+            </div>
+          </v-list>
+        </v-menu>
+      </v-col>
+    </v-row>
+    </section>
+    <!-- -------------------------------------------------------------------------------------------------------- -->
+    <!-- Product Display Area -->
     <v-row class="pa-0 ma-0">
       <v-col
         cols="6"
         lg="3"
         xs="3"
         class="pa-4 ma-0"
-        v-for="item in products"
+        v-for="item in filterType"
         :key="item.name"
         id="productDisplayBox"
       >
@@ -72,8 +196,8 @@
               <br />
               <b>Colors:</b>
               <span v-for="(color, i) in item.color" :key="'A' + i">
-                {{ color + "" }}</span
-              >
+                {{ color + ", " }}
+              </span>
             </div>
           </v-col>
           <v-col class="pa-0 ma-0" cols="12" lg="3" xs="6">
@@ -94,8 +218,6 @@
 
 <script>
 export default {
-  components:{
-  },
   data() {
     return {
       drawer: false,
@@ -106,14 +228,44 @@ export default {
       activeEditItem: null,
       multiLine: true,
       snackbar: false,
-      favSnackbar: false,
       updatedText: "Product has been updated",
-      size: [],
+      // Size Filter
+      clothingSizes: [" ", "XS", "S", "M", "L", "XL"],
+      filteredSizes: " ",
+      // Season Filter
+      clothingSeason: [" ", "Summer", "Spring", "Winter", "Autumn"],
+      filteredSeason: " ",
+      // Color Filter
+      clothingColor: [
+        " ",
+        "Brown",
+        "White",
+        "Black",
+        "Blue",
+        "Green",
+        "Yellow",
+        "Pink",
+        "Purple",
+        "Maroon",
+      ],
+      filteredColor: " ",
+      // Category Filter
+      clothingCatergory: [" ", "Chill", "Outdoor", "Sporty"],
+      filteredCatergory: " ",
+      // Type Filter
+      clothingType: [
+        " ",
+        "Shoe",
+        "Pants",
+        "Sweater",
+        "Short-sleeved",
+        "Long-sleeved",
+        "T-shirt",
+      ],
+      filteredType: " ",
       color: [],
       type: [],
       category: [],
-      season: [],
-      favAdded: 'Product added to your favourites.'
     };
   },
   beforeCreate() {
@@ -140,7 +292,6 @@ export default {
       this.basketDump = [];
     },
     addToFavourite(item) {
-      this.favSnackbar = true;
       this.favouriteDump.push({
         name: item.name,
         size: item.size,
@@ -157,6 +308,32 @@ export default {
   computed: {
     products() {
       return this.$store.getters.getProducts;
+    },
+    // Filters
+    filterSizes() {
+      return this.products.filter((item) =>
+        item.size.includes(this.filteredSizes)
+      );
+    },
+    filterSeason() {
+      return this.filterSizes.filter((item2) =>
+        item2.season.includes(this.filteredSeason)
+      );
+    },
+    filterColor() {
+      return this.filterSeason.filter((item3) =>
+        item3.color.includes(this.filteredColor)
+      );
+    },
+    filterCategory() {
+      return this.filterColor.filter((item4) =>
+        item4.category.includes(this.filteredCatergory)
+      );
+    },
+    filterType() {
+      return this.filterCategory.filter((item5) =>
+        item5.type.includes(this.filteredType)
+      );
     },
   },
 };

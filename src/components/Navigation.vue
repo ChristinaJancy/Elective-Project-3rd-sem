@@ -16,12 +16,11 @@
         <router-link to="/about">
           <v-list-item link>
             <v-list-item-action>
-              <v-icon class="iconcolor--text">mdi-information-outline</v-icon>
+              <v-icon class="iconcolor--text">mdi-chat-alert-outline</v-icon>
             </v-list-item-action>
             <v-list-item-content>
               <v-list-item-title class="iconcolor--text"
-                >About</v-list-item-title
-              >
+                >About us</v-list-item-title>
             </v-list-item-content>
           </v-list-item>
         </router-link>

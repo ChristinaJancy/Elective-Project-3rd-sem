@@ -18,6 +18,7 @@ export default new Vuetify({
         success: '#4CAF50',
         warning: '#FFC107',
         nolabelgreen: '#102021',
+        lightgreen: '#0b5d64',
       },
       dark: {
         primary: '#1976D2',
@@ -28,6 +29,7 @@ export default new Vuetify({
         success: '#4CAF50',
         warning: '#FFC107',
         nolabelgreen: '#28575b',
+        lightgreen: '#0b5d64',
       }
     },
   },

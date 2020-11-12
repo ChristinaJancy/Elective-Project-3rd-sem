@@ -21,7 +21,7 @@
             />
             <p v-scrollanimation><b>Christina Jancy</b></p>
             <p v-scrollanimation style="margin-top: -30px">
-              <a href="https://github.com/ChristinaJancy" target="_blank"> Github</a>
+              <a href="https://github.com/ChristinaJancy" target="_blank"><b>Github</b></a>
             </p>
           </div>
         </v-col>
@@ -35,7 +35,7 @@
             />
             <p v-scrollanimation><b>Penda Svane</b></p>
             <p v-scrollanimation style="margin-top: -30px">
-              <a href="https://github.com/TheSvaneMan" target="_blank">Github</a>
+              <a href="https://github.com/TheSvaneMan" target="_blank"><b> Github</b></a>
             </p>
           </div>
         </v-col>
